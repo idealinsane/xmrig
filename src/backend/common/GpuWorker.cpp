@@ -27,7 +27,7 @@ xmrig::GpuWorker::GpuWorker(size_t id, int64_t affinity, int priority, uint32_t 
 }
 
 
-void xmrig::GpuWorker::storeStats()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::GpuWorker::storeStats()
 {
     // Get index which is unused now
     const uint32_t index = m_index.load(std::memory_order_relaxed) ^ 1;

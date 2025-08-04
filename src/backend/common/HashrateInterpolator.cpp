@@ -44,7 +44,7 @@ uint64_t xmrig::HashrateInterpolator::interpolate(uint64_t timeStamp) const
     return 0;
 }
 
-void xmrig::HashrateInterpolator::addDataPoint(uint64_t count, uint64_t timeStamp)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HashrateInterpolator::addDataPoint(uint64_t count, uint64_t timeStamp)
 {
     std::lock_guard<std::mutex> l(m_lock);
 

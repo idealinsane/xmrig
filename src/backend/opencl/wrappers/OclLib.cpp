@@ -178,7 +178,7 @@ static String getOclString(FUNC fn, OBJ obj, PARAM param)
 } // namespace xmrig
 
 
-bool xmrig::OclLib::init(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::init(const char *fileName)
 {
     if (!m_initialized) {
         m_loader      = fileName == nullptr ? defaultLoader() : Env::expand(fileName);
@@ -196,13 +196,13 @@ const char *xmrig::OclLib::lastError()
 }
 
 
-void xmrig::OclLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::close()
 {
     uv_dlclose(&oclLib);
 }
 
 
-bool xmrig::OclLib::load()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::load()
 {
     try {
         DLSYM(CreateCommandQueue);
@@ -250,7 +250,7 @@ bool xmrig::OclLib::load()
 }
 
 
-xmrig::String xmrig::OclLib::defaultLoader()
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::defaultLoader()
 {
 #   if defined(__APPLE__)
     return "/System/Library/Frameworks/OpenCL.framework/OpenCL";
@@ -289,7 +289,7 @@ cl_command_queue xmrig::OclLib::createCommandQueue(cl_context context, cl_device
 }
 
 
-cl_command_queue xmrig::OclLib::createCommandQueue(cl_context context, cl_device_id device)
+cl_command_queue __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::createCommandQueue(cl_context context, cl_device_id device)
 {
     cl_int ret = 0;
     cl_command_queue queue = createCommandQueue(context, device, &ret);
@@ -316,7 +316,7 @@ cl_context xmrig::OclLib::createContext(const cl_context_properties *properties,
 }
 
 
-cl_context xmrig::OclLib::createContext(const std::vector<cl_device_id> &ids)
+cl_context __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::createContext(const std::vector<cl_device_id> &ids)
 {
     cl_int ret = 0;
     return createContext(nullptr, static_cast<cl_uint>(ids.size()), ids.data(), nullptr, nullptr, &ret);
@@ -423,7 +423,7 @@ cl_int xmrig::OclLib::getMemObjectInfo(cl_mem memobj, cl_mem_info param_name, si
 }
 
 
-cl_int xmrig::OclLib::getPlatformIDs(cl_uint num_entries, cl_platform_id *platforms, cl_uint *num_platforms)
+cl_int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::getPlatformIDs(cl_uint num_entries, cl_platform_id *platforms, cl_uint *num_platforms)
 {
     assert(pGetPlatformIDs != nullptr);
 
@@ -452,7 +452,7 @@ cl_int xmrig::OclLib::getProgramBuildInfo(cl_program program, cl_device_id devic
 }
 
 
-cl_int xmrig::OclLib::getProgramInfo(cl_program program, cl_program_info param_name, size_t param_value_size, void *param_value, size_t *param_value_size_ret)
+cl_int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::getProgramInfo(cl_program program, cl_program_info param_name, size_t param_value_size, void *param_value, size_t *param_value_size_ret)
 {
     assert(pGetProgramInfo != nullptr);
 
@@ -616,7 +616,7 @@ cl_kernel xmrig::OclLib::createKernel(cl_program program, const char *kernel_nam
 }
 
 
-cl_kernel xmrig::OclLib::createKernel(cl_program program, const char *kernel_name)
+cl_kernel __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::createKernel(cl_program program, const char *kernel_name)
 {
     cl_int ret = 0;
     cl_kernel kernel = createKernel(program, kernel_name, &ret);
@@ -628,7 +628,7 @@ cl_kernel xmrig::OclLib::createKernel(cl_program program, const char *kernel_nam
 }
 
 
-cl_mem xmrig::OclLib::createBuffer(cl_context context, cl_mem_flags flags, size_t size, void *host_ptr)
+cl_mem __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::createBuffer(cl_context context, cl_mem_flags flags, size_t size, void *host_ptr)
 {
     cl_int ret = 0;
     cl_mem mem = createBuffer(context, flags, size, host_ptr, &ret);
@@ -672,7 +672,7 @@ cl_mem xmrig::OclLib::createSubBuffer(cl_mem buffer, cl_mem_flags flags, size_t 
 }
 
 
-cl_mem xmrig::OclLib::createSubBuffer(cl_mem buffer, cl_mem_flags flags, size_t offset, size_t size)
+cl_mem __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclLib::createSubBuffer(cl_mem buffer, cl_mem_flags flags, size_t offset, size_t size)
 {
     cl_int ret = 0;
     cl_mem mem = createSubBuffer(buffer, flags, offset, size, &ret);

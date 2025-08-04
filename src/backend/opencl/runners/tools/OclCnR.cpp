@@ -88,7 +88,7 @@ public:
     }
 
 
-    void add(const Algorithm &algo, uint64_t offset, uint32_t index, cl_program program)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) add(const Algorithm &algo, uint64_t offset, uint32_t index, cl_program program)
     {
         if (search(algo, offset, index)) {
             OclLib::release(program);
@@ -103,7 +103,7 @@ public:
     }
 
 
-    void clear()
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) clear()
     {
         std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -116,7 +116,7 @@ public:
 
 
 private:
-    void gc(uint64_t offset)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) gc(uint64_t offset)
     {
         for (size_t i = 0; i < m_data.size();) {
             auto &entry = m_data[i];
@@ -146,7 +146,7 @@ class CnrBuilder
 public:
     CnrBuilder() = default;
 
-    cl_program build(const IOclRunner &runner, uint64_t offset)
+    cl_program __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) build(const IOclRunner &runner, uint64_t offset)
     {
     #   ifdef APP_DEBUG
         const uint64_t ts = Chrono::steadyMSecs();
@@ -265,7 +265,7 @@ static std::mutex bg_mutex;
 
 
 
-cl_program xmrig::OclCnR::get(const IOclRunner &runner, uint64_t height)
+cl_program __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCnR::get(const IOclRunner &runner, uint64_t height)
 {
     const uint64_t offset = (height / kHeightChunkSize) * kHeightChunkSize;
 
@@ -293,7 +293,7 @@ cl_program xmrig::OclCnR::get(const IOclRunner &runner, uint64_t height)
 }
 
 
-void xmrig::OclCnR::clear()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCnR::clear()
 {
     std::lock_guard<std::mutex> lock(bg_mutex);
 

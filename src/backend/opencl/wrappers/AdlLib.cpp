@@ -157,7 +157,7 @@ static void getSensorsData_v8(const AdapterInfo &adapter, AdlHealth &health)
 } // namespace xmrig
 
 
-bool xmrig::AdlLib::init()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::init()
 {
     if (!m_initialized) {
         m_ready       = dlopen() && load();
@@ -174,7 +174,7 @@ const char *xmrig::AdlLib::lastError() noexcept
 }
 
 
-void xmrig::AdlLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::close()
 {
     if (m_ready) {
         ADL_Main_Control_Destroy();
@@ -184,7 +184,7 @@ void xmrig::AdlLib::close()
 }
 
 
-AdlHealth xmrig::AdlLib::health(const OclDevice &device)
+AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::health(const OclDevice &device)
 {
     if (!isReady() || device.vendorId() != OCL_VENDOR_AMD) {
         return {};
@@ -219,13 +219,13 @@ AdlHealth xmrig::AdlLib::health(const OclDevice &device)
 }
 
 
-bool xmrig::AdlLib::dlopen()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::dlopen()
 {
     return uv_dlopen("atiadlxx.dll", &adlLib) == 0;
 }
 
 
-bool xmrig::AdlLib::load()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::load()
 {
     try {
         DLSYM(ADL_Main_Control_Create);

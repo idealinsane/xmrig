@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::InitVmKernel::enqueue(cl_command_queue queue, size_t threads, uint32_t iteration)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::InitVmKernel::enqueue(cl_command_queue queue, size_t threads, uint32_t iteration)
 {
     setArg(3, sizeof(uint32_t), &iteration);
 
@@ -39,7 +39,7 @@ void xmrig::InitVmKernel::enqueue(cl_command_queue queue, size_t threads, uint32
 
 
 // __kernel void init_vm(__global const void* entropy_data, __global void* vm_states, __global uint32_t* rounding, uint32_t iteration)
-void xmrig::InitVmKernel::setArgs(cl_mem entropy_data, cl_mem vm_states, cl_mem rounding)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::InitVmKernel::setArgs(cl_mem entropy_data, cl_mem vm_states, cl_mem rounding)
 {
     setArg(0, sizeof(cl_mem), &entropy_data);
     setArg(1, sizeof(cl_mem), &vm_states);

@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::Blake2bInitialHashBigKernel::enqueue(cl_command_queue queue, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Blake2bInitialHashBigKernel::enqueue(cl_command_queue queue, size_t threads)
 {
     const size_t gthreads        = threads;
     static const size_t lthreads = 64;
@@ -37,14 +37,14 @@ void xmrig::Blake2bInitialHashBigKernel::enqueue(cl_command_queue queue, size_t 
 
 
 // __kernel void blake2b_initial_hash_double(__global void *out, __global const void* blockTemplate, uint blockTemplateSize, uint start_nonce)
-void xmrig::Blake2bInitialHashBigKernel::setArgs(cl_mem out, cl_mem blockTemplate)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Blake2bInitialHashBigKernel::setArgs(cl_mem out, cl_mem blockTemplate)
 {
     setArg(0, sizeof(cl_mem), &out);
     setArg(1, sizeof(cl_mem), &blockTemplate);
 }
 
 
-void xmrig::Blake2bInitialHashBigKernel::setBlobSize(size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Blake2bInitialHashBigKernel::setBlobSize(size_t size)
 {
     const uint32_t s = size;
 
@@ -52,7 +52,7 @@ void xmrig::Blake2bInitialHashBigKernel::setBlobSize(size_t size)
 }
 
 
-void xmrig::Blake2bInitialHashBigKernel::setNonce(uint32_t nonce, uint32_t nonce_offset)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Blake2bInitialHashBigKernel::setNonce(uint32_t nonce, uint32_t nonce_offset)
 {
     setArg(3, sizeof(uint32_t), &nonce);
     setArg(4, sizeof(uint32_t), &nonce_offset);

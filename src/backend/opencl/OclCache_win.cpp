@@ -31,7 +31,7 @@
 #include "backend/opencl/OclCache.h"
 
 
-void xmrig::OclCache::createDirectory()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::createDirectory()
 {
     std::string path = prefix() + "/xmrig";
     _mkdir(path.c_str());
@@ -41,7 +41,7 @@ void xmrig::OclCache::createDirectory()
 }
 
 
-std::string xmrig::OclCache::prefix()
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::prefix()
 {
     char path[MAX_PATH + 1];
     if (SHGetSpecialFolderPathA(HWND_DESKTOP, path, CSIDL_LOCAL_APPDATA, FALSE)) {

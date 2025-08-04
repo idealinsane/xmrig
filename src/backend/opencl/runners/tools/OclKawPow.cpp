@@ -95,7 +95,7 @@ public:
     }
 
 
-    void add(const Algorithm &algo, uint64_t period, uint32_t worksize, uint32_t index, cl_program program, cl_kernel kernel)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) add(const Algorithm &algo, uint64_t period, uint32_t worksize, uint32_t index, cl_program program, cl_kernel kernel)
     {
         if (search(algo, period, worksize, index)) {
             OclLib::release(kernel);
@@ -110,7 +110,7 @@ public:
     }
 
 
-    void clear()
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) clear()
     {
         std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -123,7 +123,7 @@ public:
 
 
 private:
-    void gc(uint64_t period)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) gc(uint64_t period)
     {
         for (size_t i = 0; i < m_data.size();) {
             auto& entry = m_data[i];
@@ -182,7 +182,7 @@ public:
 
     void build_async(const IOclRunner& runner, uint64_t period, uint32_t worksize);
 
-    cl_kernel build(const IOclRunner &runner, uint64_t period, uint32_t worksize)
+    cl_kernel __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) build(const IOclRunner &runner, uint64_t period, uint32_t worksize)
     {
         std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -415,7 +415,7 @@ private:
 static KawPowBuilder builder;
 
 
-void KawPowBuilder::build_async(const IOclRunner& runner, uint64_t period, uint32_t worksize)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) KawPowBuilder::build_async(const IOclRunner& runner, uint64_t period, uint32_t worksize)
 {
     std::lock_guard<std::mutex> lock(m_mutex);
 
@@ -456,7 +456,7 @@ void KawPowBuilder::build_async(const IOclRunner& runner, uint64_t period, uint3
 }
 
 
-cl_kernel OclKawPow::get(const IOclRunner &runner, uint64_t height, uint32_t worksize)
+cl_kernel __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) OclKawPow::get(const IOclRunner &runner, uint64_t height, uint32_t worksize)
 {
     const uint64_t period = height / KPHash::PERIOD_LENGTH;
 
@@ -473,7 +473,7 @@ cl_kernel OclKawPow::get(const IOclRunner &runner, uint64_t height, uint32_t wor
 }
 
 
-void OclKawPow::clear()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) OclKawPow::clear()
 {
     cache.clear();
 }

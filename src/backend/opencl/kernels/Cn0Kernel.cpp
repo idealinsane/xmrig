@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::Cn0Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn0Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
 {
     const size_t offset[2]          = { nonce, 1 };
     const size_t gthreads[2]        = { threads, 8 };
@@ -38,7 +38,7 @@ void xmrig::Cn0Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t th
 
 
 // __kernel void cn0(__global ulong *input, __global uint4 *Scratchpad, __global ulong *states, uint Threads)
-void xmrig::Cn0Kernel::setArgs(cl_mem input, int inlen, cl_mem scratchpads, cl_mem states, uint32_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn0Kernel::setArgs(cl_mem input, int inlen, cl_mem scratchpads, cl_mem states, uint32_t threads)
 {
     setArg(0, sizeof(cl_mem), &input);
     setArg(1, sizeof(int), &inlen);

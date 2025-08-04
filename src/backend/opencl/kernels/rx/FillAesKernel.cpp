@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void xmrig::FillAesKernel::enqueue(cl_command_queue queue, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FillAesKernel::enqueue(cl_command_queue queue, size_t threads)
 {
     const size_t gthreads        = threads * 4;
     static const size_t lthreads = 64;
@@ -38,7 +38,7 @@ void xmrig::FillAesKernel::enqueue(cl_command_queue queue, size_t threads)
 
 // __kernel void fillAes1Rx4_scratchpad(__global void* state, __global void* out, uint batch_size, uint rx_version)
 // __kernel void fillAes4Rx4_entropy(__global void* state, __global void* out, uint batch_size, uint rx_version)
-void xmrig::FillAesKernel::setArgs(cl_mem state, cl_mem out, uint32_t batch_size, uint32_t rx_version)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FillAesKernel::setArgs(cl_mem state, cl_mem out, uint32_t batch_size, uint32_t rx_version)
 {
     setArg(0, sizeof(cl_mem), &state);
     setArg(1, sizeof(cl_mem), &out);

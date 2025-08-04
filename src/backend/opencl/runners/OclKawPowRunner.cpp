@@ -75,7 +75,7 @@ OclKawPowRunner::~OclKawPowRunner()
 }
 
 
-void OclKawPowRunner::run(uint32_t nonce, uint32_t /*nonce_offset*/, uint32_t *hashOutput)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) OclKawPowRunner::run(uint32_t nonce, uint32_t /*nonce_offset*/, uint32_t *hashOutput)
 {
     const size_t local_work_size = m_workGroupSize;
     const size_t global_work_offset = nonce;
@@ -114,7 +114,7 @@ void OclKawPowRunner::run(uint32_t nonce, uint32_t /*nonce_offset*/, uint32_t *h
 }
 
 
-void OclKawPowRunner::set(const Job &job, uint8_t *blob)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) OclKawPowRunner::set(const Job &job, uint8_t *blob)
 {
     m_blockHeight = static_cast<uint32_t>(job.height());
     m_searchKernel = OclKawPow::get(*this, m_blockHeight, m_workGroupSize);
@@ -180,7 +180,7 @@ void OclKawPowRunner::set(const Job &job, uint8_t *blob)
 }
 
 
-void OclKawPowRunner::jobEarlyNotification(const Job&)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) OclKawPowRunner::jobEarlyNotification(const Job&)
 {
     const uint32_t one = 1;
     const cl_int ret = OclLib::enqueueWriteBuffer(m_controlQueue, m_stop, CL_TRUE, 0, sizeof(one), &one, 0, nullptr, nullptr);
@@ -190,7 +190,7 @@ void OclKawPowRunner::jobEarlyNotification(const Job&)
 }
 
 
-void xmrig::OclKawPowRunner::build()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclKawPowRunner::build()
 {
     OclBaseRunner::build();
 
@@ -198,7 +198,7 @@ void xmrig::OclKawPowRunner::build()
 }
 
 
-void xmrig::OclKawPowRunner::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclKawPowRunner::init()
 {
     OclBaseRunner::init();
 

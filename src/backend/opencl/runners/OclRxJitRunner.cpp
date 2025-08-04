@@ -55,7 +55,7 @@ size_t xmrig::OclRxJitRunner::bufferSize() const
 }
 
 
-void xmrig::OclRxJitRunner::build()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxJitRunner::build()
 {
     OclRxBaseRunner::build();
 
@@ -75,7 +75,7 @@ void xmrig::OclRxJitRunner::build()
 }
 
 
-void xmrig::OclRxJitRunner::execute(uint32_t iteration)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxJitRunner::execute(uint32_t iteration)
 {
     m_randomx_jit->enqueue(m_queue, m_intensity, iteration);
 
@@ -85,7 +85,7 @@ void xmrig::OclRxJitRunner::execute(uint32_t iteration)
 }
 
 
-void xmrig::OclRxJitRunner::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxJitRunner::init()
 {
     OclRxBaseRunner::init();
 
@@ -95,7 +95,7 @@ void xmrig::OclRxJitRunner::init()
 }
 
 
-bool xmrig::OclRxJitRunner::loadAsmProgram()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxJitRunner::loadAsmProgram()
 {
     // Adrenaline drivers on Windows and amdgpu-pro drivers on Linux use ELF header's flags (offset 0x30) to store internal device ID
     // Read it from compiled OpenCL code and substitute this ID into pre-compiled binary to make sure the driver accepts it

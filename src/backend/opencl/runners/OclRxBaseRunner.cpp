@@ -87,7 +87,7 @@ xmrig::OclRxBaseRunner::~OclRxBaseRunner()
 }
 
 
-void xmrig::OclRxBaseRunner::run(uint32_t nonce, uint32_t nonce_offset, uint32_t *hashOutput)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxBaseRunner::run(uint32_t nonce, uint32_t nonce_offset, uint32_t *hashOutput)
 {
     static const uint32_t zero = 0;
 
@@ -141,7 +141,7 @@ void xmrig::OclRxBaseRunner::run(uint32_t nonce, uint32_t nonce_offset, uint32_t
 }
 
 
-void xmrig::OclRxBaseRunner::set(const Job &job, uint8_t *blob)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxBaseRunner::set(const Job &job, uint8_t *blob)
 {
     if (!data().thread.isDatasetHost() && m_seed != job.seed()) {
         m_seed = job.seed();
@@ -178,7 +178,7 @@ size_t xmrig::OclRxBaseRunner::bufferSize() const
 }
 
 
-void xmrig::OclRxBaseRunner::build()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxBaseRunner::build()
 {
     OclBaseRunner::build();
 
@@ -209,7 +209,7 @@ void xmrig::OclRxBaseRunner::build()
 }
 
 
-void xmrig::OclRxBaseRunner::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxBaseRunner::init()
 {
     OclBaseRunner::init();
 

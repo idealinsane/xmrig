@@ -27,7 +27,7 @@
 #endif
 
 
-void xmrig::HwApi::onRequest(IApiRequest &request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HwApi::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
 #       ifdef XMRIG_FEATURE_DMI

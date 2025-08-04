@@ -71,7 +71,7 @@ void xmrig::DmiReader::toJSON(rapidjson::Value &out, rapidjson::Document &doc) c
 #endif
 
 
-bool xmrig::DmiReader::decode(uint8_t *buf, const Cleanup &cleanup)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::decode(uint8_t *buf, const Cleanup &cleanup)
 {
     const bool rc = decode(buf);
 
@@ -81,7 +81,7 @@ bool xmrig::DmiReader::decode(uint8_t *buf, const Cleanup &cleanup)
 }
 
 
-bool xmrig::DmiReader::decode(uint8_t *buf)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::decode(uint8_t *buf)
 {
     if (!buf) {
         return false;

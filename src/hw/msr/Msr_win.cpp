@@ -43,7 +43,7 @@ static const wchar_t *kServiceName = SERVICE_NAME;
 class MsrPrivate
 {
 public:
-    bool uninstall()
+    bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) uninstall()
     {
         if (driver != INVALID_HANDLE_VALUE) {
             CloseHandle(driver);
@@ -206,12 +206,12 @@ bool xmrig::Msr::isAvailable() const
 }
 
 
-bool xmrig::Msr::write(Callback &&callback)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Msr::write(Callback &&callback)
 {
     const auto &units = Cpu::info()->units();
     bool success      = false;
 
-    std::thread thread([&callback, &units, &success]() {
+    std::thread __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) thread([&callback, &units, &success]() {
         for (int32_t pu : units) {
             if (!Platform::setThreadAffinity(pu)) {
                 continue;
@@ -241,7 +241,7 @@ bool xmrig::Msr::rdmsr(uint32_t reg, int32_t cpu, uint64_t &value) const
 }
 
 
-bool xmrig::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Msr::wrmsr(uint32_t reg, uint64_t value, int32_t cpu)
 {
     assert(cpu < 0);
 

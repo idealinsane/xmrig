@@ -52,7 +52,7 @@ xmrig::App::~App()
 }
 
 
-int xmrig::App::exec()
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::App::exec()
 {
     if (!m_controller->isReady()) {
         LOG_EMERG("no valid configuration found, try https://xmrig.com/wizard");
@@ -93,7 +93,7 @@ int xmrig::App::exec()
 }
 
 
-void xmrig::App::onConsoleCommand(char command)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::App::onConsoleCommand(char command)
 {
     if (command == 3) {
         LOG_WARN("%s " YELLOW("Ctrl+C received, exiting"), Tags::signal());
@@ -105,7 +105,7 @@ void xmrig::App::onConsoleCommand(char command)
 }
 
 
-void xmrig::App::onSignal(int signum)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::App::onSignal(int signum)
 {
     switch (signum)
     {
@@ -120,7 +120,7 @@ void xmrig::App::onSignal(int signum)
 }
 
 
-void xmrig::App::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::App::close()
 {
     m_signals.reset();
     m_console.reset();

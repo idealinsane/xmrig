@@ -76,21 +76,21 @@ Taskbar::~Taskbar()
 }
 
 
-void Taskbar::setActive(bool active)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Taskbar::setActive(bool active)
 {
     m_active = active;
     updateTaskbarColor();
 }
 
 
-void Taskbar::setEnabled(bool enabled)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Taskbar::setEnabled(bool enabled)
 {
     m_enabled = enabled;
     updateTaskbarColor();
 }
 
 
-void Taskbar::updateTaskbarColor()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Taskbar::updateTaskbarColor()
 {
     if (d_ptr->m_taskbar) {
         if (m_active) {

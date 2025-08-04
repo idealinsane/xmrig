@@ -45,7 +45,7 @@ xmrig::Controller::~Controller()
 }
 
 
-int xmrig::Controller::init()
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Controller::init()
 {
     Base::init();
 
@@ -62,7 +62,7 @@ int xmrig::Controller::init()
 }
 
 
-void xmrig::Controller::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Controller::start()
 {
     Base::start();
 
@@ -72,7 +72,7 @@ void xmrig::Controller::start()
 }
 
 
-void xmrig::Controller::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Controller::stop()
 {
     Base::stop();
 

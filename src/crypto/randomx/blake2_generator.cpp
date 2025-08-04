@@ -41,19 +41,19 @@ namespace randomx {
 		store32(&data[maxSeedSize], nonce);
 	}
 
-	uint8_t Blake2Generator::getByte() {
+	uint8_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Blake2Generator::getByte() {
 		checkData(1);
 		return data[dataIndex++];
 	}
 
-	uint32_t Blake2Generator::getUInt32() {
+	uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Blake2Generator::getUInt32() {
 		checkData(4);
 		auto ret = load32(&data[dataIndex]);
 		dataIndex += 4;
 		return ret;
 	}
 
-	void Blake2Generator::checkData(const size_t bytesNeeded) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Blake2Generator::checkData(const size_t bytesNeeded) {
 		if (dataIndex + bytesNeeded > sizeof(data)) {
 			rx_blake2b(data, sizeof(data), data, sizeof(data));
 			dataIndex = 0;

@@ -38,12 +38,12 @@ namespace randomx {
 	static_assert(sizeof(RegisterFile) == 256, "Invalid alignment of struct randomx::RegisterFile");
 
 	template<int softAes>
-	void CompiledVm<softAes>::setDataset(randomx_dataset* dataset) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CompiledVm<softAes>::setDataset(randomx_dataset* dataset) {
 		datasetPtr = dataset;
 	}
 
 	template<int softAes>
-	void CompiledVm<softAes>::run(void* seed) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CompiledVm<softAes>::run(void* seed) {
 		PROFILE_SCOPE(RandomX_run);
 
 		compiler.prepare();
@@ -55,7 +55,7 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void CompiledVm<softAes>::execute() {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CompiledVm<softAes>::execute() {
 		PROFILE_SCOPE(RandomX_JIT_execute);
 
 #		ifdef XMRIG_ARM

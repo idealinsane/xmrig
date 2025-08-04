@@ -99,7 +99,7 @@ static inline void add_random_math(uint8_t* &p, const V4_Instruction* code, int 
     }
 }
 
-void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) v4_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
 {
     uint8_t* p0 = reinterpret_cast<uint8_t*>(machine_code);
     uint8_t* p = p0;
@@ -113,7 +113,7 @@ void v4_compile_code(const V4_Instruction* code, int code_size, void* machine_co
     xmrig::VirtualMemory::flushInstructionCache(machine_code, p - p0);
 }
 
-void v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) v4_compile_code_double(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
 {
     uint8_t* p0 = reinterpret_cast<uint8_t*>(machine_code);
     uint8_t* p = p0;
@@ -129,7 +129,7 @@ void v4_compile_code_double(const V4_Instruction* code, int code_size, void* mac
     xmrig::VirtualMemory::flushInstructionCache(machine_code, p - p0);
 }
 
-void v4_soft_aes_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) v4_soft_aes_compile_code(const V4_Instruction* code, int code_size, void* machine_code, xmrig::Assembly ASM)
 {
     uint8_t* p0 = reinterpret_cast<uint8_t*>(machine_code);
     uint8_t* p = p0;

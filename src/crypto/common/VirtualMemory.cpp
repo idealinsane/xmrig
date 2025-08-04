@@ -104,20 +104,20 @@ xmrig::HugePagesInfo xmrig::VirtualMemory::hugePages() const
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-uint32_t xmrig::VirtualMemory::bindToNUMANode(int64_t)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::bindToNUMANode(int64_t)
 {
     return 0;
 }
 #endif
 
 
-void xmrig::VirtualMemory::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::destroy()
 {
     delete pool;
 }
 
 
-void xmrig::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::init(size_t poolSize, size_t hugePageSize)
 {
     if (!pool) {
         osInit(hugePageSize);

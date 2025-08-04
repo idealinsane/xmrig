@@ -34,20 +34,20 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace randomx {
 
 	template<int softAes>
-	void InterpretedVm<softAes>::setDataset(randomx_dataset* dataset) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) InterpretedVm<softAes>::setDataset(randomx_dataset* dataset) {
 		datasetPtr = dataset;
 		mem.memory = dataset->memory;
 	}
 
 	template<int softAes>
-	void InterpretedVm<softAes>::run(void* seed) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) InterpretedVm<softAes>::run(void* seed) {
 		VmBase<softAes>::generateProgram(seed);
 		randomx_vm::initialize();
 		execute();
 	}
 
 	template<int softAes>
-	void InterpretedVm<softAes>::execute() {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) InterpretedVm<softAes>::execute() {
 
 		NativeRegisterFile nreg;
 
@@ -116,7 +116,7 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void InterpretedVm<softAes>::datasetPrefetch(uint64_t address) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) InterpretedVm<softAes>::datasetPrefetch(uint64_t address) {
 		rx_prefetch_nta(mem.memory + address);
 	}
 

@@ -45,7 +45,7 @@ static const char *asmNames[] = {
 } /* namespace xmrig */
 
 
-xmrig::Assembly::Id xmrig::Assembly::parse(const char *assembly, Id defaultValue)
+xmrig::Assembly::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Assembly::parse(const char *assembly, Id defaultValue)
 {
     constexpr size_t const size = sizeof(asmNames) / sizeof((asmNames)[0]);
     static_assert(size == MAX, "asmNames size mismatch");
@@ -64,7 +64,7 @@ xmrig::Assembly::Id xmrig::Assembly::parse(const char *assembly, Id defaultValue
 }
 
 
-xmrig::Assembly::Id xmrig::Assembly::parse(const rapidjson::Value &value, Id defaultValue)
+xmrig::Assembly::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Assembly::parse(const rapidjson::Value &value, Id defaultValue)
 {
     if (value.IsBool()) {
         return value.GetBool() ? AUTO : NONE;

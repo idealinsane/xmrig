@@ -70,7 +70,7 @@ uint8_t *xmrig::NUMAMemoryPool::get(size_t size, uint32_t node)
 }
 
 
-void xmrig::NUMAMemoryPool::release(uint32_t node)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NUMAMemoryPool::release(uint32_t node)
 {
     const auto pool = get(node);
     if (pool) {

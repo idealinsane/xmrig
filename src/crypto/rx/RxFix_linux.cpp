@@ -55,13 +55,13 @@ static void MainLoopHandler(int sig, siginfo_t *info, void *ucontext)
 
 
 
-void xmrig::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
 {
     mainLoopBounds = bounds;
 }
 
 
-void xmrig::RxFix::setupMainLoopExceptionFrame()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxFix::setupMainLoopExceptionFrame()
 {
     struct sigaction act = {};
     act.sa_sigaction = MainLoopHandler;

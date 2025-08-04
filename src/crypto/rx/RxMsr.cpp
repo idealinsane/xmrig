@@ -128,7 +128,7 @@ static bool wrmsr(const MsrItems &preset, const std::vector<CpuThread> &threads,
 } // namespace xmrig
 
 
-bool xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &threads)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &threads)
 {
     if (isInitialized()) {
         return isEnabled();
@@ -162,7 +162,7 @@ bool xmrig::RxMsr::init(const RxConfig &config, const std::vector<CpuThread> &th
 }
 
 
-void xmrig::RxMsr::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxMsr::destroy()
 {
     if (!isInitialized()) {
         return;

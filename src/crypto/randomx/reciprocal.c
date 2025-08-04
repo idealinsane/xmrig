@@ -44,7 +44,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	ret
 
 */
-uint64_t randomx_reciprocal(uint64_t divisor) {
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_reciprocal(uint64_t divisor) {
 
 	assert(divisor != 0);
 
@@ -73,7 +73,7 @@ uint64_t randomx_reciprocal(uint64_t divisor) {
 
 #if !RANDOMX_HAVE_FAST_RECIPROCAL
 
-uint64_t randomx_reciprocal_fast(uint64_t divisor) {
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_reciprocal_fast(uint64_t divisor) {
 	return randomx_reciprocal(divisor);
 }
 

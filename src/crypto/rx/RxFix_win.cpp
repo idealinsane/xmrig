@@ -61,13 +61,13 @@ static LONG WINAPI MainLoopHandler(_EXCEPTION_POINTERS *ExceptionInfo)
 } // namespace xmrig
 
 
-void xmrig::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxFix::setMainLoopBounds(const std::pair<const void *, const void *> &bounds)
 {
     mainLoopBounds = bounds;
 }
 
 
-void xmrig::RxFix::setupMainLoopExceptionFrame()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxFix::setupMainLoopExceptionFrame()
 {
     AddVectoredExceptionHandler(1, MainLoopHandler);
 }

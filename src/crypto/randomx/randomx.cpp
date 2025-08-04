@@ -196,12 +196,12 @@ static uint32_t Log2(size_t value) { return (value > 1) ? (Log2(value / 2) + 1) 
 
 static int scratchpadPrefetchMode = 1;
 
-void randomx_set_scratchpad_prefetch_mode(int mode)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_scratchpad_prefetch_mode(int mode)
 {
 	scratchpadPrefetchMode = mode;
 }
 
-void RandomX_ConfigurationBase::Apply()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) RandomX_ConfigurationBase::Apply()
 {
 	const uint32_t ScratchpadL1Mask_Calculated = (ScratchpadL1_Size / sizeof(uint64_t) - 1) * 8;
 	const uint32_t ScratchpadL2Mask_Calculated = (ScratchpadL2_Size / sizeof(uint64_t) - 1) * 8;
@@ -404,13 +404,13 @@ extern "C" {
 		return cache;
 	}
 
-	void randomx_init_cache(randomx_cache *cache, const void *key, size_t keySize) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_init_cache(randomx_cache *cache, const void *key, size_t keySize) {
 		assert(cache != nullptr);
 		assert(keySize == 0 || key != nullptr);
 		cache->initialize(cache, key, keySize);
 	}
 
-	void randomx_release_cache(randomx_cache* cache) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_release_cache(randomx_cache* cache) {
 		delete cache->jit;
 		delete cache;
 	}
@@ -432,7 +432,7 @@ extern "C" {
 		return DatasetItemCount;
 	}
 
-	void randomx_init_dataset(randomx_dataset *dataset, randomx_cache *cache, unsigned long startItem, unsigned long itemCount) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_init_dataset(randomx_dataset *dataset, randomx_cache *cache, unsigned long startItem, unsigned long itemCount) {
 		assert(dataset != nullptr);
 		assert(cache != nullptr);
 		assert(startItem < DatasetItemCount && itemCount <= DatasetItemCount);
@@ -445,7 +445,7 @@ extern "C" {
 		return dataset->memory;
 	}
 
-	void randomx_release_dataset(randomx_dataset *dataset) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_release_dataset(randomx_dataset *dataset) {
 		delete dataset;
 	}
 
@@ -549,23 +549,23 @@ extern "C" {
 		return vm;
 	}
 
-	void randomx_vm_set_cache(randomx_vm *machine, randomx_cache* cache) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_vm_set_cache(randomx_vm *machine, randomx_cache* cache) {
 		assert(machine != nullptr);
 		assert(cache != nullptr && cache->isInitialized());
 		machine->setCache(cache);
 	}
 
-	void randomx_vm_set_dataset(randomx_vm *machine, randomx_dataset *dataset) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_vm_set_dataset(randomx_vm *machine, randomx_dataset *dataset) {
 		assert(machine != nullptr);
 		assert(dataset != nullptr);
 		machine->setDataset(dataset);
 	}
 
-	void randomx_destroy_vm(randomx_vm* vm) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_destroy_vm(randomx_vm* vm) {
 		vm->~randomx_vm();
 	}
 
-	void randomx_calculate_hash(randomx_vm *machine, const void *input, size_t inputSize, void *output) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_calculate_hash(randomx_vm *machine, const void *input, size_t inputSize, void *output) {
 		assert(machine != nullptr);
 		assert(inputSize == 0 || input != nullptr);
 		assert(output != nullptr);

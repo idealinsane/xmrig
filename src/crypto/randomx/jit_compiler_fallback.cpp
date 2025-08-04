@@ -29,11 +29,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
 
-void randomx_set_huge_pages_jit(bool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_huge_pages_jit(bool)
 {
 }
 
 
-void randomx_set_optimized_dataset_init(int)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_optimized_dataset_init(int)
 {
 }

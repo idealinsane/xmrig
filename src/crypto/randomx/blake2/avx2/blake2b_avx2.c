@@ -96,7 +96,7 @@ ALIGN(64) static const uint64_t blake2b_IV[8] = {
   b = XOR(b, iv1);                                        \
 } while(0)
 
-int blake2b_avx2(void* out_ptr, size_t outlen, const void* in_ptr, size_t inlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) blake2b_avx2(void* out_ptr, size_t outlen, const void* in_ptr, size_t inlen) {
   const __m256i parameter_block = _mm256_set_epi64x(0, 0, 0, 0x01010000UL | (uint32_t)outlen);
   ALIGN(64) uint8_t buffer[BLAKE2B_BLOCKBYTES];
   __m256i a = XOR(LOAD(&blake2b_IV[0]), parameter_block);

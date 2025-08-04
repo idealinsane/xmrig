@@ -48,13 +48,13 @@ xmrig::ICpuInfo *xmrig::Cpu::info()
 }
 
 
-rapidjson::Value xmrig::Cpu::toJSON(rapidjson::Document &doc)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cpu::toJSON(rapidjson::Document &doc)
 {
     return info()->toJSON(doc);
 }
 
 
-void xmrig::Cpu::release()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cpu::release()
 {
     delete cpuInfo;
     cpuInfo = nullptr;

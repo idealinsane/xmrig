@@ -127,7 +127,7 @@ std::vector<xmrig::CpuLaunchData> xmrig::CpuConfig::get(const Miner *miner, cons
 }
 
 
-void xmrig::CpuConfig::read(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled      = Json::getBool(value, kEnabled, m_enabled);
@@ -163,7 +163,7 @@ void xmrig::CpuConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::generate()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuConfig::generate()
 {
     if (!isEnabled() || m_threads.has("*")) {
         return;
@@ -184,7 +184,7 @@ void xmrig::CpuConfig::generate()
 }
 
 
-void xmrig::CpuConfig::setAesMode(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuConfig::setAesMode(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_aes = value.GetBool() ? AES_HW : AES_SOFT;
@@ -195,7 +195,7 @@ void xmrig::CpuConfig::setAesMode(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::setHugePages(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuConfig::setHugePages(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_hugePageSize = value.GetBool() ? kDefaultHugePageSizeKb : 0U;
@@ -208,7 +208,7 @@ void xmrig::CpuConfig::setHugePages(const rapidjson::Value &value)
 }
 
 
-void xmrig::CpuConfig::setMemoryPool(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuConfig::setMemoryPool(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_memoryPool = value.GetBool() ? -1 : 0;

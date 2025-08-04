@@ -127,7 +127,7 @@ xmrig::CpuWorker<N>::~CpuWorker()
 
 #ifdef XMRIG_ALGO_RANDOMX
 template<size_t N>
-void xmrig::CpuWorker<N>::allocateRandomX_VM()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::allocateRandomX_VM()
 {
     RxDataset *dataset = Rx::dataset(m_job.currentJob(), node());
 
@@ -156,7 +156,7 @@ void xmrig::CpuWorker<N>::allocateRandomX_VM()
 
 
 template<size_t N>
-bool xmrig::CpuWorker<N>::selfTest()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::selfTest()
 {
 #   ifdef XMRIG_ALGO_RANDOMX
     if (m_algorithm.family() == Algorithm::RANDOM_X) {
@@ -238,7 +238,7 @@ void xmrig::CpuWorker<N>::hashrateData(uint64_t &hashCount, uint64_t &, uint64_t
 
 
 template<size_t N>
-void xmrig::CpuWorker<N>::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::start()
 {
     while (Nonce::sequence(Nonce::CPU) > 0) {
         if (Nonce::isPaused()) {
@@ -367,7 +367,7 @@ void xmrig::CpuWorker<N>::start()
 
 
 template<size_t N>
-bool xmrig::CpuWorker<N>::nextRound()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::nextRound()
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     const uint32_t count = m_benchSize ? 1U : kReserveCount;
@@ -386,7 +386,7 @@ bool xmrig::CpuWorker<N>::nextRound()
 
 
 template<size_t N>
-bool xmrig::CpuWorker<N>::verify(const Algorithm &algorithm, const uint8_t *referenceValue)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::verify(const Algorithm &algorithm, const uint8_t *referenceValue)
 {
 #   ifdef XMRIG_ALGO_GHOSTRIDER
     if (algorithm == Algorithm::GHOSTRIDER_RTM) {
@@ -430,7 +430,7 @@ bool xmrig::CpuWorker<N>::verify(const Algorithm &algorithm, const uint8_t *refe
 
 
 template<size_t N>
-bool xmrig::CpuWorker<N>::verify2(const Algorithm &algorithm, const uint8_t *referenceValue)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::verify2(const Algorithm &algorithm, const uint8_t *referenceValue)
 {
     cn_hash_fun func = fn(algorithm);
     if (!func) {
@@ -459,7 +459,7 @@ bool xmrig::CpuWorker<N>::verify2(const Algorithm &algorithm, const uint8_t *ref
 namespace xmrig {
 
 template<>
-bool CpuWorker<1>::verify2(const Algorithm &algorithm, const uint8_t *referenceValue)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CpuWorker<1>::verify2(const Algorithm &algorithm, const uint8_t *referenceValue)
 {
     cn_hash_fun func = fn(algorithm);
     if (!func) {
@@ -481,7 +481,7 @@ bool CpuWorker<1>::verify2(const Algorithm &algorithm, const uint8_t *referenceV
 
 
 template<size_t N>
-void xmrig::CpuWorker<N>::allocateCnCtx()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::allocateCnCtx()
 {
     if (m_ctx[0] == nullptr) {
         int shift = 0;
@@ -499,7 +499,7 @@ void xmrig::CpuWorker<N>::allocateCnCtx()
 
 
 template<size_t N>
-void xmrig::CpuWorker<N>::consumeJob()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuWorker<N>::consumeJob()
 {
     if (Nonce::sequence(Nonce::CPU) == 0) {
         return;

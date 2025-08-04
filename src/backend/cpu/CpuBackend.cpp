@@ -266,7 +266,7 @@ bool xmrig::CpuBackend::isEnabled(const Algorithm &algorithm) const
 }
 
 
-bool xmrig::CpuBackend::tick(uint64_t ticks)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
@@ -290,7 +290,7 @@ const xmrig::String &xmrig::CpuBackend::type() const
 }
 
 
-void xmrig::CpuBackend::prepare(const Job &nextJob)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::prepare(const Job &nextJob)
 {
 #   ifdef XMRIG_ALGO_ARGON2
     const auto f = nextJob.algorithm().family();
@@ -307,7 +307,7 @@ void xmrig::CpuBackend::prepare(const Job &nextJob)
 }
 
 
-void xmrig::CpuBackend::printHashrate(bool details)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -338,12 +338,12 @@ void xmrig::CpuBackend::printHashrate(bool details)
 }
 
 
-void xmrig::CpuBackend::printHealth()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::printHealth()
 {
 }
 
 
-void xmrig::CpuBackend::setJob(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::setJob(const Job &job)
 {
     if (!isEnabled()) {
         return stop();
@@ -378,7 +378,7 @@ void xmrig::CpuBackend::setJob(const Job &job)
 }
 
 
-void xmrig::CpuBackend::start(IWorker *worker, bool ready)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -394,7 +394,7 @@ void xmrig::CpuBackend::start(IWorker *worker, bool ready)
 }
 
 
-void xmrig::CpuBackend::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -465,7 +465,7 @@ rapidjson::Value xmrig::CpuBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::CpuBackend::handleRequest(IApiRequest &request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CpuBackend::handleRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
         request.reply().AddMember("hugepages", d_ptr->hugePages(request.version(), request.doc()), request.doc().GetAllocator());

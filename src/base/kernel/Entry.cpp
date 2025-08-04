@@ -132,7 +132,7 @@ static int exportTopology(const Process &)
 } // namespace xmrig
 
 
-xmrig::Entry::Id xmrig::Entry::get(const Process &process)
+xmrig::Entry::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Entry::get(const Process &process)
 {
     const Arguments &args = process.arguments();
     if (args.hasArg("-h") || args.hasArg("--help")) {
@@ -159,7 +159,7 @@ xmrig::Entry::Id xmrig::Entry::get(const Process &process)
 }
 
 
-int xmrig::Entry::exec(const Process &process, Id id)
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Entry::exec(const Process &process, Id id)
 {
     switch (id) {
     case Usage:

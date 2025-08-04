@@ -51,7 +51,7 @@ char *xmrig::NetBuffer::allocate()
 }
 
 
-void xmrig::NetBuffer::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetBuffer::destroy()
 {
     if (!pool) {
         return;
@@ -64,14 +64,14 @@ void xmrig::NetBuffer::destroy()
 }
 
 
-void xmrig::NetBuffer::onAlloc(uv_handle_t *, size_t, uv_buf_t *buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetBuffer::onAlloc(uv_handle_t *, size_t, uv_buf_t *buf)
 {
     buf->base = getPool()->allocate();
     buf->len  = XMRIG_NET_BUFFER_CHUNK_SIZE;
 }
 
 
-void xmrig::NetBuffer::release(const char *buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetBuffer::release(const char *buf)
 {
     if (buf == nullptr) {
         return;
@@ -81,7 +81,7 @@ void xmrig::NetBuffer::release(const char *buf)
 }
 
 
-void xmrig::NetBuffer::release(const uv_buf_t *buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetBuffer::release(const uv_buf_t *buf)
 {
     if (buf->base == nullptr) {
         return;

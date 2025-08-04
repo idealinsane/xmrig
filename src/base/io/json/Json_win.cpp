@@ -81,7 +81,7 @@ static std::wstring toUtf16(const char *str)
 } // namespace xmrig
 
 
-bool xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
 {
     OPEN_IFS(fileName)
 
@@ -93,7 +93,7 @@ bool xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
 }
 
 
-bool xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
 {
     using namespace rapidjson;
     constexpr const std::ios_base::openmode mode = std::ios_base::out | std::ios_base::binary | std::ios_base::trunc;
@@ -131,7 +131,7 @@ bool xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
 }
 
 
-bool xmrig::Json::convertOffset(const char *fileName, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::convertOffset(const char *fileName, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
 {
     OPEN_IFS(fileName)
 

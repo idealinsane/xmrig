@@ -156,7 +156,7 @@ xmrig::Async::~Async()
 }
 
 
-void xmrig::Async::send()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Async::send()
 {
     uv_async_send(d_ptr->async);
 }

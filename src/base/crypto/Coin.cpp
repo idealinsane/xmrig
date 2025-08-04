@@ -118,7 +118,7 @@ uint64_t xmrig::Coin::units() const
 }
 
 
-xmrig::Coin::Id xmrig::Coin::parse(const char *name)
+xmrig::Coin::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Coin::parse(const char *name)
 {
     if (name == nullptr || strlen(name) < 3) {
         return INVALID;

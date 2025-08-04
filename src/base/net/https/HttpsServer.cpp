@@ -39,7 +39,7 @@ xmrig::HttpsServer::~HttpsServer()
 }
 
 
-bool xmrig::HttpsServer::setTls(const TlsConfig &config)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsServer::setTls(const TlsConfig &config)
 {
     m_tls = TlsContext::create(config);
 
@@ -47,7 +47,7 @@ bool xmrig::HttpsServer::setTls(const TlsConfig &config)
 }
 
 
-void xmrig::HttpsServer::onConnection(uv_stream_t *stream, uint16_t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsServer::onConnection(uv_stream_t *stream, uint16_t)
 {
     auto ctx = new HttpsContext(m_tls, m_listener);
     uv_accept(stream, ctx->stream());
@@ -56,7 +56,7 @@ void xmrig::HttpsServer::onConnection(uv_stream_t *stream, uint16_t)
 }
 
 
-void xmrig::HttpsServer::onRead(uv_stream_t *stream, ssize_t nread, const uv_buf_t *buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsServer::onRead(uv_stream_t *stream, ssize_t nread, const uv_buf_t *buf)
 {
     auto ctx = static_cast<HttpsContext*>(stream->data);
     if (nread >= 0) {

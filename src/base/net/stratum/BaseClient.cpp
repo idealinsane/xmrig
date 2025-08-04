@@ -42,7 +42,7 @@ xmrig::BaseClient::BaseClient(int id, IClientListener *listener) :
 }
 
 
-void xmrig::BaseClient::setPool(const Pool &pool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseClient::setPool(const Pool &pool)
 {
     if (!pool.isValid()) {
         return;
@@ -56,7 +56,7 @@ void xmrig::BaseClient::setPool(const Pool &pool)
 }
 
 
-bool xmrig::BaseClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseClient::handleResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == 1) {
         return false;
@@ -82,7 +82,7 @@ bool xmrig::BaseClient::handleResponse(int64_t id, const rapidjson::Value &resul
 }
 
 
-bool xmrig::BaseClient::handleSubmitResponse(int64_t id, const char *error)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseClient::handleSubmitResponse(int64_t id, const char *error)
 {
     auto it = m_results.find(id);
     if (it != m_results.end()) {

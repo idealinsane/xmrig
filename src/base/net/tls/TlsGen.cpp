@@ -60,7 +60,7 @@ static EVP_PKEY *generate_pkey()
 }
 
 
-bool isFileExist(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) isFileExist(const char *fileName)
 {
     std::ifstream in(fileName);
 
@@ -78,7 +78,7 @@ xmrig::TlsGen::~TlsGen()
 }
 
 
-void xmrig::TlsGen::generate(const char *commonName)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsGen::generate(const char *commonName)
 {
     if (isFileExist(m_cert) && isFileExist(m_certKey)) {
         return;
@@ -99,7 +99,7 @@ void xmrig::TlsGen::generate(const char *commonName)
 }
 
 
-bool xmrig::TlsGen::generate_x509(const char *commonName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsGen::generate_x509(const char *commonName)
 {
     m_x509 = X509_new();
     if (!m_x509) {
@@ -123,7 +123,7 @@ bool xmrig::TlsGen::generate_x509(const char *commonName)
 }
 
 
-bool xmrig::TlsGen::write()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsGen::write()
 {
     auto pkey_file = fopen(m_certKey, "wb");
     if (!pkey_file) {

@@ -60,7 +60,7 @@ xmrig::TcpServer::~TcpServer()
 }
 
 
-int xmrig::TcpServer::bind()
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TcpServer::bind()
 {
     if (!m_version) {
         return UV_EAI_ADDRFAMILY;
@@ -86,7 +86,7 @@ int xmrig::TcpServer::bind()
 }
 
 
-void xmrig::TcpServer::create(uv_stream_t *stream, int status)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TcpServer::create(uv_stream_t *stream, int status)
 {
     if (status < 0) {
         return;
@@ -96,7 +96,7 @@ void xmrig::TcpServer::create(uv_stream_t *stream, int status)
 }
 
 
-void xmrig::TcpServer::onConnection(uv_stream_t *stream, int status)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TcpServer::onConnection(uv_stream_t *stream, int status)
 {
     static_cast<TcpServer *>(stream->data)->create(stream, status);
 }

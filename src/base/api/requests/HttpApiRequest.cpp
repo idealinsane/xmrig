@@ -103,7 +103,7 @@ xmrig::HttpApiRequest::HttpApiRequest(const HttpData &req, bool restricted) :
 }
 
 
-bool xmrig::HttpApiRequest::accept()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiRequest::accept()
 {
     using namespace rapidjson;
 
@@ -144,7 +144,7 @@ xmrig::IApiRequest::Method xmrig::HttpApiRequest::method() const
 }
 
 
-void xmrig::HttpApiRequest::done(int status)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiRequest::done(int status)
 {
     ApiRequest::done(status);
 
@@ -172,7 +172,7 @@ void xmrig::HttpApiRequest::done(int status)
 }
 
 
-void xmrig::HttpApiRequest::setRpcError(int code, const char *message)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiRequest::setRpcError(int code, const char *message)
 {
     using namespace rapidjson;
     auto &allocator = doc().GetAllocator();
@@ -185,13 +185,13 @@ void xmrig::HttpApiRequest::setRpcError(int code, const char *message)
 }
 
 
-void xmrig::HttpApiRequest::setRpcResult(rapidjson::Value &result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiRequest::setRpcResult(rapidjson::Value &result)
 {
     rpcDone(kResult, result);
 }
 
 
-void xmrig::HttpApiRequest::rpcDone(const char *key, rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiRequest::rpcDone(const char *key, rapidjson::Value &value)
 {
     ApiRequest::done(0);
 

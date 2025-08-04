@@ -180,7 +180,7 @@ bool xmrig::Base::isReady() const
 }
 
 
-int xmrig::Base::init()
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::init()
 {
 #   ifdef XMRIG_FEATURE_API
     d_ptr->api = new Api(this);
@@ -210,7 +210,7 @@ int xmrig::Base::init()
 }
 
 
-void xmrig::Base::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::start()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->start();
@@ -226,7 +226,7 @@ void xmrig::Base::start()
 }
 
 
-void xmrig::Base::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::stop()
 {
 #   ifdef XMRIG_FEATURE_API
     api()->stop();
@@ -251,7 +251,7 @@ bool xmrig::Base::isBackground() const
 }
 
 
-bool xmrig::Base::reload(const rapidjson::Value &json)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::reload(const rapidjson::Value &json)
 {
     JsonReader reader(json);
     if (reader.isEmpty()) {
@@ -287,13 +287,13 @@ xmrig::Config *xmrig::Base::config() const
 }
 
 
-void xmrig::Base::addListener(IBaseListener *listener)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::addListener(IBaseListener *listener)
 {
     d_ptr->listeners.push_back(listener);
 }
 
 
-void xmrig::Base::onFileChanged(const String &fileName)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::onFileChanged(const String &fileName)
 {
     LOG_WARN("%s " YELLOW("\"%s\" was changed, reloading configuration"), Tags::config(), fileName.data());
 
@@ -314,7 +314,7 @@ void xmrig::Base::onFileChanged(const String &fileName)
 
 
 #ifdef XMRIG_FEATURE_API
-void xmrig::Base::onRequest(IApiRequest &request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Base::onRequest(IApiRequest &request)
 {
     if (request.method() == IApiRequest::METHOD_GET) {
         if (request.url() == kConfigPathV1 || request.url() == kConfigPathV2) {

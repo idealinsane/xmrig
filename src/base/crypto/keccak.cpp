@@ -51,7 +51,7 @@ const uint64_t keccakf_rndc[24] =
 
 // update the state with given number of rounds
 
-void xmrig::keccakf(uint64_t st[25], int rounds)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::keccakf(uint64_t st[25], int rounds)
 {
     for (int round = 0; round < rounds; ++round) {
         uint64_t bc[5];
@@ -167,7 +167,7 @@ void xmrig::keccakf(uint64_t st[25], int rounds)
 typedef uint64_t state_t[25];
 
 
-void xmrig::keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::keccak(const uint8_t *in, int inlen, uint8_t *md, int mdlen)
 {
     state_t st;
     alignas(8) uint8_t temp[144];

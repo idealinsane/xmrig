@@ -55,7 +55,7 @@ bool xmrig::HttpResponse::isAlive() const
 }
 
 
-void xmrig::HttpResponse::end(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpResponse::end(const char *data, size_t size)
 {
     if (!isAlive()) {
         return;

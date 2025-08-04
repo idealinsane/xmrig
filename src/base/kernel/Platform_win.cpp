@@ -77,14 +77,14 @@ char *xmrig::Platform::createUserAgent()
 }
 
 
-bool xmrig::Platform::hasKeepalive()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::hasKeepalive()
 {
     return winOsVersion().dwMajorVersion >= 6;
 }
 
 
 #ifndef XMRIG_FEATURE_HWLOC
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     const bool result = (SetThreadAffinityMask(GetCurrentThread(), 1ULL << cpu_id) != 0);
     Sleep(1);
@@ -93,7 +93,7 @@ bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 #endif
 
 
-void xmrig::Platform::setProcessPriority(int priority)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setProcessPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -130,7 +130,7 @@ void xmrig::Platform::setProcessPriority(int priority)
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -167,7 +167,7 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::isOnBatteryPower()
 {
     SYSTEM_POWER_STATUS st;
     if (GetSystemPowerStatus(&st)) {
@@ -177,7 +177,7 @@ bool xmrig::Platform::isOnBatteryPower()
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::idleTime()
 {
     LASTINPUTINFO info{};
     info.cbSize = sizeof(LASTINPUTINFO);

@@ -26,7 +26,7 @@
 #include "3rdparty/rapidjson/prettywriter.h"
 
 
-bool xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
 {
     std::ifstream ifs(fileName, std::ios_base::in | std::ios_base::binary);
     if (!ifs.is_open()) {
@@ -40,7 +40,7 @@ bool xmrig::Json::get(const char *fileName, rapidjson::Document &doc)
 }
 
 
-bool xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
 {
     std::ofstream ofs(fileName, std::ios_base::out | std::ios_base::binary | std::ios_base::trunc);
     if (!ofs.is_open()) {
@@ -60,7 +60,7 @@ bool xmrig::Json::save(const char *fileName, const rapidjson::Document &doc)
 }
 
 
-bool xmrig::Json::convertOffset(const char* fileName, size_t offset, size_t& line, size_t& pos, std::vector<std::string>& s)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::convertOffset(const char* fileName, size_t offset, size_t& line, size_t& pos, std::vector<std::string>& s)
 {
     std::ifstream ifs(fileName, std::ios_base::in | std::ios_base::binary);
     if (!ifs.is_open()) {

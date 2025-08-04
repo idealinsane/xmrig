@@ -58,7 +58,7 @@ xmrig::Httpd::Httpd(Base *base) :
 xmrig::Httpd::~Httpd() = default;
 
 
-bool xmrig::Httpd::start()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Httpd::start()
 {
     const auto &config = m_base->config()->http();
 
@@ -110,7 +110,7 @@ bool xmrig::Httpd::start()
 }
 
 
-void xmrig::Httpd::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Httpd::stop()
 {
     delete m_server;
     delete m_http;
@@ -122,7 +122,7 @@ void xmrig::Httpd::stop()
 
 
 
-void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->http() == previousConfig->http()) {
         return;
@@ -133,7 +133,7 @@ void xmrig::Httpd::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Httpd::onHttpData(const HttpData &data)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Httpd::onHttpData(const HttpData &data)
 {
     if (data.method == HTTP_OPTIONS) {
         return HttpApiResponse(data.id()).end();

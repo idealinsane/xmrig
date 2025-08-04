@@ -68,7 +68,7 @@ rapidjson::Value xmrig::Http::toJSON(rapidjson::Document &doc) const
 }
 
 
-void xmrig::Http::load(const rapidjson::Value &http)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Http::load(const rapidjson::Value &http)
 {
     if (!http.IsObject()) {
         return;
@@ -83,7 +83,7 @@ void xmrig::Http::load(const rapidjson::Value &http)
 }
 
 
-void xmrig::Http::setPort(int port)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Http::setPort(int port)
 {
     if (port >= 0 && port <= 65536) {
         m_port = static_cast<uint16_t>(port);

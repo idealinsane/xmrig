@@ -73,7 +73,7 @@ char *xmrig::Platform::createUserAgent()
 #ifndef XMRIG_FEATURE_HWLOC
 #ifdef __DragonFly__
 
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     return true;
 }
@@ -84,7 +84,7 @@ bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 typedef cpuset_t cpu_set_t;
 #endif
 
-bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     cpu_set_t mn;
     CPU_ZERO(&mn);
@@ -104,12 +104,12 @@ bool xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 #endif // XMRIG_FEATURE_HWLOC
 
 
-void xmrig::Platform::setProcessPriority(int)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setProcessPriority(int)
 {
 }
 
 
-void xmrig::Platform::setThreadPriority(int priority)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadPriority(int priority)
 {
     if (priority == -1) {
         return;
@@ -157,7 +157,7 @@ void xmrig::Platform::setThreadPriority(int priority)
 }
 
 
-bool xmrig::Platform::isOnBatteryPower()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::isOnBatteryPower()
 {
     for (int i = 0; i <= 1; ++i) {
         char buf[64];
@@ -173,7 +173,7 @@ bool xmrig::Platform::isOnBatteryPower()
 }
 
 
-uint64_t xmrig::Platform::idleTime()
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::idleTime()
 {
     return std::numeric_limits<uint64_t>::max();
 }

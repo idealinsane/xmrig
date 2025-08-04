@@ -129,7 +129,7 @@ size_t xmrig::Pools::active() const
 }
 
 
-void xmrig::Pools::load(const IJsonReader &reader)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pools::load(const IJsonReader &reader)
 {
     m_data.clear();
 
@@ -215,7 +215,7 @@ void xmrig::Pools::toJSON(rapidjson::Value &out, rapidjson::Document &doc) const
 }
 
 
-void xmrig::Pools::setDonateLevel(int level)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pools::setDonateLevel(int level)
 {
     if (level >= kMinimumDonateLevel && level <= 99) {
         m_donateLevel = level;
@@ -223,7 +223,7 @@ void xmrig::Pools::setDonateLevel(int level)
 }
 
 
-void xmrig::Pools::setProxyDonate(int value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pools::setProxyDonate(int value)
 {
     switch (value) {
     case PROXY_DONATE_NONE:
@@ -237,7 +237,7 @@ void xmrig::Pools::setProxyDonate(int value)
 }
 
 
-void xmrig::Pools::setRetries(int retries)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pools::setRetries(int retries)
 {
     if (retries > 0 && retries <= 1000) {
         m_retries = retries;
@@ -245,7 +245,7 @@ void xmrig::Pools::setRetries(int retries)
 }
 
 
-void xmrig::Pools::setRetryPause(int retryPause)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pools::setRetryPause(int retryPause)
 {
     if (retryPause > 0 && retryPause <= 3600) {
         m_retryPause = retryPause;

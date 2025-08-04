@@ -108,7 +108,7 @@ xmrig::Api::~Api()
 }
 
 
-void xmrig::Api::request(const HttpData &req)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::request(const HttpData &req)
 {
     HttpApiRequest request(req, m_base->config()->http().isRestricted());
 
@@ -116,7 +116,7 @@ void xmrig::Api::request(const HttpData &req)
 }
 
 
-void xmrig::Api::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::start()
 {
     genWorkerId(m_base->config()->apiWorkerId());
 
@@ -134,7 +134,7 @@ void xmrig::Api::start()
 }
 
 
-void xmrig::Api::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::stop()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     if (m_httpd) {
@@ -144,7 +144,7 @@ void xmrig::Api::stop()
 }
 
 
-void xmrig::Api::tick()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::tick()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     if (!m_httpd || !m_base->config()->http().isEnabled() || m_httpd->isBound()) {
@@ -161,7 +161,7 @@ void xmrig::Api::tick()
 }
 
 
-void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->apiId() != previousConfig->apiId()) {
         genId(config->apiId());
@@ -173,7 +173,7 @@ void xmrig::Api::onConfigChanged(Config *config, Config *previousConfig)
 }
 
 
-void xmrig::Api::exec(IApiRequest &request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::exec(IApiRequest &request)
 {
     using namespace rapidjson;
 
@@ -226,7 +226,7 @@ void xmrig::Api::exec(IApiRequest &request)
 }
 
 
-void xmrig::Api::genId(const String &id)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::genId(const String &id)
 {
     memset(m_id, 0, sizeof(m_id));
 
@@ -266,7 +266,7 @@ void xmrig::Api::genId(const String &id)
 }
 
 
-void xmrig::Api::genWorkerId(const String &id)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Api::genWorkerId(const String &id)
 {
     m_workerId = Env::expand(id);
     if (m_workerId.isEmpty()) {

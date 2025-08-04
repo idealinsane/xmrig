@@ -26,7 +26,7 @@ xmrig::Client::Socks5::Socks5(Client *client) :
 }
 
 
-bool xmrig::Client::Socks5::read(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Socks5::read(const char *data, size_t size)
 {
     if (size < m_nextSize) {
         return false;
@@ -48,7 +48,7 @@ bool xmrig::Client::Socks5::read(const char *data, size_t size)
 }
 
 
-void xmrig::Client::Socks5::handshake()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Socks5::handshake()
 {
     m_nextSize  = 2;
     m_state     = SentInitialHandshake;
@@ -59,19 +59,19 @@ void xmrig::Client::Socks5::handshake()
 }
 
 
-bool xmrig::Client::Socks5::isIPv4(const String &host, sockaddr_storage *addr)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Socks5::isIPv4(const String &host, sockaddr_storage *addr)
 {
     return uv_ip4_addr(host.data(), 0, reinterpret_cast<sockaddr_in *>(addr)) == 0;
 }
 
 
-bool xmrig::Client::Socks5::isIPv6(const String &host, sockaddr_storage *addr)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Socks5::isIPv6(const String &host, sockaddr_storage *addr)
 {
    return uv_ip6_addr(host.data(), 0, reinterpret_cast<sockaddr_in6 *>(addr)) == 0;
 }
 
 
-void xmrig::Client::Socks5::connect()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Socks5::connect()
 {
     m_nextSize  = 5;
     m_state     = SentFinalHandshake;

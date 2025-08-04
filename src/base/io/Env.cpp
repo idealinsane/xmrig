@@ -70,7 +70,7 @@ static void createVariables()
 } // namespace xmrig
 
 
-xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> &extra)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Env::expand(const char *in, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (in == nullptr) {
@@ -116,7 +116,7 @@ xmrig::String xmrig::Env::expand(const char *in, const std::map<String, String> 
 }
 
 
-xmrig::String xmrig::Env::get(const String &name, const std::map<String, String> &extra)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Env::get(const String &name, const std::map<String, String> &extra)
 {
 #   ifdef XMRIG_FEATURE_ENV
     if (variables.empty()) {
@@ -140,7 +140,7 @@ xmrig::String xmrig::Env::get(const String &name, const std::map<String, String>
 }
 
 
-xmrig::String xmrig::Env::hostname()
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Env::hostname()
 {
     char buf[UV_MAXHOSTNAMESIZE]{};
 

@@ -23,7 +23,7 @@
 #include "base/net/http/HttpData.h"
 
 
-void xmrig::HttpListener::onHttpData(const HttpData &data)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpListener::onHttpData(const HttpData &data)
 {
 #   ifdef APP_DEBUG
     if (!data.isRequest()) {

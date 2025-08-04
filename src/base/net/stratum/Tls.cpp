@@ -60,7 +60,7 @@ xmrig::Client::Tls::~Tls()
 }
 
 
-bool xmrig::Client::Tls::handshake(const char* servername)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::handshake(const char* servername)
 {
     m_ssl = SSL_new(m_ctx);
     assert(m_ssl != nullptr);
@@ -81,7 +81,7 @@ bool xmrig::Client::Tls::handshake(const char* servername)
 }
 
 
-bool xmrig::Client::Tls::send(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::send(const char *data, size_t size)
 {
     SSL_write(m_ssl, data, size);
 
@@ -101,7 +101,7 @@ const char *xmrig::Client::Tls::version() const
 }
 
 
-void xmrig::Client::Tls::read(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::read(const char *data, size_t size)
 {
     BIO_write(m_read, data, size);
 
@@ -136,13 +136,13 @@ void xmrig::Client::Tls::read(const char *data, size_t size)
 }
 
 
-bool xmrig::Client::Tls::send()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::send()
 {
     return m_client->send(m_write);
 }
 
 
-bool xmrig::Client::Tls::verify(X509 *cert)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::verify(X509 *cert)
 {
     if (cert == nullptr) {
         LOG_ERR("[%s] Failed to get server certificate", m_client->url());
@@ -166,7 +166,7 @@ bool xmrig::Client::Tls::verify(X509 *cert)
 }
 
 
-bool xmrig::Client::Tls::verifyFingerprint(X509 *cert)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Client::Tls::verifyFingerprint(X509 *cert)
 {
     const EVP_MD *digest = EVP_get_digestbyname("sha256");
     if (digest == nullptr) {

@@ -44,7 +44,7 @@ xmrig::CudaBaseRunner::~CudaBaseRunner()
 }
 
 
-bool xmrig::CudaBaseRunner::init()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBaseRunner::init()
 {
     m_ctx = CudaLib::alloc(m_data.thread.index(), m_data.thread.bfactor(), m_data.thread.bsleep());
     if (!callWrapper(CudaLib::deviceInfo(m_ctx, m_data.thread.blocks(), m_data.thread.threads(), m_data.algorithm, m_data.thread.datasetHost()))) {
@@ -55,7 +55,7 @@ bool xmrig::CudaBaseRunner::init()
 }
 
 
-bool xmrig::CudaBaseRunner::set(const Job &job, uint8_t *blob)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBaseRunner::set(const Job &job, uint8_t *blob)
 {
     m_height = job.height();
     m_target = job.target();

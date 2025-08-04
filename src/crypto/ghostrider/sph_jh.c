@@ -971,7 +971,7 @@ static void jh_close(sph_jh_context *sc, unsigned ub, unsigned n, void *dst,
 void sph_jh224_init(void *cc) { jh_init(cc, IV224); }
 
 /* see sph_jh.h */
-void sph_jh224(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh224(void *cc, const void *data, size_t len) {
   jh_core(cc, data, len);
 }
 
@@ -979,7 +979,7 @@ void sph_jh224(void *cc, const void *data, size_t len) {
 void sph_jh224_close(void *cc, void *dst) { jh_close(cc, 0, 0, dst, 7, IV224); }
 
 /* see sph_jh.h */
-void sph_jh224_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh224_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
   jh_close(cc, ub, n, dst, 7, IV224);
 }
 
@@ -987,7 +987,7 @@ void sph_jh224_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
 void sph_jh256_init(void *cc) { jh_init(cc, IV256); }
 
 /* see sph_jh.h */
-void sph_jh256(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh256(void *cc, const void *data, size_t len) {
   jh_core(cc, data, len);
 }
 
@@ -995,7 +995,7 @@ void sph_jh256(void *cc, const void *data, size_t len) {
 void sph_jh256_close(void *cc, void *dst) { jh_close(cc, 0, 0, dst, 8, IV256); }
 
 /* see sph_jh.h */
-void sph_jh256_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh256_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
   jh_close(cc, ub, n, dst, 8, IV256);
 }
 
@@ -1003,17 +1003,17 @@ void sph_jh256_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
 void sph_jh384_init(void *cc) { jh_init(cc, IV384); }
 
 /* see sph_jh.h */
-void sph_jh384(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh384(void *cc, const void *data, size_t len) {
   jh_core(cc, data, len);
 }
 
 /* see sph_jh.h */
-void sph_jh384_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh384_close(void *cc, void *dst) {
   jh_close(cc, 0, 0, dst, 12, IV384);
 }
 
 /* see sph_jh.h */
-void sph_jh384_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh384_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
   jh_close(cc, ub, n, dst, 12, IV384);
 }
 
@@ -1021,17 +1021,17 @@ void sph_jh384_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
 void sph_jh512_init(void *cc) { jh_init(cc, IV512); }
 
 /* see sph_jh.h */
-void sph_jh512(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh512(void *cc, const void *data, size_t len) {
   jh_core(cc, data, len);
 }
 
 /* see sph_jh.h */
-void sph_jh512_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh512_close(void *cc, void *dst) {
   jh_close(cc, 0, 0, dst, 16, IV512);
 }
 
 /* see sph_jh.h */
-void sph_jh512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_jh512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst) {
   jh_close(cc, ub, n, dst, 16, IV512);
 }
 

@@ -100,7 +100,7 @@ xmrig::CudaWorker::~CudaWorker()
 }
 
 
-void xmrig::CudaWorker::jobEarlyNotification(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaWorker::jobEarlyNotification(const Job &job)
 {
     if (m_runner) {
         m_runner->jobEarlyNotification(job);
@@ -108,7 +108,7 @@ void xmrig::CudaWorker::jobEarlyNotification(const Job &job)
 }
 
 
-bool xmrig::CudaWorker::selfTest()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaWorker::selfTest()
 {
     return m_runner != nullptr;
 }
@@ -120,7 +120,7 @@ size_t xmrig::CudaWorker::intensity() const
 }
 
 
-void xmrig::CudaWorker::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaWorker::start()
 {
     while (Nonce::sequence(Nonce::CUDA) > 0) {
         if (!isReady()) {
@@ -165,7 +165,7 @@ void xmrig::CudaWorker::start()
 }
 
 
-bool xmrig::CudaWorker::consumeJob()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaWorker::consumeJob()
 {
     if (Nonce::sequence(Nonce::CUDA) == 0) {
         return false;
@@ -177,7 +177,7 @@ bool xmrig::CudaWorker::consumeJob()
 }
 
 
-void xmrig::CudaWorker::storeStats()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaWorker::storeStats()
 {
     if (!isReady()) {
         return;

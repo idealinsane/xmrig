@@ -106,7 +106,7 @@ std::vector<xmrig::CudaLaunchData> xmrig::CudaConfig::get(const Miner *miner, co
 }
 
 
-void xmrig::CudaConfig::read(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_enabled   = Json::getBool(value, kEnabled, m_enabled);
@@ -143,7 +143,7 @@ void xmrig::CudaConfig::read(const rapidjson::Value &value)
 }
 
 
-void xmrig::CudaConfig::generate()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaConfig::generate()
 {
     if (generated) {
         return;
@@ -181,7 +181,7 @@ void xmrig::CudaConfig::generate()
 }
 
 
-void xmrig::CudaConfig::setDevicesHint(const char *devicesHint)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaConfig::setDevicesHint(const char *devicesHint)
 {
     if (devicesHint == nullptr) {
         return;

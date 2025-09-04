@@ -38,12 +38,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static bool hugePagesJIT = false;
 static int optimizedDatasetInit = -1;
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_huge_pages_jit(bool hugePages)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_set_huge_pages_jit(bool hugePages)
 {
 	hugePagesJIT = hugePages;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_optimized_dataset_init(int value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_set_optimized_dataset_init(int value)
 {
 	optimizedDatasetInit = value;
 }
@@ -115,7 +115,7 @@ JitCompilerA64::~JitCompilerA64()
 	freePagedMemory(code, allocatedSize);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::generateProgram(Program& program, ProgramConfiguration& config, uint32_t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::generateProgram(Program& program, ProgramConfiguration& config, uint32_t)
 {
 	if (!allocatedSize) {
 		allocate(CodeSize);
@@ -173,7 +173,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 #	endif
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::generateProgramLight(Program& program, ProgramConfiguration& config, uint32_t datasetOffset)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::generateProgramLight(Program& program, ProgramConfiguration& config, uint32_t datasetOffset)
 {
 	if (!allocatedSize) {
 		allocate(CodeSize);
@@ -375,7 +375,7 @@ DatasetInitFunc* JitCompilerA64::getDatasetInitFunc() const
 	return (DatasetInitFunc*)(code + (((uint8_t*)randomx_init_dataset_aarch64) - ((uint8_t*)randomx_program_aarch64)));
 }
 
-size_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::getCodeSize()
+size_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::getCodeSize()
 {
 	return CodeSize;
 }
@@ -391,7 +391,7 @@ void JitCompilerA64::enableExecution() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::allocate(size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::allocate(size_t size)
 {
 	allocatedSize = size;
 	code = static_cast<uint8_t*>(allocExecutableMemory(allocatedSize, hugePages));
@@ -404,7 +404,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMovImmediate(uint32_t dst, uint32_t imm, uint8_t* code, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMovImmediate(uint32_t dst, uint32_t imm, uint8_t* code, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -452,7 +452,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitAddImmediate(uint32_t dst, uint32_t src, uint32_t imm, uint8_t* code, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitAddImmediate(uint32_t dst, uint32_t src, uint32_t imm, uint8_t* code, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -488,7 +488,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 template<uint32_t tmp_reg>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMemLoad(uint32_t dst, uint32_t src, Instruction& instr, uint8_t* code, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMemLoad(uint32_t dst, uint32_t src, Instruction& instr, uint8_t* code, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -521,7 +521,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 template<uint32_t tmp_reg_fp>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMemLoadFP(uint32_t src, Instruction& instr, uint8_t* code, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::emitMemLoadFP(uint32_t src, Instruction& instr, uint8_t* code, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -555,7 +555,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IADD_RS(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IADD_RS(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -573,7 +573,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IADD_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IADD_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -590,7 +590,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISUB_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISUB_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -611,7 +611,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISUB_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISUB_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -628,7 +628,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -648,7 +648,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -665,7 +665,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMULH_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMULH_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -679,7 +679,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMULH_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMULH_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -696,7 +696,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISMULH_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISMULH_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -710,7 +710,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISMULH_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISMULH_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -727,7 +727,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_RCP(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IMUL_RCP(Instruction& instr, uint32_t& codePos)
 {
 	const uint64_t divisor = instr.getImm32();
 	if (isZeroOrPowerOf2(divisor))
@@ -775,7 +775,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_INEG_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_INEG_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t dst = IntRegMap[instr.dst];
 
@@ -785,7 +785,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	reg_changed_offset[instr.dst] = codePos;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IXOR_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IXOR_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -805,7 +805,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IXOR_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IXOR_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -822,7 +822,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IROR_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IROR_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t src = IntRegMap[instr.src];
 	const uint32_t dst = IntRegMap[instr.dst];
@@ -841,7 +841,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	reg_changed_offset[instr.dst] = codePos;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IROL_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_IROL_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -868,7 +868,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISWAP_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISWAP_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t src = IntRegMap[instr.src];
 	const uint32_t dst = IntRegMap[instr.dst];
@@ -888,7 +888,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSWAP_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSWAP_R(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -905,7 +905,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FADD_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FADD_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t src = (instr.src % 4) + 24;
 	const uint32_t dst = (instr.dst % 4) + 16;
@@ -913,7 +913,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	emit32(ARMV8A::FADD | dst | (dst << 5) | (src << 16), code, codePos);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FADD_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FADD_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -928,7 +928,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSUB_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSUB_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t src = (instr.src % 4) + 24;
 	const uint32_t dst = (instr.dst % 4) + 16;
@@ -936,7 +936,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	emit32(ARMV8A::FSUB | dst | (dst << 5) | (src << 16), code, codePos);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSUB_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSUB_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -951,14 +951,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSCAL_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSCAL_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t dst = (instr.dst % 4) + 16;
 
 	emit32(ARMV8A::FEOR | dst | (dst << 5) | (31 << 16), code, codePos);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FMUL_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FMUL_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t src = (instr.src % 4) + 24;
 	const uint32_t dst = (instr.dst % 4) + 20;
@@ -966,7 +966,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	emit32(ARMV8A::FMUL | dst | (dst << 5) | (src << 16), code, codePos);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FDIV_M(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FDIV_M(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -987,14 +987,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSQRT_R(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_FSQRT_R(Instruction& instr, uint32_t& codePos)
 {
 	const uint32_t dst = (instr.dst % 4) + 20;
 
 	emit32(ARMV8A::FSQRT | dst | (dst << 5), code, codePos);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_CBRANCH(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_CBRANCH(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -1020,7 +1020,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_CFROUND(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_CFROUND(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -1044,7 +1044,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISTORE(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_ISTORE(Instruction& instr, uint32_t& codePos)
 {
 	uint32_t k = codePos;
 
@@ -1074,7 +1074,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 	codePos = k;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_NOP(Instruction& instr, uint32_t& codePos)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerA64::h_NOP(Instruction& instr, uint32_t& codePos)
 {
 }
 

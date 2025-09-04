@@ -24,7 +24,7 @@
 #include "hw/dmi/DmiTools.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiBoard::decode(dmi_header *h)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DmiBoard::decode(dmi_header *h)
 {
     if (h->length < 0x08) {
         return;

@@ -31,7 +31,7 @@
 #include "core/Controller.h"
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::App::background(int &)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::App::background(int &)
 {
     if (!m_controller->isBackground()) {
         return false;

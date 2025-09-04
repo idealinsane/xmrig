@@ -160,13 +160,13 @@ inline bool fromHexImpl(T &buf, const char *in, size_t size)
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(Buffer &buf, const char *in, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(Buffer &buf, const char *in, size_t size)
 {
     return fromHexImpl(buf, in, size);
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(Buffer &buf, const rapidjson::Value &value)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(Buffer &buf, const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return false;
@@ -176,13 +176,13 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(std::string &buf, const char *in, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(std::string &buf, const char *in, size_t size)
 {
     return fromHexImpl(buf, in, size);
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const char *hex, size_t hex_len)
 {
     assert(hex != nullptr && hex_len > 0);
     if (hex == nullptr || hex_len == 0) {
@@ -193,7 +193,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const rapidjson::Value &value)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(uint8_t *bin, size_t bin_maxlen, const rapidjson::Value &value)
 {
     if (!value.IsString()) {
         return false;
@@ -203,7 +203,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(const char *in, size_t size)
+xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::fromHex(const char *in, size_t size)
 {
     Buffer buf;
     if (!fromHex(buf, in, size)) {
@@ -214,13 +214,13 @@ xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(char *hex, size_t hex_maxlen, const uint8_t *bin, size_t bin_len)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(char *hex, size_t hex_maxlen, const uint8_t *bin, size_t bin_len)
 {
     return cvt_bin2hex(hex, hex_maxlen, bin, bin_len) != nullptr;
 }
 
 
-xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::randomBytes(const size_t size)
+xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::randomBytes(const size_t size)
 {
     Buffer buf(size);
 
@@ -238,31 +238,31 @@ xmrig::Buffer __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const Buffer &data, rapidjson::Document &doc)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const Buffer &data, rapidjson::Document &doc)
 {
     return toHex(data.data(), data.size(), doc);
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const Span &data, rapidjson::Document &doc)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const Span &data, rapidjson::Document &doc)
 {
     return toHex(data.data(), data.size(), doc);
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const std::string &data, rapidjson::Document &doc)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const std::string &data, rapidjson::Document &doc)
 {
     return toHex(reinterpret_cast<const uint8_t *>(data.data()), data.size(), doc);
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const uint8_t *in, size_t size, rapidjson::Document &doc)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const uint8_t *in, size_t size, rapidjson::Document &doc)
 {
     return toHex(in, size).toJSON(doc);
 }
 
 
-xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const uint8_t *in, size_t size)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::toHex(const uint8_t *in, size_t size)
 {
     assert(in != nullptr && size > 0);
     if (in == nullptr || size == 0) {
@@ -282,7 +282,7 @@ xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::randomBytes(void *buf, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cvt::randomBytes(void *buf, size_t size)
 {
 #   ifndef XMRIG_SODIUM
     std::uniform_int_distribution<> dis(0, 255);

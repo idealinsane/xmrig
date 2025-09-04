@@ -87,7 +87,7 @@ static FORCE_INLINE void blake2b_init0(blake2b_state *S) {
 	memcpy(S->h, blake2b_IV, sizeof(S->h));
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_init_param(blake2b_state *S, const blake2b_param *P) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_init_param(blake2b_state *S, const blake2b_param *P) {
 	const unsigned char *p = (const unsigned char *)P;
 	unsigned int i;
 
@@ -105,7 +105,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,s
 }
 
 /* Sequential blake2b initialization */
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_init(blake2b_state *S, size_t outlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_init(blake2b_state *S, size_t outlen) {
 	blake2b_param P;
 
 	if (S == NULL) {
@@ -133,7 +133,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,s
 	return rx_blake2b_init_param(S, &P);
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_init_key(blake2b_state *S, size_t outlen, const void *key, size_t keylen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_init_key(blake2b_state *S, size_t outlen, const void *key, size_t keylen) {
 	blake2b_param P;
 
 	if (S == NULL) {
@@ -179,7 +179,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,s
 	return 0;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_compress_integer(blake2b_state *S, const uint8_t *block) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_compress_integer(blake2b_state *S, const uint8_t *block) {
 	uint64_t m[16];
 	uint64_t v[16];
 	unsigned int i, r;
@@ -237,7 +237,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 #undef ROUND
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_update(blake2b_state *S, const void *in, size_t inlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_update(blake2b_state *S, const void *in, size_t inlen) {
 	const uint8_t *pin = (const uint8_t *)in;
 
 	if (inlen == 0) {
@@ -277,7 +277,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,s
 	return 0;
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_final(blake2b_state *S, void *out, size_t outlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_final(blake2b_state *S, void *out, size_t outlen) {
 	uint8_t buffer[BLAKE2B_OUTBYTES] = { 0 };
 	unsigned int i;
 
@@ -307,7 +307,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,s
 	return 0;
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_default(void *out, size_t outlen, const void *in, size_t inlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_default(void *out, size_t outlen, const void *in, size_t inlen) {
 	blake2b_state S;
 	int ret = -1;
 
@@ -335,7 +335,7 @@ fail:
 }
 
 /* Argon2 Team - Begin Code */
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rxa2_blake2b_long(void *pout, size_t outlen, const void *in, size_t inlen) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rxa2_blake2b_long(void *pout, size_t outlen, const void *in, size_t inlen) {
 	uint8_t *out = (uint8_t *)pout;
 	blake2b_state blake_state;
 	uint8_t outlen_bytes[sizeof(uint32_t)] = { 0 };

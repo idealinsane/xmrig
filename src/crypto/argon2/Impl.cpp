@@ -51,7 +51,7 @@ extern int xmrig_ar2_check_sse2();
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::argon2::Impl::select(const String &nameHint, bool benchmark)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::argon2::Impl::select(const String &nameHint, bool benchmark)
 {
     if (!selected) {
 #       if defined(__x86_64__) || defined(_M_AMD64)

@@ -50,7 +50,7 @@
  };
  
  
- void blake256_compress(state *S, const uint8_t *block) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_compress(state *S, const uint8_t *block) {
      uint32_t v[16], m[16], i;
  
  #define ROT(x,n) (((x)<<(32-n))|((x)>>(n)))
@@ -97,7 +97,7 @@
      for (i = 0; i < 8;  ++i) S->h[i] ^= S->s[i % 4];
  }
  
- void blake256_init(state *S) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_init(state *S) {
      S->h[0] = 0x6A09E667;
      S->h[1] = 0xBB67AE85;
      S->h[2] = 0x3C6EF372;
@@ -110,7 +110,7 @@
      S->s[0] = S->s[1] = S->s[2] = S->s[3] = 0;
  }
  
- void blake224_init(state *S) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake224_init(state *S) {
      S->h[0] = 0xC1059ED8;
      S->h[1] = 0x367CD507;
      S->h[2] = 0x3070DD17;
@@ -124,7 +124,7 @@
  }
  
  // datalen = number of bits
- void blake256_update(state *S, const uint8_t *data, uint64_t datalen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_update(state *S, const uint8_t *data, uint64_t datalen) {
      int left = S->buflen >> 3;
      int fill = 64 - left;
  
@@ -155,11 +155,11 @@
  }
  
  // datalen = number of bits
- void blake224_update(state *S, const uint8_t *data, uint64_t datalen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake224_update(state *S, const uint8_t *data, uint64_t datalen) {
      blake256_update(S, data, datalen);
  }
  
- void blake256_final_h(state *S, uint8_t *digest, uint8_t pa, uint8_t pb) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_final_h(state *S, uint8_t *digest, uint8_t pa, uint8_t pb) {
      uint8_t msglen[8];
      uint32_t lo = S->t[0] + S->buflen, hi = S->t[1];
      if (lo < (unsigned) S->buflen) hi++;
@@ -197,16 +197,16 @@
      U32TO8(digest + 28, S->h[7]);
  }
  
- void blake256_final(state *S, uint8_t *digest) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_final(state *S, uint8_t *digest) {
      blake256_final_h(S, digest, 0x81, 0x01);
  }
  
- void blake224_final(state *S, uint8_t *digest) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake224_final(state *S, uint8_t *digest) {
      blake256_final_h(S, digest, 0x80, 0x00);
  }
  
  // inlen = number of bytes
- void blake256_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake256_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
      state S;
      blake256_init(&S);
      blake256_update(&S, in, inlen * 8);
@@ -214,7 +214,7 @@
  }
  
  // inlen = number of bytes
- void blake224_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) blake224_hash(uint8_t *out, const uint8_t *in, uint64_t inlen) {
      state S;
      blake224_init(&S);
      blake224_update(&S, in, inlen * 8);
@@ -222,7 +222,7 @@
  }
  
  // keylen = number of bytes
- void hmac_blake256_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake256_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
      const uint8_t *key = _key;
      uint8_t keyhash[32];
      uint8_t pad[64];
@@ -252,7 +252,7 @@
  }
  
  // keylen = number of bytes
- void hmac_blake224_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake224_init(hmac_state *S, const uint8_t *_key, uint64_t keylen) {
      const uint8_t *key = _key;
      uint8_t keyhash[32];
      uint8_t pad[64];
@@ -282,18 +282,18 @@
  }
  
  // datalen = number of bits
- void hmac_blake256_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake256_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
    // update the inner state
    blake256_update(&S->inner, data, datalen);
  }
  
  // datalen = number of bits
- void hmac_blake224_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake224_update(hmac_state *S, const uint8_t *data, uint64_t datalen) {
    // update the inner state
    blake224_update(&S->inner, data, datalen);
  }
  
- void hmac_blake256_final(hmac_state *S, uint8_t *digest) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake256_final(hmac_state *S, uint8_t *digest) {
      uint8_t ihash[32];
      blake256_final(&S->inner, ihash);
      blake256_update(&S->outer, ihash, 256);
@@ -301,7 +301,7 @@
      memset(ihash, 0, 32);
  }
  
- void hmac_blake224_final(hmac_state *S, uint8_t *digest) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake224_final(hmac_state *S, uint8_t *digest) {
      uint8_t ihash[32];
      blake224_final(&S->inner, ihash);
      blake224_update(&S->outer, ihash, 224);
@@ -310,7 +310,7 @@
  }
  
  // keylen = number of bytes; inlen = number of bytes
- void hmac_blake256_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake256_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
      hmac_state S;
      hmac_blake256_init(&S, key, keylen);
      hmac_blake256_update(&S, in, inlen * 8);
@@ -318,10 +318,9 @@
  }
  
  // keylen = number of bytes; inlen = number of bytes
- void hmac_blake224_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
+ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hmac_blake224_hash(uint8_t *out, const uint8_t *key, uint64_t keylen, const uint8_t *in, uint64_t inlen) {
      hmac_state S;
      hmac_blake224_init(&S, key, keylen);
      hmac_blake224_update(&S, in, inlen * 8);
      hmac_blake224_final(&S, out);
  }
- 

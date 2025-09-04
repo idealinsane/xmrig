@@ -54,12 +54,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 static bool hugePagesJIT = false;
 static int optimizedDatasetInit = -1;
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_huge_pages_jit(bool hugePages)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_set_huge_pages_jit(bool hugePages)
 {
 	hugePagesJIT = hugePages;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_set_optimized_dataset_init(int value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_set_optimized_dataset_init(int value)
 {
 	optimizedDatasetInit = value;
 }
@@ -195,7 +195,7 @@ namespace randomx {
 		return (uint8_t*) k;
 	}
 
-	size_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::getCodeSize() {
+	size_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::getCodeSize() {
 		return codePos < prologueSize ? 0 : codePos - prologueSize;
 	}
 
@@ -326,12 +326,12 @@ namespace randomx {
 
 	template<typename T> static FORCE_INLINE void prefetch_data(const T& data) { prefetch_data<(sizeof(T) + 63) / 64>(&data); }
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::prepare() {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::prepare() {
 		prefetch_data(engine);
 		prefetch_data(RandomX_CurrentConfig);
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgram(Program& prog, ProgramConfiguration& pcfg, uint32_t flags) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgram(Program& prog, ProgramConfiguration& pcfg, uint32_t flags) {
 		PROFILE_SCOPE(RandomX_JIT_compile);
 
 #		ifdef XMRIG_SECURE_JIT
@@ -345,7 +345,7 @@ namespace randomx {
 		generateProgramEpilogue(prog, pcfg);
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramLight(Program& prog, ProgramConfiguration& pcfg, uint32_t datasetOffset) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramLight(Program& prog, ProgramConfiguration& pcfg, uint32_t datasetOffset) {
 		generateProgramPrologue(prog, pcfg);
 		emit(codeReadDatasetLightSshInit, readDatasetLightInitSize, code, codePos);
 		*(uint32_t*)(code + codePos) = 0xc381;
@@ -415,14 +415,14 @@ namespace randomx {
 	template
 	void JitCompilerX86::generateSuperscalarHash(SuperscalarProgram(&programs)[RANDOMX_CACHE_MAX_ACCESSES]);
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateDatasetInitCode() {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateDatasetInitCode() {
 		// AVX2 code is generated in generateSuperscalarHash()
 		if (!initDatasetAVX2) {
 			memcpy(code, codeDatasetInit, datasetInitSize);
 		}
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramPrologue(Program& prog, ProgramConfiguration& pcfg) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramPrologue(Program& prog, ProgramConfiguration& pcfg) {
 		codePos = ADDR(randomx_program_prologue_first_load) - ADDR(randomx_program_prologue);
 		*(uint32_t*)(code + codePos + 4) = RandomX_CurrentConfig.ScratchpadL3Mask64_Calculated;
 		*(uint32_t*)(code + codePos + 14) = RandomX_CurrentConfig.ScratchpadL3Mask64_Calculated;
@@ -472,7 +472,7 @@ namespace randomx {
 		codePos += 6;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramEpilogue(Program& prog, ProgramConfiguration& pcfg) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::generateProgramEpilogue(Program& prog, ProgramConfiguration& pcfg) {
 		*(uint64_t*)(code + codePos) = 0xc03349c08b49ull + (static_cast<uint64_t>(pcfg.readReg0) << 16) + (static_cast<uint64_t>(pcfg.readReg1) << 40);
 		codePos += 6;
 		emit(RandomX_CurrentConfig.codePrefetchScratchpadTweaked, RandomX_CurrentConfig.codePrefetchScratchpadTweakedSize, code, codePos);
@@ -776,7 +776,7 @@ namespace randomx {
 		emit32(instr.getImm32() & ScratchpadL3Mask, code, codePos);
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IADD_RS(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IADD_RS(const Instruction& instr) {
 		uint32_t pos = codePos;
 		uint8_t* const p = code + pos;
 
@@ -796,7 +796,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IADD_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IADD_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -817,7 +817,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISUB_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISUB_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 		
@@ -838,7 +838,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISUB_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISUB_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -859,7 +859,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -879,7 +879,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -900,7 +900,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -916,7 +916,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_R_BMI2(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_R_BMI2(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -931,7 +931,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -955,7 +955,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_M_BMI2(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMULH_M_BMI2(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -978,7 +978,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISMULH_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISMULH_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -993,7 +993,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISMULH_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISMULH_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1017,7 +1017,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_RCP(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IMUL_RCP(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 		
@@ -1048,7 +1048,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_INEG_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_INEG_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1060,7 +1060,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IXOR_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IXOR_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1081,7 +1081,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IXOR_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IXOR_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1102,7 +1102,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IROR_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IROR_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1123,7 +1123,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IROL_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_IROL_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1144,7 +1144,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISWAP_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISWAP_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1161,7 +1161,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSWAP_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSWAP_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1173,7 +1173,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FADD_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FADD_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1188,7 +1188,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FADD_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FADD_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1205,7 +1205,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSUB_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSUB_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1220,7 +1220,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSUB_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSUB_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1237,7 +1237,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSCAL_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSCAL_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1248,7 +1248,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FMUL_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FMUL_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1263,7 +1263,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FDIV_M(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FDIV_M(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1290,7 +1290,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSQRT_R(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_FSQRT_R(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1303,7 +1303,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CFROUND(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CFROUND(const Instruction& instr) {
 		uint8_t* const p = code;
 		int32_t t = prevCFROUND;
 
@@ -1339,7 +1339,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CFROUND_BMI2(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CFROUND_BMI2(const Instruction& instr) {
 		uint8_t* const p = code;
 		int32_t t = prevCFROUND;
 
@@ -1375,7 +1375,7 @@ namespace randomx {
 	}
 
 	template<bool jccErratum>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CBRANCH(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_CBRANCH(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1433,7 +1433,7 @@ namespace randomx {
 	template void JitCompilerX86::h_CBRANCH<false>(const Instruction&);
 	template void JitCompilerX86::h_CBRANCH<true>(const Instruction&);
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISTORE(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_ISTORE(const Instruction& instr) {
 		uint8_t* const p = code;
 		uint32_t pos = codePos;
 
@@ -1443,7 +1443,7 @@ namespace randomx {
 		codePos = pos;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_NOP(const Instruction& instr) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) JitCompilerX86::h_NOP(const Instruction& instr) {
 		emitByte(0x90, code, codePos);
 	}
 

@@ -100,7 +100,7 @@ static uint32_t getStridedIndex(const OclDevice &device, const Algorithm &algori
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ocl_generic_cn_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ocl_generic_cn_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
 {
     if (!algorithm.isCN()) {
         return false;

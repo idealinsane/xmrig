@@ -31,7 +31,7 @@
 #include <map>
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::WalletAddress::decode(const char *address, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::WalletAddress::decode(const char *address, size_t size)
 {
     uint64_t tf_tag = 0;
     if (size >= 4 && !strncmp(address, "TF", 2)) {
@@ -147,7 +147,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::WalletAddress::decode(const rapidjson::Value &address)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::WalletAddress::decode(const rapidjson::Value &address)
 {
     return address.IsString() && decode(address.GetString(), address.GetStringLength());
 }

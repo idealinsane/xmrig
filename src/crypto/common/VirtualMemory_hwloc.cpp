@@ -26,7 +26,7 @@
 #include <hwloc.h>
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::bindToNUMANode(int64_t affinity)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::bindToNUMANode(int64_t affinity)
 {
     if (affinity < 0 || Cpu::info()->nodes() < 2) {
         return 0;

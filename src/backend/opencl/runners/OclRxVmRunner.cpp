@@ -49,7 +49,7 @@ size_t xmrig::OclRxVmRunner::bufferSize() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::build()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::build()
 {
     OclRxBaseRunner::build();
 
@@ -67,7 +67,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::execute(uint32_t iteration)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::execute(uint32_t iteration)
 {
     const uint32_t bfactor        = std::min(data().thread.bfactor(), 8U);
     const uint32_t num_iterations = RxAlgo::programIterations(m_algorithm) >> bfactor;
@@ -90,7 +90,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclRxVmRunner::init()
 {
     OclRxBaseRunner::init();
 

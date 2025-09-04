@@ -101,7 +101,7 @@ static inline uint32_t getMemChunk(const Algorithm &algorithm)
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ocl_vega_cn_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ocl_vega_cn_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
 {
     if (!isMatch(device, algorithm)) {
         return false;

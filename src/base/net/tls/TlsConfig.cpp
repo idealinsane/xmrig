@@ -93,7 +93,7 @@ xmrig::TlsConfig::TlsConfig(const rapidjson::Value &value)
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::generate(const char *commonName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::generate(const char *commonName)
 {
     TlsGen gen;
 
@@ -158,7 +158,7 @@ rapidjson::Value xmrig::TlsConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::setProtocols(const char *protocols)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::setProtocols(const char *protocols)
 {
     const std::vector<String> vec = String(protocols).split(' ');
 
@@ -179,7 +179,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::setProtocols(const rapidjson::Value &protocols)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsConfig::setProtocols(const rapidjson::Value &protocols)
 {
     m_protocols = 0;
 

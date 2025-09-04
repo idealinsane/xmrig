@@ -35,7 +35,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 namespace randomx {
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CompiledLightVm<softAes>::setCache(randomx_cache* cache) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) CompiledLightVm<softAes>::setCache(randomx_cache* cache) {
 		cachePtr = cache;
 		mem.memory = cache->memory;
 
@@ -47,7 +47,7 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) CompiledLightVm<softAes>::run(void* seed) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) CompiledLightVm<softAes>::run(void* seed) {
 		VmBase<softAes>::generateProgram(seed);
 		randomx_vm::initialize();
 

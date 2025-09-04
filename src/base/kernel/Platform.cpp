@@ -36,7 +36,7 @@ String Platform::m_userAgent;
 } // namespace xmrig
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::init(const char *userAgent)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Platform::init(const char *userAgent)
 {
 #   ifdef XMRIG_FEATURE_TLS
     SSL_library_init();

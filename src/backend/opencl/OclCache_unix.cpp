@@ -29,14 +29,14 @@
 #include "backend/opencl/OclCache.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::createDirectory()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::createDirectory()
 {
     std::string path = prefix() + "/.cache";
     mkdir(path.c_str(), 0744);
 }
 
 
-std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::prefix()
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::prefix()
 {
     return ".";
 }

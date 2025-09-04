@@ -21,7 +21,7 @@
 #include <Windows.h>
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
 {
     DWORD size         = sizeof(m_brand) - 1;
     const char *subkey = "HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0";

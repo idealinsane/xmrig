@@ -53,6 +53,6 @@ void* allocLargePagesMemory(std::size_t bytes) {
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) freePagedMemory(void* ptr, std::size_t bytes) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) freePagedMemory(void* ptr, std::size_t bytes) {
     xmrig::VirtualMemory::freeLargePagesMemory(ptr, bytes);
 }

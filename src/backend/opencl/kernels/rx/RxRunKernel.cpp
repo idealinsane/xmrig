@@ -30,14 +30,14 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxRunKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxRunKernel::enqueue(cl_command_queue queue, size_t threads, size_t workgroup_size)
 {
     const size_t gthreads        = threads * workgroup_size;
     enqueueNDRange(queue, 1, nullptr, &gthreads, &workgroup_size);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxRunKernel::setArgs(cl_mem dataset, cl_mem scratchpads, cl_mem registers, cl_mem rounding, cl_mem programs, uint32_t batch_size, const Algorithm &algorithm)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxRunKernel::setArgs(cl_mem dataset, cl_mem scratchpads, cl_mem registers, cl_mem rounding, cl_mem programs, uint32_t batch_size, const Algorithm &algorithm)
 {
     setArg(0, sizeof(cl_mem), &dataset);
     setArg(1, sizeof(cl_mem), &scratchpads);

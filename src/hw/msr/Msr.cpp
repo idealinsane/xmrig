@@ -38,7 +38,7 @@ const char *xmrig::Msr::tag()
 
 
 
-std::shared_ptr<xmrig::Msr> __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Msr::get()
+std::shared_ptr<xmrig::Msr> __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Msr::get()
 {
     auto msr = instance.lock();
     if (!msr) {
@@ -54,7 +54,7 @@ std::shared_ptr<xmrig::Msr> __attribute__((__annotate__(("indirectcall,indirectb
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Msr::write(uint32_t reg, uint64_t value, int32_t cpu, uint64_t mask, bool verbose)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Msr::write(uint32_t reg, uint64_t value, int32_t cpu, uint64_t mask, bool verbose)
 {
     if (mask != MsrItem::kNoMask) {
         uint64_t old_value = 0;

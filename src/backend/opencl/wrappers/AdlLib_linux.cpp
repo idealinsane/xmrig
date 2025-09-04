@@ -136,7 +136,7 @@ static size_t sysfs_prefix(char path[PATH_MAX], const PciTopology &topology)
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::init()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::init()
 {
     if (!m_initialized) {
         m_ready       = dlopen() && load();
@@ -153,13 +153,13 @@ const char *xmrig::AdlLib::lastError() noexcept
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::close()
 {
 }
 
 
 // https://dri.freedesktop.org/docs/drm/gpu/amdgpu.html#gpu-power-thermal-controls-and-monitoring
-AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::health(const OclDevice &device)
+AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::health(const OclDevice &device)
 {
     if (!isReady() || device.vendorId() != OCL_VENDOR_AMD) {
         return {};
@@ -187,7 +187,7 @@ AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,bogu
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::dlopen()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::dlopen()
 {
     struct stat sb;
     if (stat(kPrefix.c_str(), &sb) == -1) {
@@ -198,7 +198,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::load()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::load()
 {
     return true;
 }

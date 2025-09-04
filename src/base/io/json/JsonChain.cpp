@@ -32,7 +32,7 @@ static const rapidjson::Value kNullValue;
 xmrig::JsonChain::JsonChain() = default;
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::add(rapidjson::Document &&doc)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::add(rapidjson::Document &&doc)
 {
     if (doc.HasParseError() || !doc.IsObject() || doc.ObjectEmpty()) {
         return false;
@@ -44,7 +44,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::addFile(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::addFile(const char *fileName)
 {
     using namespace rapidjson;
     Document doc;
@@ -87,7 +87,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::addRaw(const char *json)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::addRaw(const char *json)
 {
     using namespace rapidjson;
     Document doc;
@@ -97,7 +97,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::dump(const char *fileName)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonChain::dump(const char *fileName)
 {
     rapidjson::Document doc(rapidjson::kArrayType);
 

@@ -213,7 +213,7 @@ void xmrig::OclDevice::toJSON(rapidjson::Value &out, rapidjson::Document &doc) c
 
 
 #ifndef XMRIG_OS_APPLE
-xmrig::OclDevice::Type __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclDevice::getType(const String &name)
+xmrig::OclDevice::Type __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclDevice::getType(const String &name)
 {
     static std::map<const char *, OclDevice::Type> types = {
         { "gfx900",     Vega_10 },

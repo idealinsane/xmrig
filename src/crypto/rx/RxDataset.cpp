@@ -86,7 +86,7 @@ xmrig::RxDataset::~RxDataset()
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::init(const Buffer &seed, uint32_t numThreads, int priority)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::init(const Buffer &seed, uint32_t numThreads, int priority)
 {
     if (!m_cache || !m_cache->get()) {
         return false;
@@ -184,7 +184,7 @@ void *xmrig::RxDataset::raw() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::setRaw(const void *raw)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::setRaw(const void *raw)
 {
     if (!m_dataset) {
         return;
@@ -195,7 +195,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::allocate(bool hugePages, bool oneGbPages)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxDataset::allocate(bool hugePages, bool oneGbPages)
 {
     if (m_mode == RxConfig::LightMode) {
         LOG_ERR(CLEAR "%s" RED_BOLD_S "fast RandomX mode disabled by config", Tags::randomx());

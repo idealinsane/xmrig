@@ -42,7 +42,7 @@ randomx_vm::~randomx_vm() {
 
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_vm::resetRoundingMode() {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_vm::resetRoundingMode() {
 	rx_reset_float_state();
 }
 
@@ -71,7 +71,7 @@ namespace randomx {
 
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) randomx_vm::initialize() {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) randomx_vm::initialize() {
 	store64(&reg.a[0].lo, randomx::getSmallPositiveFloatBits(program.getEntropy(0)));
 	store64(&reg.a[0].hi, randomx::getSmallPositiveFloatBits(program.getEntropy(1)));
 	store64(&reg.a[1].lo, randomx::getSmallPositiveFloatBits(program.getEntropy(2)));
@@ -102,7 +102,7 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::setScratchpad(uint8_t *scratchpad) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::setScratchpad(uint8_t *scratchpad) {
 		if (datasetPtr == nullptr) {
 			throw std::invalid_argument("Cache/Dataset not set");
 		}
@@ -111,7 +111,7 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::getFinalResult(void* out) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::getFinalResult(void* out) {
 		hashAes1Rx4<softAes>(scratchpad, ScratchpadSize, &reg.a);
 		rx_blake2b_wrapper::run(out, RANDOMX_HASH_SIZE, &reg, sizeof(RegisterFile));
 	}
@@ -129,12 +129,12 @@ namespace randomx {
 	}
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::initScratchpad(void* seed) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::initScratchpad(void* seed) {
 		fillAes1Rx4<softAes>(seed, ScratchpadSize, scratchpad);
 	}
 
 	template<int softAes>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::generateProgram(void* seed) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) VmBase<softAes>::generateProgram(void* seed) {
 		PROFILE_SCOPE(RandomX_generate_program);
 		fillAes4Rx4<softAes>(seed, 128 + RandomX_CurrentConfig.ProgramSize * 8, &program);
 	}

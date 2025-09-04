@@ -35,10 +35,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #if defined(__SIZEOF_INT128__)
 	typedef unsigned __int128 uint128_t;
 	typedef __int128 int128_t;
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
 		return ((uint128_t)a * b) >> 64;
 	}
-	int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
+	int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
 		return ((int128_t)a * b) >> 64;
 	}
 	#define HAVE_MULH
@@ -51,24 +51,24 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	#include <intrin.h>
 	#include <stdlib.h>
 
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rotl64(uint64_t x, unsigned int c) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rotl64(uint64_t x, unsigned int c) {
 		return _rotl64(x, c);
 	}
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rotr64(uint64_t x, unsigned int c) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rotr64(uint64_t x, unsigned int c) {
 		return _rotr64(x, c);
 	}
 	#define HAVE_ROTL64
 	#define HAVE_ROTR64
 
 	#if EVAL_DEFINE(__MACHINEARM64_X64(1))
-		uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
+		uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
 			return __umulh(a, b);
 		}
 		#define HAVE_MULH
 	#endif
 
 	#if EVAL_DEFINE(__MACHINEX64(1))
-		int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
+		int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
 			int64_t hi;
 			_mul128(a, b, &hi);
 			return hi;
@@ -83,14 +83,14 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 #ifndef HAVE_ROTR64
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rotr64(uint64_t a, unsigned int b) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rotr64(uint64_t a, unsigned int b) {
 		return (a >> b) | (a << (-b & 63));
 	}
 	#define HAVE_ROTR64
 #endif
 
 #ifndef HAVE_ROTL64
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rotl64(uint64_t a, unsigned int b) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rotl64(uint64_t a, unsigned int b) {
 		return (a << b) | (a >> (-b & 63));
 	}
 	#define HAVE_ROTL64
@@ -99,7 +99,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #ifndef HAVE_MULH
 	#define LO(x) ((x)&0xffffffff)
 	#define HI(x) ((x)>>32)
-	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
+	uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) mulh(uint64_t a, uint64_t b) {
 		uint64_t ah = HI(a), al = LO(a);
 		uint64_t bh = HI(b), bl = LO(b);
 		uint64_t x00 = al * bl;
@@ -116,7 +116,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 #ifndef HAVE_SMULH
-	int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
+	int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) smulh(int64_t a, int64_t b) {
 		int64_t hi = mulh(a, b);
 		if (a < 0LL) hi -= b;
 		if (b < 0LL) hi -= a;
@@ -133,12 +133,12 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	}
 #	endif
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_reset_float_state() {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_reset_float_state() {
 	setRoundMode_(FE_TONEAREST);
 	rx_set_double_precision(); //set precision to 53 bits if needed by the platform
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_set_rounding_mode(uint32_t mode) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_set_rounding_mode(uint32_t mode) {
 	switch (mode & 3) {
 	case RoundDown:
 		setRoundMode_(FE_DOWNWARD);
@@ -163,13 +163,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 
 #ifdef _M_IX86
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_set_double_precision() {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_set_double_precision() {
 	_control87(_PC_53, _MCW_PC);
 }
 
 #elif defined(__i386)
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_set_double_precision() {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_set_double_precision() {
 	uint16_t volatile x87cw;
 	asm volatile("fstcw %0" : "=m" (x87cw));
 	x87cw &= ~0x300;
@@ -186,7 +186,7 @@ union double_ser_t {
 	uint64_t i;
 };
 
-double __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) loadDoublePortable(const void* addr) {
+double __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) loadDoublePortable(const void* addr) {
 	double_ser_t ds;
 	ds.i = load64(addr);
 	return ds.f;

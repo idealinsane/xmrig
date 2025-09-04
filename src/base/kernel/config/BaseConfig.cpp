@@ -72,7 +72,7 @@ const char *BaseConfig::kTls            = "tls";
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::read(const IJsonReader &reader, const char *fileName)
 {
     m_fileName = fileName;
 
@@ -112,7 +112,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::save()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::save()
 {
     if (m_fileName.isNull()) {
         return false;
@@ -130,7 +130,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::printVersions()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::printVersions()
 {
     char buf[256] = { 0 };
 
@@ -167,7 +167,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::setVerbose(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BaseConfig::setVerbose(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         Log::setVerbose(value.GetBool() ? 1 : 0);

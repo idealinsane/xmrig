@@ -54,7 +54,7 @@ const T &xmrig::Threads<T>::get(const String &profileName) const
 
 
 template <class T>
-size_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Threads<T>::read(const rapidjson::Value &value)
+size_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Threads<T>::read(const rapidjson::Value &value)
 {
     using namespace rapidjson;
 

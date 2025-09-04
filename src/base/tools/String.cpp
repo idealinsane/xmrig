@@ -168,7 +168,7 @@ xmrig::String &xmrig::String::toUpper()
 }
 
 
-xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::String::join(const std::vector<xmrig::String> &vec, char sep)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::String::join(const std::vector<xmrig::String> &vec, char sep)
 {
     if (vec.empty()) {
         return String();
@@ -198,7 +198,7 @@ xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::String::copy(const char *str)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::String::copy(const char *str)
 {
     delete [] m_data;
 
@@ -216,7 +216,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::String::copy(const String &other)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::String::copy(const String &other)
 {
     if (m_size > 0 && m_size == other.m_size) {
         memcpy(m_data, other.m_data, m_size + 1);
@@ -240,7 +240,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::String::move(char *str)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::String::move(char *str)
 {
     delete [] m_data;
 
@@ -249,7 +249,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::String::move(String &&other)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::String::move(String &&other)
 {
     delete [] m_data;
 

@@ -46,13 +46,13 @@ xmrig::CudaRxRunner::CudaRxRunner(size_t index, const CudaLaunchData &data) :
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaRxRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaRxRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
 {
     return callWrapper(CudaLib::rxHash(m_ctx, startNonce, m_target, rescount, resnonce));
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaRxRunner::set(const Job &job, uint8_t *blob)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaRxRunner::set(const Job &job, uint8_t *blob)
 {
     if (!m_datasetHost && (m_seed != job.seed())) {
         m_seed = job.seed();

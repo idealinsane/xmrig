@@ -46,7 +46,7 @@ xmrig::OclSharedData &xmrig::OclSharedState::get(uint32_t index)
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclSharedState::release()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclSharedState::release()
 {
     for (auto &kv : map) {
         kv.second.release();
@@ -56,7 +56,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclSharedState::start(const std::vector<OclLaunchData> &threads, const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclSharedState::start(const std::vector<OclLaunchData> &threads, const Job &job)
 {
     assert(map.empty());
 

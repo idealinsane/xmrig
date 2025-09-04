@@ -27,7 +27,7 @@
 namespace xmrig {
 
 
-double __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) Chrono::highResolutionMSecs()
+double __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) Chrono::highResolutionMSecs()
 {
 #   ifdef XMRIG_OS_WIN
     LARGE_INTEGER f, t;

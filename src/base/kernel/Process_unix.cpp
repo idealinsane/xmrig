@@ -24,7 +24,7 @@
 #include "base/kernel/Process.h"
 
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Process::pid()
+int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Process::pid()
 {
 #   if UV_VERSION_HEX >= 0x011200
     return uv_os_getpid();

@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::enqueue(cl_command_queue queue, size_t threads, size_t worksize)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::enqueue(cl_command_queue queue, size_t threads, size_t worksize)
 {
     const size_t gthreads = (worksize == 16) ? (threads * 16) : (threads * 8);
     const size_t lthreads = (worksize == 16) ? 32 : 16;
@@ -37,7 +37,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 
 
 // __kernel void execute_vm(__global void* vm_states, __global void* rounding, __global void* scratchpads, __global const void* dataset_ptr, uint32_t batch_size, uint32_t num_iterations, uint32_t first, uint32_t last)
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setArgs(cl_mem vm_states, cl_mem rounding, cl_mem scratchpads, cl_mem dataset_ptr, uint32_t batch_size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setArgs(cl_mem vm_states, cl_mem rounding, cl_mem scratchpads, cl_mem dataset_ptr, uint32_t batch_size)
 {
     setArg(0, sizeof(cl_mem), &vm_states);
     setArg(1, sizeof(cl_mem), &rounding);
@@ -47,13 +47,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setFirst(uint32_t first)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setFirst(uint32_t first)
 {
     setArg(6, sizeof(uint32_t), &first);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setIterations(uint32_t num_iterations)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setIterations(uint32_t num_iterations)
 {
     setArg(5, sizeof(uint32_t), &num_iterations);
     setFirst(1);
@@ -61,7 +61,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setLast(uint32_t last)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ExecuteVmKernel::setLast(uint32_t last)
 {
     setArg(7, sizeof(uint32_t), &last);
 }

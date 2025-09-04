@@ -37,7 +37,7 @@ xmrig::SysLog::~SysLog()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SysLog::print(uint64_t, int level, const char *line, size_t offset, size_t, bool colors)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SysLog::print(uint64_t, int level, const char *line, size_t offset, size_t, bool colors)
 {
     if (colors) {
         return;

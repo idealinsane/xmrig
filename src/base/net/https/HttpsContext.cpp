@@ -38,7 +38,7 @@ xmrig::HttpsContext::HttpsContext(TlsContext *tls, const std::weak_ptr<IHttpList
 xmrig::HttpsContext::~HttpsContext() = default;
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::append(char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::append(char *data, size_t size)
 {
     if (m_mode == TLS_AUTO) {
         m_mode = isTLS(data, size) ? TLS_ON : TLS_OFF;
@@ -53,7 +53,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::write(BIO *bio)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::write(BIO *bio)
 {
     if (uv_is_writable(stream()) != 1) {
         return false;
@@ -71,7 +71,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::parse(char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::parse(char *data, size_t size)
 {
     if (!HttpContext::parse(data, size)) {
         close();
@@ -79,13 +79,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::shutdown()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::shutdown()
 {
     close();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::write(std::string &&data, bool close)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsContext::write(std::string &&data, bool close)
 {
     m_close = close;
 

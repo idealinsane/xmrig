@@ -76,7 +76,7 @@ xmrig::Workers<T>::~Workers()
 
 
 template<class T>
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::tick(uint64_t)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::tick(uint64_t)
 {
     if (!d_ptr->hashrate) {
         return true;
@@ -122,14 +122,14 @@ const xmrig::Hashrate *xmrig::Workers<T>::hashrate() const
 
 
 template<class T>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::setBackend(IBackend *backend)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::setBackend(IBackend *backend)
 {
     d_ptr->backend = backend;
 }
 
 
 template<class T>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::stop()
 {
 #   ifdef XMRIG_MINER_PROJECT
     Nonce::stop(T::backend());
@@ -151,7 +151,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 
 #ifdef XMRIG_FEATURE_BENCHMARK
 template<class T>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::start(const std::vector<T> &data, const std::shared_ptr<Benchmark> &benchmark)
 {
     if (!benchmark) {
         return start(data, true);
@@ -199,7 +199,7 @@ void *xmrig::Workers<T>::onReady(void *arg)
 
 
 template<class T>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::start(const std::vector<T> &data, bool /*sleep*/)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Workers<T>::start(const std::vector<T> &data, bool /*sleep*/)
 {
     for (const auto &item : data) {
         m_workers.push_back(new Thread<T>(d_ptr->backend, m_workers.size(), item));

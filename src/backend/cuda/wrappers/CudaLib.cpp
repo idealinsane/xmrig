@@ -136,7 +136,7 @@ String CudaLib::m_loader;
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::init(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::init(const char *fileName)
 {
     if (!m_initialized) {
         m_initialized = true;
@@ -167,13 +167,13 @@ const char *xmrig::CudaLib::lastError() noexcept
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::close()
 {
     uv_dlclose(&cudaLib);
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::cnHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t height, uint64_t target, uint32_t *rescount, uint32_t *resnonce)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::cnHash(nvid_ctx *ctx, uint32_t startNonce, uint64_t height, uint64_t target, uint32_t *rescount, uint32_t *resnonce)
 {
     return pCnHash(ctx, startNonce, height, target, rescount, resnonce);
 }
@@ -284,7 +284,7 @@ nvid_ctx *xmrig::CudaLib::alloc(uint32_t id, int32_t bfactor, int32_t bsleep) no
 }
 
 
-std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::version(uint32_t version)
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::version(uint32_t version)
 {
     return std::to_string(version / 1000) + "." + std::to_string((version % 1000) / 10);
 }
@@ -361,7 +361,7 @@ void xmrig::CudaLib::release(nvid_ctx *ctx) noexcept
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::open()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::open()
 {
     m_error = nullptr;
 
@@ -384,7 +384,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::load()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaLib::load()
 {
     DLSYM(Version);
 

@@ -150,19 +150,19 @@ static BOOL TrySetLockPagesPrivilege() {
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::isHugepagesAvailable()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::isHugepagesAvailable()
 {
     return hugepagesAvailable;
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::isOneGbPagesAvailable()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::isOneGbPagesAvailable()
 {
     return false;
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRW(void *p, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRW(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -170,7 +170,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRWX(void *p, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRWX(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -178,7 +178,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRX(void *p, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::protectRX(void *p, size_t size)
 {
     DWORD oldProtect;
 
@@ -221,19 +221,19 @@ void *xmrig::VirtualMemory::allocateOneGbPagesMemory(size_t)
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::flushInstructionCache(void *p, size_t size)
 {
     ::FlushInstructionCache(GetCurrentProcess(), p, size);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::freeLargePagesMemory(void *p, size_t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::freeLargePagesMemory(void *p, size_t)
 {
     VirtualFree(p, 0, MEM_RELEASE);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::osInit(size_t hugePageSize)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::osInit(size_t hugePageSize)
 {
     if (hugePageSize) {
         hugepagesAvailable = TrySetLockPagesPrivilege();
@@ -241,7 +241,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::allocateLargePagesMemory()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::allocateLargePagesMemory()
 {
     m_scratchpad = static_cast<uint8_t*>(allocateLargePagesMemory(m_size));
     if (m_scratchpad) {
@@ -253,14 +253,14 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
     return false;
 }
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::allocateOneGbPagesMemory()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::allocateOneGbPagesMemory()
 {
     m_scratchpad = nullptr;
     return false;
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::freeLargePagesMemory()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::VirtualMemory::freeLargePagesMemory()
 {
     freeLargePagesMemory(m_scratchpad, m_size);
 }

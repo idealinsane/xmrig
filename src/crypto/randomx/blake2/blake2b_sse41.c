@@ -69,7 +69,7 @@ static const uint8_t blake2b_sigma_sse41[12][16] = {
 };
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) rx_blake2b_compress_sse41(blake2b_state* S, const uint8_t *block)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) rx_blake2b_compress_sse41(blake2b_state* S, const uint8_t *block)
 {
 	__m128i row1l, row1h;
 	__m128i row2l, row2h;

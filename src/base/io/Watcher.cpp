@@ -54,7 +54,7 @@ xmrig::Watcher::~Watcher()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::onFsEvent(uv_fs_event_t *handle, const char *filename, int, int)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::onFsEvent(uv_fs_event_t *handle, const char *filename, int, int)
 {
     if (!filename) {
         return;
@@ -64,14 +64,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::queueUpdate()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::queueUpdate()
 {
     m_timer->stop();
     m_timer->start(kDelay, 0);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::reload()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::reload()
 {
     m_listener->onFileChanged(m_path);
 
@@ -82,7 +82,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Watcher::start()
 {
     uv_fs_event_start(m_fsEvent, xmrig::Watcher::onFsEvent, m_path, 0);
 }

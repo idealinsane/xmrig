@@ -247,7 +247,7 @@ const char *xmrig::NetworkState::scaleDiff(uint64_t &diff)
 }
 
 
-std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::humanDiff(uint64_t diff)
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::humanDiff(uint64_t diff)
 {
     const char *scale = scaleDiff(diff);
 
@@ -255,7 +255,7 @@ std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,bo
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onActive(IStrategy *strategy, IClient *client)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onActive(IStrategy *strategy, IClient *client)
 {
     snprintf(m_pool, sizeof(m_pool) - 1, "%s:%d", client->pool().host().data(), client->pool().port());
 
@@ -269,7 +269,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &params)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &params)
 {
     m_algorithm = job.algorithm();
     m_diff      = job.diff();
@@ -278,7 +278,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onPause(IStrategy *strategy)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onPause(IStrategy *strategy)
 {
     if (!strategy->isActive()) {
         stop();
@@ -288,7 +288,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onResultAccepted(IStrategy *strategy, IClient *client, const SubmitResult &result, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::onResultAccepted(IStrategy *strategy, IClient *client, const SubmitResult &result, const char *error)
 {
     add(result, error);
 
@@ -326,7 +326,7 @@ uint64_t xmrig::NetworkState::connectionTime() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::add(const SubmitResult &result, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::add(const SubmitResult &result, const char *error)
 {
     if (error) {
         m_rejected++;
@@ -346,7 +346,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::NetworkState::stop()
 {
     m_active      = false;
     m_diff        = 0;

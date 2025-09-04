@@ -403,7 +403,7 @@ static bool arm_cpu_decode(lscpu_desc *desc)
 }
 
 
-String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) cpu_name_arm()
+String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) cpu_name_arm()
 {
     lscpu_desc desc;
     if (read_basicinfo(&desc) && arm_cpu_decode(&desc)) {

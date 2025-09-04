@@ -769,7 +769,7 @@ sph_sha256_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 //	sph_sha256_init(cc);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_sha256_full( void *dst, const void *data, size_t len )
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_sha256_full( void *dst, const void *data, size_t len )
 {
    sph_sha256_context cc;
    sph_sha256_init( &cc );
@@ -777,7 +777,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
    sph_sha256_close( &cc, dst );
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sha256d(void* hash, const void* data, int len)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sha256d(void* hash, const void* data, int len)
 {
     sph_sha256_full(hash, data, len);
     sph_sha256_full(hash, hash, 32);

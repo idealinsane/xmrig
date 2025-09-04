@@ -324,7 +324,7 @@ rapidjson::Value xmrig::Algorithm::toJSON(rapidjson::Document &) const
 }
 
 
-xmrig::Algorithm::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Algorithm::parse(const char *name)
+xmrig::Algorithm::Id __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Algorithm::parse(const char *name)
 {
     if (name == nullptr || strlen(name) < 1) {
         return INVALID;
@@ -336,7 +336,7 @@ xmrig::Algorithm::Id __attribute__((__annotate__(("indirectcall,indirectbr,alias
 }
 
 
-size_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Algorithm::count()
+size_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Algorithm::count()
 {
     return kAlgorithmNames.size();
 }

@@ -55,7 +55,7 @@ public:
 } // namespace xmrig
 
 
-xmrig::HugePagesInfo __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::hugePages()
+xmrig::HugePagesInfo __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::hugePages()
 {
     return d_ptr->queue.hugePages();
 }
@@ -67,7 +67,7 @@ xmrig::RxDataset *xmrig::Rx::dataset(const Job &job, uint32_t nodeId)
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::destroy()
 {
 #   ifdef XMRIG_FEATURE_MSR
     RxMsr::destroy();
@@ -79,7 +79,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::init(IRxListener *listener)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::init(IRxListener *listener)
 {
     d_ptr = new RxPrivate(listener);
 }
@@ -96,7 +96,7 @@ int (*rx_blake2b)(void* out, size_t outlen, const void* in, size_t inlen) = rx_b
 
 
 template<typename T>
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::init(const T &seed, const RxConfig &config, const CpuConfig &cpu)
 {
     const auto f = seed.algorithm().family();
     if ((f != Algorithm::RANDOM_X)
@@ -171,14 +171,14 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,
 
 
 template<typename T>
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::isReady(const T &seed)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::isReady(const T &seed)
 {
     return d_ptr->queue.isReady(seed);
 }
 
 
 #ifdef XMRIG_FEATURE_MSR
-bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Rx::isMSR()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Rx::isMSR()
 {
     return RxMsr::isEnabled();
 }

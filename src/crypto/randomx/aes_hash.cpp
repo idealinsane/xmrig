@@ -59,7 +59,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 	Hashing throughput: >20 GiB/s per CPU core with hardware AES
 */
 template<int softAes>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) hashAes1Rx4(const void *input, size_t inputSize, void *hash) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hashAes1Rx4(const void *input, size_t inputSize, void *hash) {
 	const uint8_t* inptr = (uint8_t*)input;
 	const uint8_t* inputEnd = inptr + inputSize;
 
@@ -127,7 +127,7 @@ template void hashAes1Rx4<true>(const void *input, size_t inputSize, void *hash)
 	calls to this function.
 */
 template<int softAes>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) fillAes1Rx4(void *state, size_t outputSize, void *buffer) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) fillAes1Rx4(void *state, size_t outputSize, void *buffer) {
 	const uint8_t* outptr = (uint8_t*)buffer;
 	const uint8_t* outputEnd = outptr + outputSize;
 
@@ -171,7 +171,7 @@ static constexpr randomx::Instruction inst{ 0xFF, 7, 7, 0xFF, 0xFFFFFFFFU };
 alignas(16) static const randomx::Instruction inst_mask[2] = { inst, inst };
 
 template<int softAes>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) fillAes4Rx4(void *state, size_t outputSize, void *buffer) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) fillAes4Rx4(void *state, size_t outputSize, void *buffer) {
 	const uint8_t* outptr = (uint8_t*)buffer;
 	const uint8_t* outputEnd = outptr + outputSize;
 
@@ -236,7 +236,7 @@ template void fillAes4Rx4<true>(void *state, size_t outputSize, void *buffer);
 template void fillAes4Rx4<false>(void *state, size_t outputSize, void *buffer);
 
 template<int softAes, int unroll>
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) hashAndFillAes1Rx4(void *scratchpad, size_t scratchpadSize, void *hash, void* fill_state) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hashAndFillAes1Rx4(void *scratchpad, size_t scratchpadSize, void *hash, void* fill_state) {
 	PROFILE_SCOPE(RandomX_AES);
 
 	uint8_t* scratchpadPtr = (uint8_t*)scratchpad;
@@ -384,7 +384,7 @@ template void hashAndFillAes1Rx4<2,4>(void* scratchpad, size_t scratchpadSize, v
 
 hashAndFillAes1Rx4_impl* softAESImpl = &hashAndFillAes1Rx4<1,1>;
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) SelectSoftAESImpl(size_t threadsCount)
+void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) SelectSoftAESImpl(size_t threadsCount)
 {
   constexpr uint64_t test_length_ms = 100;
   const std::array<hashAndFillAes1Rx4_impl *, 4> impl = {

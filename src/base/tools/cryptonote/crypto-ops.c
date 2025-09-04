@@ -49,7 +49,7 @@ static void fe_divpowm1(fe, const fe, const fe);
 
 /* Common functions */
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) load_3(const unsigned char *in) {
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) load_3(const unsigned char *in) {
   uint64_t result;
   result = (uint64_t) in[0];
   result |= ((uint64_t) in[1]) << 8;
@@ -57,7 +57,7 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
   return result;
 }
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) load_4(const unsigned char *in)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) load_4(const unsigned char *in)
 {
   uint64_t result;
   result = (uint64_t) in[0];
@@ -119,7 +119,7 @@ Postconditions:
    |h| bounded by 1.1*2^26,1.1*2^25,1.1*2^26,1.1*2^25,etc.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) fe_add(fe h, const fe f, const fe g) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) fe_add(fe h, const fe f, const fe g) {
   int32_t f0 = f[0];
   int32_t f1 = f[1];
   int32_t f2 = f[2];
@@ -257,7 +257,7 @@ static void fe_copy(fe h, const fe f) {
 
 /* From fe_invert.c */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) fe_invert(fe out, const fe z) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) fe_invert(fe out, const fe z) {
   fe t0;
   fe t1;
   fe t2;
@@ -1030,7 +1030,7 @@ Proof:
   so floor(2^(-255)(h + 19 2^(-25) h9 + 2^(-1))) = q.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) fe_tobytes(unsigned char *s, const fe h) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) fe_tobytes(unsigned char *s, const fe h) {
   int32_t h0 = h[0];
   int32_t h1 = h[1];
   int32_t h2 = h[2];
@@ -1124,7 +1124,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 /* From ge_add.c */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_add(ge_p1p1 *r, const ge_p3 *p, const ge_cached *q) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_add(ge_p1p1 *r, const ge_p3 *p, const ge_cached *q) {
   fe t0;
   fe_add(r->X, p->Y, p->X);
   fe_sub(r->Y, p->Y, p->X);
@@ -1173,7 +1173,7 @@ static void slide(signed char *r, const unsigned char *a) {
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_dsm_precomp(ge_dsmp r, const ge_p3 *s) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_dsm_precomp(ge_dsmp r, const ge_p3 *s) {
   ge_p1p1 t;
   ge_p3 s2, u;
   ge_p3_to_cached(&r[0], s);
@@ -1194,7 +1194,7 @@ and b = b[0]+256*b[1]+...+256^31 b[31].
 B is the Ed25519 base point (x,4/5) with x positive.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_base_vartime(ge_p2 *r, const unsigned char *a, const ge_p3 *A, const unsigned char *b) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_base_vartime(ge_p2 *r, const unsigned char *a, const ge_p3 *A, const unsigned char *b) {
   signed char aslide[256];
   signed char bslide[256];
   ge_dsmp Ai; /* A, 3A, 5A, 7A, 9A, 11A, 13A, 15A */
@@ -1236,7 +1236,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 // Computes aG + bB + cC (G is the fixed basepoint)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_triple_scalarmult_base_vartime(ge_p2 *r, const unsigned char *a, const unsigned char *b, const ge_dsmp Bi, const unsigned char *c, const ge_dsmp Ci) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_triple_scalarmult_base_vartime(ge_p2 *r, const unsigned char *a, const unsigned char *b, const ge_dsmp Bi, const unsigned char *c, const ge_dsmp Ci) {
   signed char aslide[256];
   signed char bslide[256];
   signed char cslide[256];
@@ -1285,7 +1285,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_base_vartime_p3(ge_p3 *r3, const unsigned char *a, const ge_p3 *A, const unsigned char *b) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_base_vartime_p3(ge_p3 *r3, const unsigned char *a, const ge_p3 *A, const unsigned char *b) {
   signed char aslide[256];
   signed char bslide[256];
   ge_dsmp Ai; /* A, 3A, 5A, 7A, 9A, 11A, 13A, 15A */
@@ -1332,7 +1332,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 /* From ge_frombytes.c, modified */
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_frombytes_vartime(ge_p3 *h, const unsigned char *s) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_frombytes_vartime(ge_p3 *h, const unsigned char *s) {
   fe u;
   fe v;
   fe vxx;
@@ -1470,7 +1470,7 @@ static void ge_msub(ge_p1p1 *r, const ge_p3 *p, const ge_precomp *q) {
 r = p
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p1p1_to_p2(ge_p2 *r, const ge_p1p1 *p) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p1p1_to_p2(ge_p2 *r, const ge_p1p1 *p) {
   fe_mul(r->X, p->X, p->T);
   fe_mul(r->Y, p->Y, p->Z);
   fe_mul(r->Z, p->Z, p->T);
@@ -1482,7 +1482,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 r = p
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p1p1_to_p3(ge_p3 *r, const ge_p1p1 *p) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p1p1_to_p3(ge_p3 *r, const ge_p1p1 *p) {
   fe_mul(r->X, p->X, p->T);
   fe_mul(r->Y, p->Y, p->Z);
   fe_mul(r->Z, p->Z, p->T);
@@ -1503,7 +1503,7 @@ static void ge_p2_0(ge_p2 *h) {
 r = 2 * p
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p2_dbl(ge_p1p1 *r, const ge_p2 *p) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p2_dbl(ge_p1p1 *r, const ge_p2 *p) {
   fe t0;
   fe_sq(r->X, p->X);
   fe_sq(r->Z, p->Y);
@@ -1543,7 +1543,7 @@ static void ge_p3_dbl(ge_p1p1 *r, const ge_p3 *p) {
 r = p
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p3_to_cached(ge_cached *r, const ge_p3 *p) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p3_to_cached(ge_cached *r, const ge_p3 *p) {
   fe_add(r->YplusX, p->Y, p->X);
   fe_sub(r->YminusX, p->Y, p->X);
   fe_copy(r->Z, p->Z);
@@ -1556,7 +1556,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 r = p
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p3_to_p2(ge_p2 *r, const ge_p3 *p) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p3_to_p2(ge_p2 *r, const ge_p3 *p) {
   fe_copy(r->X, p->X);
   fe_copy(r->Y, p->Y);
   fe_copy(r->Z, p->Z);
@@ -1564,7 +1564,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 /* From ge_p3_tobytes.c */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p3_tobytes(unsigned char *s, const ge_p3 *h) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p3_tobytes(unsigned char *s, const ge_p3 *h) {
   fe recip;
   fe x;
   fe y;
@@ -1637,7 +1637,7 @@ Preconditions:
   a[31] <= 127
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_scalarmult_base(ge_p3 *h, const unsigned char *a) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_scalarmult_base(ge_p3 *h, const unsigned char *a) {
   signed char e[64];
   signed char carry;
   ge_p1p1 r;
@@ -1685,7 +1685,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 r = p - q
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_sub(ge_p1p1 *r, const ge_p3 *p, const ge_cached *q) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_sub(ge_p1p1 *r, const ge_p3 *p, const ge_cached *q) {
   fe t0;
   fe_add(r->X, p->Y, p->X);
   fe_sub(r->Y, p->Y, p->X);
@@ -1702,7 +1702,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 /* From ge_tobytes.c */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_tobytes(unsigned char *s, const ge_p2 *h) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_tobytes(unsigned char *s, const ge_p2 *h) {
   fe recip;
   fe x;
   fe y;
@@ -1726,7 +1726,7 @@ Output:
   Overwrites s in place.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_reduce(unsigned char *s) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_reduce(unsigned char *s) {
   int64_t s0 = 2097151 & load_3(s);
   int64_t s1 = 2097151 & (load_4(s + 2) >> 5);
   int64_t s2 = 2097151 & (load_3(s + 5) >> 2);
@@ -2036,7 +2036,7 @@ static void ge_cached_cmov(ge_cached *t, const ge_cached *u, unsigned char b) {
 }
 
 /* Assumes that a[31] <= 127 */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_scalarmult(ge_p2 *r, const unsigned char *a, const ge_p3 *A) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_scalarmult(ge_p2 *r, const unsigned char *a, const ge_p3 *A) {
   signed char e[64];
   int carry, carry2, i;
   ge_cached Ai[8]; /* 1 * A, 2 * A, ..., 8 * A */
@@ -2096,7 +2096,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_scalarmult_p3(ge_p3 *r3, const unsigned char *a, const ge_p3 *A) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_scalarmult_p3(ge_p3 *r3, const unsigned char *a, const ge_p3 *A) {
   signed char e[64];
   int carry, carry2, i;
   ge_cached Ai[8]; /* 1 * A, 2 * A, ..., 8 * A */
@@ -2160,7 +2160,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime2(ge_p2 *r, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime2(ge_p2 *r, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi) {
   signed char aslide[256];
   signed char bslide[256];
   ge_p1p1 t;
@@ -2200,7 +2200,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 // Computes aA + bB + cC (all points require precomputation)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_triple_scalarmult_precomp_vartime(ge_p2 *r, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi, const unsigned char *c, const ge_dsmp Ci) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_triple_scalarmult_precomp_vartime(ge_p2 *r, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi, const unsigned char *c, const ge_dsmp Ci) {
   signed char aslide[256];
   signed char bslide[256];
   signed char cslide[256];
@@ -2249,7 +2249,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime2_p3(ge_p3 *r3, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime2_p3(ge_p3 *r3, const unsigned char *a, const ge_dsmp Ai, const unsigned char *b, const ge_dsmp Bi) {
   signed char aslide[256];
   signed char bslide[256];
   ge_p1p1 t;
@@ -2292,14 +2292,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime(ge_p2 *r, const unsigned char *a, const ge_p3 *A, const unsigned char *b, const ge_dsmp Bi) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_double_scalarmult_precomp_vartime(ge_p2 *r, const unsigned char *a, const ge_p3 *A, const unsigned char *b, const ge_dsmp Bi) {
   ge_dsmp Ai; /* A, 3A, 5A, 7A, 9A, 11A, 13A, 15A */
 
   ge_dsm_precomp(Ai, A);
   ge_double_scalarmult_precomp_vartime2(r, a, Ai, b, Bi);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_mul8(ge_p1p1 *r, const ge_p2 *t) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_mul8(ge_p1p1 *r, const ge_p2 *t) {
   ge_p2 u;
   ge_p2_dbl(r, t);
   ge_p1p1_to_p2(&u, r);
@@ -2308,7 +2308,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   ge_p2_dbl(r, &u);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_fromfe_frombytes_vartime(ge_p2 *r, const unsigned char *s) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_fromfe_frombytes_vartime(ge_p2 *r, const unsigned char *s) {
   fe u, v, w, x, y, z;
   unsigned char sign;
 
@@ -2424,14 +2424,14 @@ setsign:
 #endif
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_0(unsigned char *s) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_0(unsigned char *s) {
   int i;
   for (i = 0; i < 32; i++) {
     s[i] = 0;
   }
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_reduce32(unsigned char *s) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_reduce32(unsigned char *s) {
   int64_t s0 = 2097151 & load_3(s);
   int64_t s1 = 2097151 & (load_4(s + 2) >> 5);
   int64_t s2 = 2097151 & (load_3(s + 5) >> 2);
@@ -2546,7 +2546,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   s[31] = s11 >> 17;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_add(unsigned char *s, const unsigned char *a, const unsigned char *b) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_add(unsigned char *s, const unsigned char *a, const unsigned char *b) {
   int64_t a0 = 2097151 & load_3(a);
   int64_t a1 = 2097151 & (load_4(a + 2) >> 5);
   int64_t a2 = 2097151 & (load_3(a + 5) >> 2);
@@ -2685,7 +2685,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
   s[31] = s11 >> 17;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_sub(unsigned char *s, const unsigned char *a, const unsigned char *b) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_sub(unsigned char *s, const unsigned char *a, const unsigned char *b) {
   int64_t a0 = 2097151 & load_3(a);
   int64_t a1 = 2097151 & (load_4(a + 2) >> 5);
   int64_t a2 = 2097151 & (load_3(a + 5) >> 2);
@@ -2835,7 +2835,7 @@ Output:
   where l = 2^252 + 27742317777372353535851937790883648493.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_mulsub(unsigned char *s, const unsigned char *a, const unsigned char *b, const unsigned char *c) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_mulsub(unsigned char *s, const unsigned char *a, const unsigned char *b, const unsigned char *c) {
   int64_t a0 = 2097151 & load_3(a);
   int64_t a1 = 2097151 & (load_4(a + 2) >> 5);
   int64_t a2 = 2097151 & (load_3(a + 5) >> 2);
@@ -3166,7 +3166,7 @@ Output:
   s[0]+256*s[1]+...+256^31*s[31] = (ab) mod l
   where l = 2^252 + 27742317777372353535851937790883648493.
 */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_mul(unsigned char *s, const unsigned char *a, const unsigned char *b) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_mul(unsigned char *s, const unsigned char *a, const unsigned char *b) {
   int64_t a0 = 2097151 & load_3(a);
   int64_t a1 = 2097151 & (load_4(a + 2) >> 5);
   int64_t a2 = 2097151 & (load_3(a + 5) >> 2);
@@ -3487,7 +3487,7 @@ Output:
   where l = 2^252 + 27742317777372353535851937790883648493.
 */
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_muladd(unsigned char *s, const unsigned char *a, const unsigned char *b, const unsigned char *c) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_muladd(unsigned char *s, const unsigned char *a, const unsigned char *b, const unsigned char *c) {
   int64_t a0 = 2097151 & load_3(a);
   int64_t a1 = 2097151 & (load_4(a + 2) >> 5);
   int64_t a2 = 2097151 & (load_3(a + 5) >> 2);
@@ -3812,7 +3812,7 @@ static int64_t signum(int64_t a) {
   return a > 0 ? 1 : a < 0 ? -1 : 0;
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_check(const unsigned char *s) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_check(const unsigned char *s) {
   int64_t s0 = load_4(s);
   int64_t s1 = load_4(s + 4);
   int64_t s2 = load_4(s + 8);
@@ -3824,14 +3824,14 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess
   return (signum(1559614444 - s0) + (signum(1477600026 - s1) << 1) + (signum(2734136534 - s2) << 2) + (signum(350157278 - s3) << 3) + (signum(-s4) << 4) + (signum(-s5) << 5) + (signum(-s6) << 6) + (signum(268435456 - s7) << 7)) >> 8;
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sc_isnonzero(const unsigned char *s) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sc_isnonzero(const unsigned char *s) {
   return (((int) (s[0] | s[1] | s[2] | s[3] | s[4] | s[5] | s[6] | s[7] | s[8] |
     s[9] | s[10] | s[11] | s[12] | s[13] | s[14] | s[15] | s[16] | s[17] |
     s[18] | s[19] | s[20] | s[21] | s[22] | s[23] | s[24] | s[25] | s[26] |
     s[27] | s[28] | s[29] | s[30] | s[31]) - 1) >> 8) + 1;
 }
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ge_p3_is_point_at_infinity(const ge_p3 *p) {
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ge_p3_is_point_at_infinity(const ge_p3 *p) {
   // X = 0 and Y == Z
   int n;
   for (n = 0; n < 10; ++n)

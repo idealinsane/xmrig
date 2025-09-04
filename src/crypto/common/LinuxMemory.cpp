@@ -49,7 +49,7 @@ static inline int64_t nr_hugepages(uint32_t node, size_t hugePageSize)          
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::reserve(size_t size, uint32_t node, size_t hugePageSize)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::reserve(size_t size, uint32_t node, size_t hugePageSize)
 {
     std::lock_guard<std::mutex> lock(mutex);
 
@@ -64,7 +64,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::write(const char *path, uint64_t value)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::write(const char *path, uint64_t value)
 {
     std::ofstream file(path, std::ios::out | std::ios::binary | std::ios::trunc);
     if (!file.is_open()) {
@@ -78,7 +78,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::read(const char *path)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LinuxMemory::read(const char *path)
 {
     std::ifstream file(path);
     if (!file.is_open()) {

@@ -73,7 +73,7 @@ const char *xmrig::HttpsClient::tlsVersion() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::handshake()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::handshake()
 {
     m_ssl = SSL_new(m_ctx);
     assert(m_ssl != nullptr);
@@ -92,7 +92,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::read(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::read(const char *data, size_t size)
 {
     BIO_write(m_read, data, size);
 
@@ -130,7 +130,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::write(std::string &&data, bool close)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::write(std::string &&data, bool close)
 {
     const std::string body = std::move(data);
     SSL_write(m_ssl, body.data(), body.size());
@@ -139,7 +139,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::verify(X509 *cert)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::verify(X509 *cert)
 {
     if (cert == nullptr) {
         return false;
@@ -162,7 +162,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::verifyFingerprint(X509 *cert)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::verifyFingerprint(X509 *cert)
 {
     const EVP_MD *digest = EVP_get_digestbyname("sha256");
     if (digest == nullptr) {
@@ -182,7 +182,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::flush(bool close)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpsClient::flush(bool close)
 {
     if (uv_is_writable(stream()) != 1) {
         return;

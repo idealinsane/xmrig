@@ -32,7 +32,7 @@ static const rapidjson::Value kNullValue;
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getBool(const rapidjson::Value &obj, const char *key, bool defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -47,7 +47,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::isEmpty(const rapidjson::Value &obj)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::isEmpty(const rapidjson::Value &obj)
 {
     return !obj.IsObject() || obj.ObjectEmpty();
 }
@@ -113,7 +113,7 @@ const rapidjson::Value &xmrig::Json::getValue(const rapidjson::Value &obj, const
 }
 
 
-double __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
+double __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getDouble(const rapidjson::Value &obj, const char *key, double defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -128,7 +128,7 @@ double __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacc
 }
 
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getInt(const rapidjson::Value &obj, const char *key, int defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -143,7 +143,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getInt64(const rapidjson::Value &obj, const char *key, int64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -158,7 +158,7 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getString(const rapidjson::Value &obj, const char *key, size_t maxSize)
 {
     if (isEmpty(obj)) {
         return {};
@@ -177,7 +177,7 @@ xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,a
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getUint64(const rapidjson::Value &obj, const char *key, uint64_t defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -192,7 +192,7 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-unsigned __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
+unsigned __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::getUint(const rapidjson::Value &obj, const char *key, unsigned defaultValue)
 {
     if (isEmpty(obj)) {
         return defaultValue;
@@ -207,7 +207,7 @@ unsigned __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::normalize(double value, bool zero)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::normalize(double value, bool zero)
 {
     using namespace rapidjson;
 
@@ -221,7 +221,7 @@ rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattenin
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Json::convertOffset(std::istream &ifs, size_t offset, size_t &line, size_t &pos, std::vector<std::string> &s)
 {
     std::string prev_t;
     std::string t;

@@ -309,13 +309,13 @@ static JobResultsPrivate *handler = nullptr;
 } // namespace xmrig
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::done(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::done(const Job &job)
 {
     submit(JobResult(job));
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::setListener(IJobResultListener *listener, bool hwAES)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::setListener(IJobResultListener *listener, bool hwAES)
 {
     assert(handler == nullptr);
 
@@ -323,7 +323,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::stop()
 {
     assert(handler != nullptr);
 
@@ -333,19 +333,19 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job &job, uint32_t nonce, const uint8_t *result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job &job, uint32_t nonce, const uint8_t *result)
 {
     submit(JobResult(job, nonce, result));
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job& job, uint32_t nonce, const uint8_t* result, const uint8_t* miner_signature)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job& job, uint32_t nonce, const uint8_t* result, const uint8_t* miner_signature)
 {
     submit(JobResult(job, nonce, result, nullptr, nullptr, miner_signature));
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const JobResult &result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const JobResult &result)
 {
     assert(handler != nullptr);
 
@@ -356,7 +356,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 #if defined(XMRIG_FEATURE_OPENCL) || defined(XMRIG_FEATURE_CUDA)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JobResults::submit(const Job &job, uint32_t *results, size_t count, uint32_t device_index)
 {
     if (handler) {
         handler->submit(job, results, count, device_index);

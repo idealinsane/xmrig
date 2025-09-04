@@ -29,7 +29,7 @@
 
 // https://wiki.openssl.org/index.php/OpenSSL_1.1.0_Changes#Compatibility_Layer
 #if OPENSSL_VERSION_NUMBER < 0x10100000L
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g)
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) DH_set0_pqg(DH *dh, BIGNUM *p, BIGNUM *q, BIGNUM *g)
 {
     assert(q == nullptr);
 
@@ -126,7 +126,7 @@ xmrig::TlsContext *xmrig::TlsContext::create(const TlsConfig &config)
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::load(const TlsConfig &config)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::load(const TlsConfig &config)
 {
     m_ctx = SSL_CTX_new(SSLv23_server_method());
     if (m_ctx == nullptr) {
@@ -162,7 +162,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setCiphers(const char *ciphers)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setCiphers(const char *ciphers)
 {
     if (ciphers == nullptr || SSL_CTX_set_cipher_list(m_ctx, ciphers) == 1) {
         return true;
@@ -174,7 +174,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setCipherSuites(const char *ciphersuites)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setCipherSuites(const char *ciphersuites)
 {
     if (ciphersuites == nullptr) {
         return true;
@@ -192,7 +192,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setDH(const char *dhparam)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setDH(const char *dhparam)
 {
 #   if OPENSSL_VERSION_NUMBER < 0x30000000L || defined(LIBRESSL_VERSION_NUMBER)
     DH *dh = nullptr;
@@ -262,7 +262,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setProtocols(uint32_t protocols)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::TlsContext::setProtocols(uint32_t protocols)
 {
     if (protocols == 0) {
         return;

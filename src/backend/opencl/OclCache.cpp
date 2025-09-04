@@ -101,7 +101,7 @@ static cl_program createFromBinary(const IOclRunner *runner, const std::string &
 } // namespace xmrig
 
 
-cl_program __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::build(const IOclRunner *runner)
+cl_program __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::build(const IOclRunner *runner)
 {
     std::lock_guard<std::mutex> lock(mutex);
 
@@ -132,7 +132,7 @@ cl_program __attribute__((__annotate__(("indirectcall,indirectbr,flattening,alia
 }
 
 
-std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::cacheKey(const char *deviceKey, const char *options, const char *source)
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::cacheKey(const char *deviceKey, const char *options, const char *source)
 {
     std::string in(source);
     in += options;
@@ -148,13 +148,13 @@ std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,ali
 }
 
 
-std::string __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::cacheKey(const IOclRunner *runner)
+std::string __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::cacheKey(const IOclRunner *runner)
 {
     return cacheKey(runner->deviceKey(), runner->buildOptions(), runner->source());
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::save(cl_program program, const std::string &fileName)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclCache::save(cl_program program, const std::string &fileName)
 {
     size_t size = 0;
     if (OclLib::getProgramInfo(program, CL_PROGRAM_BINARY_SIZES, sizeof(size), &size) != CL_SUCCESS) {

@@ -46,7 +46,7 @@ extern String cpu_name_arm();
 } // namespace xmrig
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
 {
 #   if __ARM_FEATURE_CRYPTO
 #   if defined(XMRIG_OS_FREEBSD)

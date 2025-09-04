@@ -44,13 +44,13 @@ static uint64_t nextId                      = 0;
 } // namespace xmrig
 
 
-rapidjson::Document __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(const char *method)
+rapidjson::Document __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(const char *method)
 {
     return create(++nextId, method);
 }
 
 
-rapidjson::Document __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(int64_t id, const char *method)
+rapidjson::Document __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(int64_t id, const char *method)
 {
     using namespace rapidjson;
     Document doc(kObjectType);
@@ -64,13 +64,13 @@ rapidjson::Document __attribute__((__annotate__(("indirectcall,indirectbr,flatte
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(rapidjson::Document &doc, const char *method, rapidjson::Value &params)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(rapidjson::Document &doc, const char *method, rapidjson::Value &params)
 {
     return create(doc, ++nextId, method, params);
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(rapidjson::Document &doc, int64_t id, const char *method, rapidjson::Value &params)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::JsonRequest::create(rapidjson::Document &doc, int64_t id, const char *method, rapidjson::Value &params)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();

@@ -91,13 +91,13 @@ xmrig::Network::~Network()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::connect()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::connect()
 {
     m_strategy->connect();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::execCommand(char command)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::execCommand(char command)
 {
     switch (command) {
     case 's':
@@ -116,7 +116,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onActive(IStrategy *strategy, IClient *client)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onActive(IStrategy *strategy, IClient *client)
 {
     if (m_donate && m_donate == strategy) {
         LOG_NOTICE("%s " WHITE_BOLD("dev donate started"), Tags::network());
@@ -147,7 +147,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onConfigChanged(Config *config, Config *previousConfig)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onConfigChanged(Config *config, Config *previousConfig)
 {
     if (config->pools() == previousConfig->pools() || !config->pools().active()) {
         return;
@@ -163,7 +163,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onJob(IStrategy *strategy, IClient *client, const Job &job, const rapidjson::Value &)
 {
     if (m_donate && m_donate->isActive() && m_donate != strategy) {
         return;
@@ -173,7 +173,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onJobResult(const JobResult &result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onJobResult(const JobResult &result)
 {
     if (result.index == 1 && m_donate) {
         m_donate->submit(result);
@@ -184,7 +184,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onLogin(IStrategy *, IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onLogin(IStrategy *, IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -208,7 +208,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onPause(IStrategy *strategy)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onPause(IStrategy *strategy)
 {
     if (m_donate && m_donate == strategy) {
         LOG_NOTICE("%s " WHITE_BOLD("dev donate finished"), Tags::network());
@@ -223,7 +223,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onResultAccepted(IStrategy *, IClient *, const SubmitResult &result, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onResultAccepted(IStrategy *, IClient *, const SubmitResult &result, const char *error)
 {
     uint64_t diff     = result.diff;
     const char *scale = NetworkState::scaleDiff(diff);
@@ -239,7 +239,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Algorithm &algorithm, bool *ok)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onVerifyAlgorithm(IStrategy *, const IClient *, const Algorithm &algorithm, bool *ok)
 {
     if (!m_controller->miner()->isEnabled(algorithm)) {
         *ok = false;
@@ -250,7 +250,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 #ifdef XMRIG_FEATURE_API
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::onRequest(IApiRequest &request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::onRequest(IApiRequest &request)
 {
     if (request.type() == IApiRequest::REQ_SUMMARY) {
         request.accept();
@@ -262,7 +262,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 #endif
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::setJob(IClient *client, const Job &job, bool donate)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::setJob(IClient *client, const Job &job, bool donate)
 {
 #   ifdef XMRIG_FEATURE_BENCHMARK
     if (!BenchState::size())
@@ -299,7 +299,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Network::tick()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Network::tick()
 {
     const uint64_t now = Chrono::steadyMSecs();
 

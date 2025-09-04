@@ -88,7 +88,7 @@ uint32_t xmrig::OclBaseRunner::deviceIndex() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::build()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::build()
 {
     m_program = OclCache::build(this);
 
@@ -98,7 +98,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::init()
 {
     m_queue = OclLib::createCommandQueue(m_ctx, data().device.id());
 
@@ -118,7 +118,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-cl_mem __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::createSubBuffer(cl_mem_flags flags, size_t size)
+cl_mem __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::createSubBuffer(cl_mem_flags flags, size_t size)
 {
     auto mem = OclLib::createSubBuffer(m_buffer, flags, m_offset, size);
 
@@ -134,7 +134,7 @@ size_t xmrig::OclBaseRunner::align(size_t size) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::enqueueReadBuffer(cl_mem buffer, cl_bool blocking_read, size_t offset, size_t size, void *ptr)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::enqueueReadBuffer(cl_mem buffer, cl_bool blocking_read, size_t offset, size_t size, void *ptr)
 {
     const cl_int ret = OclLib::enqueueReadBuffer(m_queue, buffer, blocking_read, offset, size, ptr, 0, nullptr, nullptr);
     if (ret != CL_SUCCESS) {
@@ -143,7 +143,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::enqueueWriteBuffer(cl_mem buffer, cl_bool blocking_write, size_t offset, size_t size, const void *ptr)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::enqueueWriteBuffer(cl_mem buffer, cl_bool blocking_write, size_t offset, size_t size, const void *ptr)
 {
     const cl_int ret = OclLib::enqueueWriteBuffer(m_queue, buffer, blocking_write, offset, size, ptr, 0, nullptr, nullptr);
     if (ret != CL_SUCCESS) {
@@ -152,7 +152,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::finalize(uint32_t *hashOutput)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBaseRunner::finalize(uint32_t *hashOutput)
 {
     enqueueReadBuffer(m_output, CL_TRUE, 0, sizeof(cl_uint) * 0x100, hashOutput);
 

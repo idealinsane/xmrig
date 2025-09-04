@@ -46,7 +46,7 @@ xmrig::HttpApiResponse::HttpApiResponse(uint64_t id, int status) :
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiResponse::end()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpApiResponse::end()
 {
     using namespace rapidjson;
 

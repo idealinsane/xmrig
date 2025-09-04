@@ -100,7 +100,7 @@ public:
     bool dmi = true;
 #   endif
 
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) setIdleTime(const rapidjson::Value &value)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) setIdleTime(const rapidjson::Value &value)
     {
         if (value.IsBool()) {
             idleTime = value.GetBool() ? kIdleTime : 0U;
@@ -206,7 +206,7 @@ bool xmrig::Config::isShouldSave() const
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Config::read(const IJsonReader &reader, const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Config::read(const IJsonReader &reader, const char *fileName)
 {
     if (!BaseConfig::read(reader, fileName)) {
         return false;

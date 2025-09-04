@@ -84,7 +84,7 @@ uint8_t *xmrig::MemoryPool::get(size_t size, uint32_t)
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::MemoryPool::release(uint32_t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::MemoryPool::release(uint32_t)
 {
     assert(m_refs > 0);
 

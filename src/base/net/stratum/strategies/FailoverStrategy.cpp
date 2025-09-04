@@ -53,7 +53,7 @@ xmrig::FailoverStrategy::~FailoverStrategy()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::add(const Pool &pool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::add(const Pool &pool)
 {
     IClient *client = pool.createClient(static_cast<int>(m_pools.size()), this);
 
@@ -65,7 +65,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::submit(const JobResult &result)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::submit(const JobResult &result)
 {
     if (!isActive()) {
         return -1;
@@ -75,13 +75,13 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::connect()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::connect()
 {
     m_pools[m_index]->connect();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::resume()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::resume()
 {
     if (!isActive()) {
         return;
@@ -91,7 +91,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::setAlgo(const Algorithm &algo)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::setAlgo(const Algorithm &algo)
 {
     for (IClient *client : m_pools) {
         client->setAlgo(algo);
@@ -99,7 +99,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::setProxy(const ProxyUrl &proxy)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::setProxy(const ProxyUrl &proxy)
 {
     for (IClient *client : m_pools) {
         client->setProxy(proxy);
@@ -107,7 +107,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::stop()
 {
     for (auto &pool : m_pools) {
         pool->disconnect();
@@ -120,7 +120,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::tick(uint64_t now)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::tick(uint64_t now)
 {
     for (IClient *client : m_pools) {
         client->tick(now);
@@ -128,7 +128,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onClose(IClient *client, int failures)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onClose(IClient *client, int failures)
 {
     if (failures == -1) {
         return;
@@ -149,13 +149,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onLogin(IClient *client, rapidjson::Document &doc, rapidjson::Value &params)
 {
     m_listener->onLogin(this, client, doc, params);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onJobReceived(IClient *client, const Job &job, const rapidjson::Value &params)
 {
     if (m_active == client->id()) {
         m_listener->onJob(this, client, job, params);
@@ -163,7 +163,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onLoginSuccess(IClient *client)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onLoginSuccess(IClient *client)
 {
     int active = m_active;
 
@@ -184,13 +184,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onResultAccepted(IClient *client, const SubmitResult &result, const char *error)
 {
     m_listener->onResultAccepted(this, client, result, error);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FailoverStrategy::onVerifyAlgorithm(const IClient *client, const Algorithm &algorithm, bool *ok)
 {
     m_listener->onVerifyAlgorithm(this, client, algorithm, ok);
 }

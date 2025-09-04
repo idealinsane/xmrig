@@ -32,7 +32,7 @@ std::map<String, std::shared_ptr<IDnsBackend>> Dns::m_backends;
 } // namespace xmrig
 
 
-std::shared_ptr<xmrig::DnsRequest> __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Dns::resolve(const String &host, IDnsListener *listener)
+std::shared_ptr<xmrig::DnsRequest> __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Dns::resolve(const String &host, IDnsListener *listener)
 {
     auto req = std::make_shared<DnsRequest>(listener);
 

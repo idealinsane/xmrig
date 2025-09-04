@@ -72,7 +72,7 @@ bool xmrig::Url::isEqual(const Url &other) const
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Url::parse(const char *url)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Url::parse(const char *url)
 {
     if (url == nullptr) {
         return false;
@@ -137,7 +137,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Url::parseIPv6(const char *addr)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Url::parseIPv6(const char *addr)
 {
     const char *end = strchr(addr, ']');
     if (!end) {

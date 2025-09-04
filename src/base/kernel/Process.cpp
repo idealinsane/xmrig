@@ -138,7 +138,7 @@ xmrig::Process::Process(int argc, char **argv) :
 }
 
 
-int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Process::ppid()
+int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Process::ppid()
 {
 #   if UV_VERSION_HEX >= 0x011000
     return uv_os_getppid();
@@ -148,7 +148,7 @@ int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess
 }
 
 
-xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Process::exepath()
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Process::exepath()
 {
     size_t size = sizeof(pathBuf);
 
@@ -156,7 +156,7 @@ xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,a
 }
 
 
-xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Process::location(Location location, const char *fileName)
+xmrig::String __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Process::location(Location location, const char *fileName)
 {
     auto path = getPath(location);
     if (path.empty() || fileName == nullptr) {

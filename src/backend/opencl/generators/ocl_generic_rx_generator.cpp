@@ -34,7 +34,7 @@
 namespace xmrig {
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) ocl_generic_rx_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) ocl_generic_rx_generator(const OclDevice &device, const Algorithm &algorithm, OclThreads &threads)
 {
     if (algorithm.family() != Algorithm::RANDOM_X) {
         return false;

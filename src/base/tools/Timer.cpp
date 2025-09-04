@@ -49,13 +49,13 @@ uint64_t xmrig::Timer::repeat() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::setRepeat(uint64_t repeat)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::setRepeat(uint64_t repeat)
 {
     uv_timer_set_repeat(m_timer, repeat);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::singleShot(uint64_t timeout, int id)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::singleShot(uint64_t timeout, int id)
 {
     m_id = id;
 
@@ -64,20 +64,20 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::start(uint64_t timeout, uint64_t repeat)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::start(uint64_t timeout, uint64_t repeat)
 {
     uv_timer_start(m_timer, onTimer, timeout, repeat);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::stop()
 {
     setRepeat(0);
     uv_timer_stop(m_timer);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::init()
 {
     m_timer = new uv_timer_t;
     m_timer->data = this;
@@ -85,7 +85,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Timer::onTimer(uv_timer_t *handle)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Timer::onTimer(uv_timer_t *handle)
 {
     const auto timer = static_cast<Timer *>(handle->data);
 

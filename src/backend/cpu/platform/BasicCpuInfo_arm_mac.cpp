@@ -21,7 +21,7 @@
 #include <sys/sysctl.h>
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BasicCpuInfo::init_arm()
 {
 #   if __ARM_FEATURE_CRYPTO
     m_flags.set(FLAG_AES, true); // FIXME

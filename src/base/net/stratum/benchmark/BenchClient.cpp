@@ -133,7 +133,7 @@ const char *xmrig::BenchClient::tag() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::connect()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::connect()
 {
 #   ifdef XMRIG_FEATURE_HTTP
     if (m_mode == ONLINE_BENCH || m_mode == ONLINE_VERIFY) {
@@ -145,13 +145,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setPool(const Pool &pool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setPool(const Pool &pool)
 {
     m_pool = pool;
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onBenchDone(uint64_t result, uint64_t diff, uint64_t ts)
 {
     m_result    = result;
     m_diff      = diff;
@@ -175,7 +175,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onBenchReady(uint64_t ts, uint32_t threads, const IBackend *backend)
 {
     m_readyTime = ts;
     m_threads   = threads;
@@ -189,7 +189,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onHttpData(const HttpData &data)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onHttpData(const HttpData &data)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     rapidjson::Document doc;
@@ -221,7 +221,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onResolved(const DnsRecords &records, int status, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onResolved(const DnsRecords &records, int status, const char *error)
 {
 #   ifdef XMRIG_FEATURE_HTTP
     assert(!m_httpListener);
@@ -245,7 +245,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setSeed(const char *seed)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setSeed(const char *seed)
 {
     if (!seed) {
         return false;
@@ -289,7 +289,7 @@ void xmrig::BenchClient::printExit() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::start()
 {
     const uint32_t size = BenchState::size();
 
@@ -306,7 +306,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 #ifdef XMRIG_FEATURE_HTTP
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onCreateReply(const rapidjson::Value &value)
 {
     m_startTime = Chrono::steadyMSecs();
     m_token     = Json::getString(value, BenchConfig::kToken);
@@ -320,14 +320,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onDoneReply(const rapidjson::Value &)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onDoneReply(const rapidjson::Value &)
 {
     LOG_NOTICE("%s " WHITE_BOLD("benchmark submitted ") CYAN_BOLD("https://xmrig.com/benchmark/%s"), tag(), m_job.id().data());
     printExit();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::onGetReply(const rapidjson::Value &value)
 {
     const char *hash = Json::getString(value, BenchConfig::kHash);
     if (hash) {
@@ -343,13 +343,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::resolve()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::resolve()
 {
     m_dns = Dns::resolve(BenchConfig::kApiHost, this);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::send(Request request)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::send(Request request)
 {
     using namespace rapidjson;
 
@@ -413,7 +413,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setError(const char *message, const char *label)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::setError(const char *message, const char *label)
 {
     LOG_ERR("%s " RED("%s: ") RED_BOLD("\"%s\""), tag(), label ? label : "benchmark failed", message);
     printExit();
@@ -422,7 +422,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::update(const rapidjson::Value &body)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchClient::update(const rapidjson::Value &body)
 {
     assert(!m_token.isEmpty());
 

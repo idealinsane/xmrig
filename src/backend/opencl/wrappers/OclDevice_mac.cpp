@@ -20,7 +20,7 @@
 #include "backend/opencl/wrappers/OclDevice.h"
 
 
-xmrig::OclDevice::Type __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclDevice::getType(const String &name)
+xmrig::OclDevice::Type __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclDevice::getType(const String &name)
 {
     // Apple Platform: uses product names, not gfx# or codenames
     if (name.contains("AMD Radeon")) {

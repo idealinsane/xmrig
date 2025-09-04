@@ -44,7 +44,7 @@ struct RawSMBIOSData {
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
 {
     constexpr uint32_t RSMB = 0x52534D42;
 
@@ -64,7 +64,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
     m_version = (smb->SMBIOSMajorVersion << 16) + (smb->SMBIOSMinorVersion << 8) + smb->DmiRevision;
     m_size    = smb->Length;
 
-    return __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) decode(smb->SMBIOSTableData, [smb]() {
+    return __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) decode(smb->SMBIOSTableData, [smb]() {
         HeapFree(GetProcessHeap(), 0, smb);
     });
 }

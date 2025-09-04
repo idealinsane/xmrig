@@ -71,7 +71,7 @@ xmrig::DnsUvBackend::~DnsUvBackend()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::resolve(const String &host, const std::weak_ptr<IDnsListener> &listener, const DnsConfig &config)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::resolve(const String &host, const std::weak_ptr<IDnsListener> &listener, const DnsConfig &config)
 {
     m_queue.emplace_back(listener);
 
@@ -91,7 +91,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::resolve(const String &host)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::resolve(const String &host)
 {
     m_req = std::make_shared<uv_getaddrinfo_t>();
     m_req->data = getStorage().ptr(m_key);
@@ -102,7 +102,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::notify()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::notify()
 {
     const char *error = m_status < 0 ? uv_strerror(m_status) : nullptr;
 
@@ -118,7 +118,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::onResolved(int status, addrinfo *res)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::onResolved(int status, addrinfo *res)
 {
     m_status = status;
     m_ts     = Chrono::currentMSecsSinceEpoch();
@@ -139,7 +139,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::onResolved(uv_getaddrinfo_t *req, int status, addrinfo *res)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DnsUvBackend::onResolved(uv_getaddrinfo_t *req, int status, addrinfo *res)
 {
     auto *backend = getStorage().get(req->data);
     if (backend) {

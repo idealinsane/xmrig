@@ -225,7 +225,7 @@ rapidjson::Value xmrig::DmiMemory::toJSON(rapidjson::Document &doc) const
 #endif
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DmiMemory::setId(const char *slot, const char *bank)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiMemory::setId(const char *slot, const char *bank)
 {
     m_slot = slot;
     m_bank = bank;

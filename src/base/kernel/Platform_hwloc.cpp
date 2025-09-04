@@ -25,7 +25,7 @@
 
 
 #ifndef XMRIG_OS_APPLE
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Platform::setThreadAffinity(uint64_t cpu_id)
 {
     auto topology = Cpu::info()->topology();
     auto pu       = hwloc_get_pu_obj_by_os_index(topology, static_cast<unsigned>(cpu_id));

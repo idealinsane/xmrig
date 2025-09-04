@@ -58,7 +58,7 @@ xmrig::Signals::~Signals()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Signals::onSignal(uv_signal_t *handle, int signum)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Signals::onSignal(uv_signal_t *handle, int signum)
 {
     switch (signum)
     {

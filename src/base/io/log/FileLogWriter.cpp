@@ -57,7 +57,7 @@ xmrig::FileLogWriter::~FileLogWriter()
     uv_mutex_destroy(&m_buffersLock);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::init()
 {
     uv_mutex_init(&m_buffersLock);
 
@@ -65,7 +65,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
     m_flushAsync.data = this;
 }
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::open(const char *fileName)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::open(const char *fileName)
 {
     assert(fileName != nullptr);
     if (!fileName) {
@@ -93,7 +93,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::write(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::write(const char *data, size_t size)
 {
     if (!isOpen()) {
         return false;
@@ -113,7 +113,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::writeLine(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::writeLine(const char *data, size_t size)
 {
     if (!isOpen()) {
         return false;
@@ -135,7 +135,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
     return true;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::flush()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FileLogWriter::flush()
 {
     uv_mutex_lock(&m_buffersLock);
 

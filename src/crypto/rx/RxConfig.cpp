@@ -75,7 +75,7 @@ static_assert (kMsrArraySize == ICpuInfo::MSR_MOD_MAX, "kMsrArraySize and MSR_MO
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::read(const rapidjson::Value &value)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::read(const rapidjson::Value &value)
 {
     if (value.IsObject()) {
         m_threads         = Json::getInt(value, kInit, m_threads);
@@ -245,7 +245,7 @@ uint32_t xmrig::RxConfig::msrMod() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::readMSR(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::readMSR(const rapidjson::Value &value)
 {
     if (value.IsBool()) {
         m_wrmsr = value.GetBool();
@@ -279,7 +279,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 #endif
 
 
-xmrig::RxConfig::Mode __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::readMode(const rapidjson::Value &value)
+xmrig::RxConfig::Mode __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxConfig::readMode(const rapidjson::Value &value)
 {
     if (value.IsUint()) {
         return static_cast<Mode>(std::min(value.GetUint(), ModeMax - 1));

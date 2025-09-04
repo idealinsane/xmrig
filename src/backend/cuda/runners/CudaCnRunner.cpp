@@ -32,7 +32,7 @@ xmrig::CudaCnRunner::CudaCnRunner(size_t index, const CudaLaunchData &data) : Cu
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaCnRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaCnRunner::run(uint32_t startNonce, uint32_t *rescount, uint32_t *resnonce)
 {
     return callWrapper(CudaLib::cnHash(m_ctx, startNonce, m_height, m_target, rescount, resnonce));
 }

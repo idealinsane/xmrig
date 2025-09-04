@@ -21,7 +21,7 @@
 #include "crypto/rx/RxAlgo.h"
 
 
-xmrig::Algorithm::Id __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::apply(Algorithm::Id algorithm)
+xmrig::Algorithm::Id __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::apply(Algorithm::Id algorithm)
 {
     randomx_apply_config(*base(algorithm));
 
@@ -55,25 +55,25 @@ const RandomX_ConfigurationBase *xmrig::RxAlgo::base(Algorithm::Id algorithm)
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::version(Algorithm::Id algorithm)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::version(Algorithm::Id algorithm)
 {
     return algorithm == Algorithm::RX_WOW ? 103 : 104;
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programCount(Algorithm::Id algorithm)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programCount(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramCount;
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programIterations(Algorithm::Id algorithm)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programIterations(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramIterations;
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programSize(Algorithm::Id algorithm)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxAlgo::programSize(Algorithm::Id algorithm)
 {
     return base(algorithm)->ProgramSize;
 }

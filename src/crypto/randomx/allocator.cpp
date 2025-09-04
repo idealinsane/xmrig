@@ -43,7 +43,7 @@ namespace randomx {
 	}
 
 	template<size_t alignment>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) AlignedAllocator<alignment>::freeMemory(void* ptr, size_t) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) AlignedAllocator<alignment>::freeMemory(void* ptr, size_t) {
 		rx_aligned_free(ptr);
 	}
 
@@ -53,7 +53,7 @@ namespace randomx {
 		return allocLargePagesMemory(count);
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) LargePageAllocator::freeMemory(void* ptr, size_t count) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) LargePageAllocator::freeMemory(void* ptr, size_t count) {
 		freePagedMemory(ptr, count);
 	};
 

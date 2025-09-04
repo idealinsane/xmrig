@@ -43,7 +43,7 @@ xmrig::Cn1Kernel::Cn1Kernel(cl_program program, uint64_t height)
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cn1Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads, size_t worksize)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn1Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads, size_t worksize)
 {
     const size_t offset   = nonce;
     const size_t gthreads = threads;
@@ -54,7 +54,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 // __kernel void cn1(__global ulong *input, __global uint4 *Scratchpad, __global ulong *states, uint Threads)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cn1Kernel::setArgs(cl_mem input, cl_mem scratchpads, cl_mem states, uint32_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn1Kernel::setArgs(cl_mem input, cl_mem scratchpads, cl_mem states, uint32_t threads)
 {
     setArg(0, sizeof(cl_mem), &input);
     setArg(1, sizeof(cl_mem), &scratchpads);

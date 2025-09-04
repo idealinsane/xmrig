@@ -84,7 +84,7 @@ static void derivation_to_scalar(const uint8_t* derivation, size_t output_index,
 namespace xmrig {
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) generate_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sec, uint8_t* sig_bytes)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) generate_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sec, uint8_t* sig_bytes)
 {
     PROFILE_SCOPE(GenerateSignature);
 
@@ -112,7 +112,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) check_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sig_bytes)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) check_signature(const uint8_t* prefix_hash, const uint8_t* pub, const uint8_t* sig_bytes)
 {
     ge_p2 tmp2;
     ge_p3 tmp3;
@@ -147,7 +147,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) generate_key_derivation(const uint8_t* key1, const uint8_t* key2, uint8_t* derivation, uint8_t* view_tag)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) generate_key_derivation(const uint8_t* key1, const uint8_t* key2, uint8_t* derivation, uint8_t* view_tag)
 {
     ge_p3 point;
     ge_p2 point2;
@@ -182,7 +182,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) derive_secret_key(const uint8_t* derivation, size_t output_index, const uint8_t* base, uint8_t* derived_key)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) derive_secret_key(const uint8_t* derivation, size_t output_index, const uint8_t* base, uint8_t* derived_key)
 {
     ec_scalar scalar;
 
@@ -191,7 +191,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) derive_public_key(const uint8_t* derivation, size_t output_index, const uint8_t* base, uint8_t* derived_key)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) derive_public_key(const uint8_t* derivation, size_t output_index, const uint8_t* base, uint8_t* derived_key)
 {
     ec_scalar scalar;
     ge_p3 point1;
@@ -215,14 +215,14 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) derive_view_secret_key(const uint8_t* spend_secret_key, uint8_t* view_secret_key)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) derive_view_secret_key(const uint8_t* spend_secret_key, uint8_t* view_secret_key)
 {
     keccak(spend_secret_key, 32, view_secret_key, 32);
     sc_reduce32(view_secret_key);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) generate_keys(uint8_t* pub, uint8_t* sec)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) generate_keys(uint8_t* pub, uint8_t* sec)
 {
     random_scalar(*((ec_scalar*)sec));
 
@@ -232,7 +232,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) secret_key_to_public_key(const uint8_t* sec, uint8_t* pub)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) secret_key_to_public_key(const uint8_t* sec, uint8_t* pub)
 {
     if (sc_check(sec) != 0) {
         return false;

@@ -37,7 +37,7 @@ namespace randomx {
 	exe_ ## x(ibc, pc, scratchpad, config); \
 	break;
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) BytecodeMachine::executeInstruction(RANDOMX_EXE_ARGS) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) BytecodeMachine::executeInstruction(RANDOMX_EXE_ARGS) {
 		switch (ibc.type)
 		{
 			INSTR_CASE(IADD_RS)
@@ -78,7 +78,7 @@ namespace randomx {
 		}
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) BytecodeMachine::compileInstruction(RANDOMX_GEN_ARGS) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) BytecodeMachine::compileInstruction(RANDOMX_GEN_ARGS) {
 		uint32_t opcode = instr.opcode;
 
 		if (opcode < RandomX_CurrentConfig.RANDOMX_FREQ_IADD_RS) {

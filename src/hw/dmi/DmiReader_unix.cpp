@@ -325,7 +325,7 @@ static off_t address_from_efi()
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
 {
     size_t size  = 0x20;
     uint8_t *buf = read_file(0, &size, kSysEntryFile);

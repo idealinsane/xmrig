@@ -59,19 +59,19 @@ std::atomic<uint64_t> BenchState::m_data{};
 
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::isDone()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::isDone()
 {
     return d_ptr == nullptr;
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::size()
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::size()
 {
     return d_ptr ? d_ptr->size : 0U;
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::referenceHash(const Algorithm &algo, uint32_t size, uint32_t threads)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::referenceHash(const Algorithm &algo, uint32_t size, uint32_t threads)
 {
     uint64_t hash = 0;
 
@@ -84,7 +84,7 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::start(size_t threads, const IBackend *backend)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::start(size_t threads, const IBackend *backend)
 {
     assert(d_ptr != nullptr);
 
@@ -103,14 +103,14 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::destroy()
 {
     delete d_ptr;
     d_ptr = nullptr;
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::done()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::done()
 {
     assert(d_ptr != nullptr && d_ptr->async && d_ptr->remaining > 0);
 
@@ -127,7 +127,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::init(IBenchListener *listener, uint32_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::init(IBenchListener *listener, uint32_t size)
 {
     assert(d_ptr == nullptr);
 
@@ -135,7 +135,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::setSize(uint32_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchState::setSize(uint32_t size)
 {
     assert(d_ptr != nullptr);
 

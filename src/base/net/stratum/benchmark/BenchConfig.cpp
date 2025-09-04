@@ -135,7 +135,7 @@ rapidjson::Value xmrig::BenchConfig::toJSON(rapidjson::Document &doc) const
 }
 
 
-uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::BenchConfig::getSize(const char *benchmark)
+uint32_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::BenchConfig::getSize(const char *benchmark)
 {
     if (!benchmark) {
         return 0;

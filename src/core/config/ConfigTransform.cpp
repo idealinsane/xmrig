@@ -86,7 +86,7 @@ static inline bool isHwAes(uint64_t av)
 } // namespace xmrig
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::finalize(rapidjson::Document &doc)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::finalize(rapidjson::Document &doc)
 {
     using namespace rapidjson;
     auto &allocator = doc.GetAllocator();
@@ -117,7 +117,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transform(rapidjson::Document &doc, int key, const char *arg)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transform(rapidjson::Document &doc, int key, const char *arg)
 {
     BaseTransform::transform(doc, key, arg);
 
@@ -271,7 +271,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformBoolean(rapidjson::Document &doc, int key, bool enable)
 {
     switch (key) {
     case IConfig::HugePagesKey: /* --no-huge-pages */
@@ -286,7 +286,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformUint64(rapidjson::Document &doc, int key, uint64_t arg)
 {
     using namespace rapidjson;
 
@@ -317,7 +317,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 #ifdef XMRIG_FEATURE_BENCHMARK
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformBenchmark(rapidjson::Document &doc, int key, const char *arg)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConfigTransform::transformBenchmark(rapidjson::Document &doc, int key, const char *arg)
 {
     switch (key) {
     case IConfig::AlgorithmKey: /* --algo */

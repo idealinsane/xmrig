@@ -57,7 +57,7 @@ xmrig::FetchRequest::FetchRequest(llhttp_method method, const String &host, uint
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FetchRequest::setBody(const char *data, size_t size, const char *contentType)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FetchRequest::setBody(const char *data, size_t size, const char *contentType)
 {
     if (!data) {
         return;
@@ -76,7 +76,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FetchRequest::setBody(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FetchRequest::setBody(const rapidjson::Value &value)
 {
     assert(method != HTTP_GET && method != HTTP_HEAD);
 
@@ -94,7 +94,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener, int type, uint64_t rpcId)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::fetch(const char *tag, FetchRequest &&req, const std::weak_ptr<IHttpListener> &listener, int type, uint64_t rpcId)
 {
 #   ifdef APP_DEBUG
     LOG_DEBUG(CYAN("http%s://%s:%u ") MAGENTA_BOLD("\"%s %s\"") BLACK_BOLD(" body: ") CYAN_BOLD("%zu") BLACK_BOLD(" bytes"),

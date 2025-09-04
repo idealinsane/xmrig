@@ -667,7 +667,7 @@ SkeinHashReturn skein_hash(int hashbitlen, const SkeinBitSequence *data, /* all-
   return r;
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmr_skein(const SkeinBitSequence *data, SkeinBitSequence *hashval){
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmr_skein(const SkeinBitSequence *data, SkeinBitSequence *hashval){
   #define XMR_HASHBITLEN 256
   #define XMR_DATABITLEN 1600
 

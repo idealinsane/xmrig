@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::enqueue(cl_command_queue queue, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::enqueue(cl_command_queue queue, size_t threads)
 {
     const size_t gthreads        = threads;
     static const size_t lthreads = 64;
@@ -37,20 +37,20 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 // __kernel void find_shares(__global const uint64_t* hashes, uint64_t target, uint32_t start_nonce, __global uint32_t* shares)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setArgs(cl_mem hashes, cl_mem shares)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setArgs(cl_mem hashes, cl_mem shares)
 {
     setArg(0, sizeof(cl_mem), &hashes);
     setArg(3, sizeof(cl_mem), &shares);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setTarget(uint64_t target)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setTarget(uint64_t target)
 {
     setArg(1, sizeof(uint64_t), &target);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setNonce(uint32_t nonce)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::FindSharesKernel::setNonce(uint32_t nonce)
 {
     setArg(2, sizeof(uint32_t), &nonce);
 }

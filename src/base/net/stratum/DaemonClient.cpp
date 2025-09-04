@@ -99,7 +99,7 @@ xmrig::DaemonClient::~DaemonClient()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::deleteLater()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::deleteLater()
 {
     if (m_pool.zmq_port() >= 0) {
         ZMQClose(true);
@@ -110,7 +110,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::disconnect()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::disconnect()
 {
     if (m_state != UnconnectedState) {
         setState(UnconnectedState);
@@ -130,7 +130,7 @@ bool xmrig::DaemonClient::isTLS() const
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::submit(const JobResult &result)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::submit(const JobResult &result)
 {
     if (result.jobId != m_currentJobId) {
         return -1;
@@ -190,7 +190,7 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::connect()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::connect()
 {
     auto connectError = [this](const char *message) {
         if (!isQuiet()) {
@@ -223,14 +223,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::connect(const Pool &pool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::connect(const Pool &pool)
 {
     setPool(pool);
     connect();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::setPool(const Pool &pool)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::setPool(const Pool &pool)
 {
     BaseClient::setPool(pool);
 
@@ -244,7 +244,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onHttpData(const HttpData &data)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onHttpData(const HttpData &data)
 {
     if (data.status != 200) {
         return retry();
@@ -309,7 +309,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onTimer(const Timer *)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onTimer(const Timer *)
 {
     if (m_pool.zmq_port() >= 0) {
         m_prevHash = nullptr;
@@ -332,7 +332,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onResolved(const DnsRecords &records, int status, const char* error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onResolved(const DnsRecords &records, int status, const char* error)
 {
     m_dns.reset();
 
@@ -376,7 +376,7 @@ bool xmrig::DaemonClient::isOutdated(uint64_t height, const char *hash) const
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::parseJob(const rapidjson::Value &params, int *code)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::parseJob(const rapidjson::Value &params, int *code)
 {
     auto jobError = [this, code](const char *message) {
         if (!isQuiet()) {
@@ -500,7 +500,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::parseResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::parseResponse(int64_t id, const rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == -1) {
         return false;
@@ -546,7 +546,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::getBlockTemplate()
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::getBlockTemplate()
 {
     using namespace rapidjson;
     Document doc(kObjectType);
@@ -562,7 +562,7 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::rpcSend(const rapidjson::Document &doc, const std::map<std::string, std::string> &headers)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::rpcSend(const rapidjson::Document &doc, const std::map<std::string, std::string> &headers)
 {
     FetchRequest req(HTTP_POST, m_pool.host(), m_pool.port(), kJsonRPC, doc, m_pool.isTLS(), isQuiet());
     for (const auto &header : headers) {
@@ -575,7 +575,7 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::retry()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::retry()
 {
     m_failures++;
     m_listener->onClose(this, static_cast<int>(m_failures));
@@ -600,14 +600,14 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::send(const char *path)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::send(const char *path)
 {
     FetchRequest req(HTTP_GET, m_pool.host(), m_pool.port(), path, m_pool.isTLS(), isQuiet());
     fetch(tag(), std::move(req), m_httpListener);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::setState(SocketState state)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::setState(SocketState state)
 {
     if (m_state == state) {
         return;
@@ -643,7 +643,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQConnect(uv_connect_t* req, int status)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQConnect(uv_connect_t* req, int status)
 {
     DaemonClient* client = getClient(req->data);
     delete req;
@@ -662,7 +662,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQRead(uv_stream_t* stream, ssize_t nread, const uv_buf_t* buf)
 {
     DaemonClient* client = getClient(stream->data);
     if (client) {
@@ -673,7 +673,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQClose(uv_handle_t* handle)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQClose(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -685,7 +685,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQShutdown(uv_handle_t* handle)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::onZMQShutdown(uv_handle_t* handle)
 {
     DaemonClient* client = getClient(handle->data);
     if (client) {
@@ -698,7 +698,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQConnected()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQConnected()
 {
 #   ifdef APP_DEBUG
     LOG_DEBUG(CYAN("tcp-zmq://%s:%u") BLACK_BOLD(" connected"), m_pool.host().data(), m_pool.zmq_port());
@@ -714,7 +714,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQWrite(const char* data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQWrite(const char* data, size_t size)
 {
     m_ZMQSendBuf.assign(data, data + size);
 
@@ -734,7 +734,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQRead(ssize_t nread, const uv_buf_t* buf)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQRead(ssize_t nread, const uv_buf_t* buf)
 {
     if (nread <= 0) {
         LOG_ERR("%s " RED("ZMQ read failed, nread = %" PRId64), tag(), nread);
@@ -821,7 +821,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQParse()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQParse()
 {
 #   ifdef APP_DEBUG
     std::vector<char> msg;
@@ -907,7 +907,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQClose(bool shutdown)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DaemonClient::ZMQClose(bool shutdown)
 {
     if ((m_ZMQConnectionState == ZMQ_NOT_CONNECTED) || (m_ZMQConnectionState == ZMQ_DISCONNECTING)) {
         if (shutdown) {

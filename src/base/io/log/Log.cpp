@@ -79,7 +79,7 @@ public:
     inline void add(ILogBackend *backend) { m_backends.push_back(backend); }
 
 
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) print(Log::Level level, const char *fmt, va_list args)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) print(Log::Level level, const char *fmt, va_list args)
     {
         size_t size   = 0;
         size_t offset = 0;
@@ -202,7 +202,7 @@ uint32_t Log::m_verbose     = 0;
 
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Log::add(ILogBackend *backend)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Log::add(ILogBackend *backend)
 {
     assert(d != nullptr);
 
@@ -212,20 +212,20 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Log::destroy()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Log::destroy()
 {
     delete d;
     d = nullptr;
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Log::init()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Log::init()
 {
     d = new LogPrivate();
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Log::print(const char *fmt, ...)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Log::print(const char *fmt, ...)
 {
     if (!d) {
         return;
@@ -240,7 +240,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Log::print(Level level, const char *fmt, ...)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Log::print(Level level, const char *fmt, ...)
 {
     if (!d) {
         return;

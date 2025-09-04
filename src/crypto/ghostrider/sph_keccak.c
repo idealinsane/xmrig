@@ -1791,12 +1791,12 @@ DEFCLOSE(64, 72)
 void sph_keccak224_init(void *cc) { keccak_init(cc, 224); }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak224(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak224(void *cc, const void *data, size_t len) {
   keccak_core(cc, data, len, 144);
 }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak224_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak224_close(void *cc, void *dst) {
   sph_keccak224_addbits_and_close(cc, 0, 0, dst);
 }
 
@@ -1810,12 +1810,12 @@ void sph_keccak224_addbits_and_close(void *cc, unsigned ub, unsigned n,
 void sph_keccak256_init(void *cc) { keccak_init(cc, 256); }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak256(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak256(void *cc, const void *data, size_t len) {
   keccak_core(cc, data, len, 136);
 }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak256_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak256_close(void *cc, void *dst) {
   sph_keccak256_addbits_and_close(cc, 0, 0, dst);
 }
 
@@ -1829,12 +1829,12 @@ void sph_keccak256_addbits_and_close(void *cc, unsigned ub, unsigned n,
 void sph_keccak384_init(void *cc) { keccak_init(cc, 384); }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak384(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak384(void *cc, const void *data, size_t len) {
   keccak_core(cc, data, len, 104);
 }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak384_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak384_close(void *cc, void *dst) {
   sph_keccak384_addbits_and_close(cc, 0, 0, dst);
 }
 
@@ -1848,12 +1848,12 @@ void sph_keccak384_addbits_and_close(void *cc, unsigned ub, unsigned n,
 void sph_keccak512_init(void *cc) { keccak_init(cc, 512); }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak512(void *cc, const void *data, size_t len) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak512(void *cc, const void *data, size_t len) {
   keccak_core(cc, data, len, 72);
 }
 
 /* see sph_keccak.h */
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) sph_keccak512_close(void *cc, void *dst) {
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) sph_keccak512_close(void *cc, void *dst) {
   sph_keccak512_addbits_and_close(cc, 0, 0, dst);
 }
 

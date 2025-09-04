@@ -55,7 +55,7 @@ xmrig::RxCache::~RxCache()
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxCache::init(const Buffer &seed)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxCache::init(const Buffer &seed)
 {
     if (m_seed == seed) {
         return false;
@@ -79,7 +79,7 @@ xmrig::HugePagesInfo xmrig::RxCache::hugePages() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxCache::create(uint8_t *memory)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxCache::create(uint8_t *memory)
 {
     if (!memory) {
         return;

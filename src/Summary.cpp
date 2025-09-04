@@ -204,7 +204,7 @@ static void print_commands(Config *)
 } // namespace xmrig
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Summary::print(Controller *controller)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Summary::print(Controller *controller)
 {
     const auto config = controller->config();
 

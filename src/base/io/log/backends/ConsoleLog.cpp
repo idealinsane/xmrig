@@ -67,7 +67,7 @@ xmrig::ConsoleLog::~ConsoleLog()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConsoleLog::print(uint64_t, int, const char *line, size_t, size_t size, bool colors)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConsoleLog::print(uint64_t, int, const char *line, size_t, size_t size, bool colors)
 {
     if (!m_tty || Log::isColors() != colors) {
         return;
@@ -90,7 +90,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ConsoleLog::isSupported()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ConsoleLog::isSupported()
 {
     const uv_handle_type type = uv_guess_handle(1);
     return type == UV_TTY || type == UV_NAMED_PIPE;

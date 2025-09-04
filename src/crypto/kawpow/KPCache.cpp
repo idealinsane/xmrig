@@ -49,7 +49,7 @@ KPCache::~KPCache()
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) KPCache::init(uint32_t epoch)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) KPCache::init(uint32_t epoch)
 {
     if (epoch >= sizeof(cache_sizes) / sizeof(cache_sizes[0])) {
         return false;
@@ -130,7 +130,7 @@ static inline uint32_t clz(uint32_t a)
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) KPCache::cache_size(uint32_t epoch)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) KPCache::cache_size(uint32_t epoch)
 {
     if (epoch >= sizeof(cache_sizes) / sizeof(cache_sizes[0])) {
         return 0;
@@ -140,7 +140,7 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) KPCache::dag_size(uint32_t epoch)
+uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) KPCache::dag_size(uint32_t epoch)
 {
     if (epoch >= sizeof(dag_sizes) / sizeof(dag_sizes[0])) {
         return 0;
@@ -150,7 +150,7 @@ uint64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasa
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) KPCache::calculate_fast_mod_data(uint32_t divisor, uint32_t& reciprocal, uint32_t& increment, uint32_t& shift)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) KPCache::calculate_fast_mod_data(uint32_t divisor, uint32_t& reciprocal, uint32_t& increment, uint32_t& shift)
 {
     if ((divisor & (divisor - 1)) == 0) {
         reciprocal = 1;

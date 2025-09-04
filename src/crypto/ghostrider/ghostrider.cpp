@@ -239,7 +239,7 @@ struct HelperThread
         }
     }
 
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) run()
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) run()
     {
         if (hwloc_bitmap_weight(m_cpuSet) > 0) {
             hwloc_topology_t topology = Cpu::info()->topology();
@@ -284,7 +284,7 @@ struct HelperThread
 };
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) benchmark()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) benchmark()
 {
 #ifndef XMRIG_ARM
     static std::atomic<int> done{ 0 };
@@ -292,7 +292,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
         return;
     }
 
-    std::thread __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) t([]() {
+    std::thread __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) t([]() {
         // Try to avoid CPU core 0 because many system threads use it and can interfere
         uint32_t thread_index1 = (Cpu::info()->threads() > 2) ? 2 : 0;
 
@@ -550,13 +550,13 @@ HelperThread* create_helper_thread(int64_t cpu_index, int priority, const std::v
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) destroy_helper_thread(HelperThread* t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) destroy_helper_thread(HelperThread* t)
 {
     delete t;
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) hash_octa(const uint8_t* data, size_t size, uint8_t* output, cryptonight_ctx** ctx, HelperThread* helper, bool verbose)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) hash_octa(const uint8_t* data, size_t size, uint8_t* output, cryptonight_ctx** ctx, HelperThread* helper, bool verbose)
 {
     enum { N = 8 };
 

@@ -86,7 +86,7 @@ const char *xmrig::Hashrate::format(std::pair<bool, double> h, char *buf, size_t
 }
 
 
-rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Hashrate::normalize(std::pair<bool, double> d)
+rapidjson::Value __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Hashrate::normalize(std::pair<bool, double> d)
 {
     using namespace rapidjson;
     return d.first ? Value(floor(d.second * 100.0) / 100.0) : Value(kNullType);
@@ -182,7 +182,7 @@ std::pair<bool, double> xmrig::Hashrate::hashrate(size_t index, size_t ms) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Hashrate::addData(size_t index, uint64_t count, uint64_t timestamp)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Hashrate::addData(size_t index, uint64_t count, uint64_t timestamp)
 {
     const size_t top         = m_top[index];
     m_counts[index][top]     = count;

@@ -40,7 +40,7 @@ xmrig::HttpServer::~HttpServer()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpServer::onConnection(uv_stream_t *stream, uint16_t)
 {
     auto ctx = new HttpContext(HTTP_REQUEST, m_listener);
     uv_accept(stream, ctx->stream());

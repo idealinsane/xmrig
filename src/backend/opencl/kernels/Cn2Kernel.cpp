@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cn2Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn2Kernel::enqueue(cl_command_queue queue, uint32_t nonce, size_t threads)
 {
     const size_t offset[2]          = { nonce, 1 };
     const size_t gthreads[2]        = { threads, 8 };
@@ -38,7 +38,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 // __kernel void cn2(__global uint4 *Scratchpad, __global ulong *states, __global uint *Branch0, __global uint *Branch1, __global uint *Branch2, __global uint *Branch3, uint Threads)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Cn2Kernel::setArgs(cl_mem scratchpads, cl_mem states, const std::vector<cl_mem> &branches, uint32_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Cn2Kernel::setArgs(cl_mem scratchpads, cl_mem states, const std::vector<cl_mem> &branches, uint32_t threads)
 {
     setArg(0, sizeof(cl_mem), &scratchpads);
     setArg(1, sizeof(cl_mem), &states);

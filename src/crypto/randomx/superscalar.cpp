@@ -358,7 +358,7 @@ namespace randomx {
 			instr.setImm32(imm32_);
 		}
 
-		void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) createForSlot(Blake2Generator& gen, int slotSize, int fetchType, bool isLast, bool isFirst) {
+		void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) createForSlot(Blake2Generator& gen, int slotSize, int fetchType, bool isLast, bool isFirst) {
 			switch (slotSize)
 			{
 			case 3:
@@ -396,7 +396,7 @@ namespace randomx {
 			}
 		}
 
-		void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) create(const SuperscalarInstructionInfo* info, Blake2Generator& gen) {
+		void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) create(const SuperscalarInstructionInfo* info, Blake2Generator& gen) {
 			info_ = info;
 			reset();
 			switch (info->getType())
@@ -529,19 +529,19 @@ namespace randomx {
 			return false;
 		}
 
-		SuperscalarInstructionType __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) getType() {
+		SuperscalarInstructionType __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) getType() {
 			return info_->getType();
 		}
-		int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) getSource() {
+		int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) getSource() {
 			return src_;
 		}
-		int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) getDestination() {
+		int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) getDestination() {
 			return dst_;
 		}
-		SuperscalarInstructionType __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) getGroup() {
+		SuperscalarInstructionType __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) getGroup() {
 			return opGroup_;
 		}
-		int __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) getGroupPar() {
+		int __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) getGroupPar() {
 			return opGroupPar_;
 		}
 
@@ -562,7 +562,7 @@ namespace randomx {
 		bool canReuse_ = false;
 		bool groupParIsSource_ = false;
 
-		void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) reset() {
+		void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) reset() {
 			src_ = dst_ = -1;
 			canReuse_ = groupParIsSource_ = false;
 		}
@@ -644,7 +644,7 @@ namespace randomx {
 		return -1;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) generateSuperscalar(SuperscalarProgram& prog, Blake2Generator& gen) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) generateSuperscalar(SuperscalarProgram& prog, Blake2Generator& gen) {
 
 		ExecutionPort::type portBusy[CYCLE_MAP_SIZE][3];
 		memset(portBusy, 0, sizeof(portBusy));

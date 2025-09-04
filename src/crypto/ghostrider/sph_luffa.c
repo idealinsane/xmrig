@@ -1423,3 +1423,4 @@ sph_luffa512_addbits_and_close(void *cc, unsigned ub, unsigned n, void *dst)
 
 #ifdef __cplusplus
 }
+#endif

@@ -60,7 +60,7 @@ static_assert(ARGON2_BLOCK_SIZE == randomx::ArgonBlockSize, "Unexpected value of
 namespace randomx {
 
 	template<class Allocator>
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) deallocCache(randomx_cache* cache) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) deallocCache(randomx_cache* cache) {
 		if (cache->memory != nullptr) {
 			Allocator::freeMemory(cache->memory, RANDOMX_CACHE_MAX_SIZE);
 		}
@@ -71,7 +71,7 @@ namespace randomx {
 	template void deallocCache<DefaultAllocator>(randomx_cache* cache);
 	template void deallocCache<LargePageAllocator>(randomx_cache* cache);
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) initCache(randomx_cache* cache, const void* key, size_t keySize) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) initCache(randomx_cache* cache, const void* key, size_t keySize) {
 		argon2_context context;
 
 		context.out = nullptr;
@@ -101,7 +101,7 @@ namespace randomx {
 		}
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) initCacheCompile(randomx_cache* cache, const void* key, size_t keySize) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) initCacheCompile(randomx_cache* cache, const void* key, size_t keySize) {
 		initCache(cache, key, keySize);
 
 #		ifdef XMRIG_SECURE_JIT
@@ -131,7 +131,7 @@ namespace randomx {
 		return memory + (registerValue & mask) * CacheLineSize;
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) initDatasetItem(randomx_cache* cache, uint8_t* out, uint64_t itemNumber) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) initDatasetItem(randomx_cache* cache, uint8_t* out, uint64_t itemNumber) {
 		int_reg_t rl[8];
 		uint8_t* mixBlock;
 		uint64_t registerValue = itemNumber;
@@ -159,7 +159,7 @@ namespace randomx {
 		memcpy(out, &rl, CacheLineSize);
 	}
 
-	void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) initDataset(randomx_cache* cache, uint8_t* dataset, uint32_t startItem, uint32_t endItem) {
+	void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) initDataset(randomx_cache* cache, uint8_t* dataset, uint32_t startItem, uint32_t endItem) {
 		for (uint32_t itemNumber = startItem; itemNumber < endItem; ++itemNumber, dataset += CacheLineSize)
 			initDatasetItem(cache, dataset, itemNumber);
 	}

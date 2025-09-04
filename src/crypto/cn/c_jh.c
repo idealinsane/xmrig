@@ -354,7 +354,7 @@ static HashReturn Final(hashState *state, BitSequence *hashval)
    three inputs: message digest size in bits (hashbitlen); message (data); message length in bits (databitlen)
    one output:   message digest (hashval)
 */
-HashReturn __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) jh_hash(int hashbitlen, const BitSequence *data,DataLength databitlen, BitSequence *hashval)
+HashReturn __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) jh_hash(int hashbitlen, const BitSequence *data,DataLength databitlen, BitSequence *hashval)
 {
       hashState state;
 

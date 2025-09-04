@@ -57,7 +57,7 @@ xmrig::HttpClient::HttpClient(const char *tag, FetchRequest &&req, const std::we
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::connect()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::connect()
 {
     m_dns = Dns::resolve(m_req.host, this);
 
@@ -65,7 +65,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onResolved(const DnsRecords &records, int status, const char *error)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onResolved(const DnsRecords &records, int status, const char *error)
 {
     this->status = status;
     m_dns.reset();
@@ -85,13 +85,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onTimer(const Timer *)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onTimer(const Timer *)
 {
     close(UV_ETIMEDOUT);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::handshake()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::handshake()
 {
     headers.insert({ "Host",       host() });
     headers.insert({ "Connection", "close" });
@@ -117,7 +117,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::read(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::read(const char *data, size_t size)
 {
     if (!parse(data, size)) {
         close(UV_EPROTO);
@@ -125,7 +125,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onConnect(uv_connect_t *req, int status)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HttpClient::onConnect(uv_connect_t *req, int status)
 {
     auto client = static_cast<HttpClient *>(req->data);
     delete req;

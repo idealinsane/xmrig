@@ -40,7 +40,7 @@ xmrig::ServerTls::~ServerTls()
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::isHTTP(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::isHTTP(const char *data, size_t size)
 {
     assert(size > 0);
 
@@ -50,7 +50,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::isTLS(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::isTLS(const char *data, size_t size)
 {
     assert(size > 0);
 
@@ -60,7 +60,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::send(const char *data, size_t size)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::send(const char *data, size_t size)
 {
     SSL_write(m_ssl, data, size);
 
@@ -68,7 +68,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::read(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::read(const char *data, size_t size)
 {
     if (!m_ssl) {
         m_ssl = SSL_new(m_ctx);
@@ -105,7 +105,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::read()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::ServerTls::read()
 {
     static char buf[16384]{};
 

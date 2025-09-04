@@ -133,7 +133,7 @@ public:
     }
 
 
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) init(const CudaConfig &cuda)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) init(const CudaConfig &cuda)
     {
         if (!cuda.isEnabled()) {
             return printDisabled(kLabel, "");
@@ -249,7 +249,7 @@ public:
 
 
 #   ifdef XMRIG_FEATURE_NVML
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) printHealth()
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) printHealth()
     {
         for (const auto &device : devices) {
             const auto health = NvmlLib::health(device.nvmlDevice());
@@ -351,12 +351,12 @@ const xmrig::String &xmrig::CudaBackend::type() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::execCommand(char)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::execCommand(char)
 {
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::prepare(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -364,7 +364,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::printHashrate(bool details)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -423,7 +423,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::printHealth()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_NVML
     d_ptr->printHealth();
@@ -431,7 +431,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::setJob(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::setJob(const Job &job)
 {
     const auto &cuda = d_ptr->controller->config()->cuda();
     if (cuda.isEnabled()) {
@@ -463,7 +463,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::start(IWorker *worker, bool ready)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -481,7 +481,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -496,7 +496,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::tick(uint64_t ticks)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
@@ -555,7 +555,7 @@ rapidjson::Value xmrig::CudaBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::handleRequest(IApiRequest &)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::CudaBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

@@ -79,7 +79,7 @@ static uint8_t *smbios_decode(uint8_t *buf, uint32_t &size, uint32_t &version, i
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::DmiReader::read()
 {
     mach_port_t port;
     IOMasterPort(MACH_PORT_NULL, &port);

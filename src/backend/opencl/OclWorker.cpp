@@ -120,7 +120,7 @@ xmrig::OclWorker::~OclWorker()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::jobEarlyNotification(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::jobEarlyNotification(const Job &job)
 {
     if (m_runner) {
         m_runner->jobEarlyNotification(job);
@@ -128,7 +128,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::selfTest()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::selfTest()
 {
     return m_runner != nullptr;
 }
@@ -140,7 +140,7 @@ size_t xmrig::OclWorker::intensity() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::start()
 {
     cl_uint results[0x100];
 
@@ -197,7 +197,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::consumeJob()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::consumeJob()
 {
     if (Nonce::sequence(Nonce::OPENCL) == 0) {
         return false;
@@ -218,7 +218,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::storeStats(uint64_t t)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclWorker::storeStats(uint64_t t)
 {
     if (!isReady()) {
         return;

@@ -133,7 +133,7 @@ public:
     }
 
 
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) init(const OclConfig &cl)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) init(const OclConfig &cl)
     {
         if (!cl.isEnabled()) {
             return printDisabled(kLabel, "");
@@ -236,7 +236,7 @@ public:
 
 
 #   ifdef XMRIG_FEATURE_ADL
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) printHealth()
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) printHealth()
     {
         if (!AdlLib::isReady()) {
             return;
@@ -331,12 +331,12 @@ const xmrig::String &xmrig::OclBackend::type() const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::execCommand(char)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::execCommand(char)
 {
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::prepare(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::prepare(const Job &job)
 {
     if (d_ptr) {
         d_ptr->workers.jobEarlyNotification(job);
@@ -344,7 +344,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::printHashrate(bool details)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::printHashrate(bool details)
 {
     if (!details || !hashrate()) {
         return;
@@ -399,7 +399,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::printHealth()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::printHealth()
 {
 #   ifdef XMRIG_FEATURE_ADL
     d_ptr->printHealth();
@@ -407,7 +407,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::setJob(const Job &job)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::setJob(const Job &job)
 {
     const auto &cl = d_ptr->controller->config()->cl();
     if (cl.isEnabled()) {
@@ -445,7 +445,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::start(IWorker *worker, bool ready)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::start(IWorker *worker, bool ready)
 {
     mutex.lock();
 
@@ -463,7 +463,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::stop()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::stop()
 {
     if (d_ptr->threads.empty()) {
         return;
@@ -480,7 +480,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::tick(uint64_t ticks)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::tick(uint64_t ticks)
 {
     return d_ptr->workers.tick(ticks);
 }
@@ -525,7 +525,7 @@ rapidjson::Value xmrig::OclBackend::toJSON(rapidjson::Document &doc) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::handleRequest(IApiRequest &)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclBackend::handleRequest(IApiRequest &)
 {
 }
 #endif

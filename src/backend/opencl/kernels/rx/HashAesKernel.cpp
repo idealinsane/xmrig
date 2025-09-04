@@ -27,7 +27,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HashAesKernel::enqueue(cl_command_queue queue, size_t threads)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HashAesKernel::enqueue(cl_command_queue queue, size_t threads)
 {
     const size_t gthreads        = threads * 4;
     static const size_t lthreads = 64;
@@ -37,7 +37,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 
 
 // __kernel void hashAes1Rx4(__global const void* input, __global void* hash, uint hashOffsetBytes, uint hashStrideBytes, uint batch_size)
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::HashAesKernel::setArgs(cl_mem input, cl_mem hash, uint32_t hashStrideBytes, uint32_t batch_size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::HashAesKernel::setArgs(cl_mem input, cl_mem hash, uint32_t hashStrideBytes, uint32_t batch_size)
 {
     const uint32_t hashOffsetBytes = 192;
 

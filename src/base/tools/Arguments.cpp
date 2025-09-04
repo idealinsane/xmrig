@@ -63,7 +63,7 @@ const char *xmrig::Arguments::value(const char *key1, const char *key2) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Arguments::add(const char *arg)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Arguments::add(const char *arg)
 {
     if (arg == nullptr) {
         return;

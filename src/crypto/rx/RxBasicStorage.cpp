@@ -90,7 +90,7 @@ public:
 
 
 private:
-    void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) printAllocStatus(uint64_t ts)
+    void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) printAllocStatus(uint64_t ts)
     {
         if (m_dataset->get() != nullptr) {
             const auto pages = m_dataset->hugePages();
@@ -161,7 +161,7 @@ xmrig::RxDataset *xmrig::RxBasicStorage::dataset(const Job &job, uint32_t) const
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::RxBasicStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::RxBasicStorage::init(const RxSeed &seed, uint32_t threads, bool hugePages, bool oneGbPages, RxConfig::Mode mode, int priority)
 {
     d_ptr->setSeed(seed);
 

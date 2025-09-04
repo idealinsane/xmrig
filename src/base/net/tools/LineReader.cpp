@@ -33,7 +33,7 @@ xmrig::LineReader::~LineReader()
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::parse(char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::parse(char *data, size_t size)
 {
     assert(m_listener != nullptr && size > 0);
     if (!m_listener || size == 0) {
@@ -44,7 +44,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::reset()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::reset()
 {
     if (m_buf) {
         NetBuffer::release(m_buf);
@@ -54,7 +54,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::add(const char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::add(const char *data, size_t size)
 {
     if (size + m_pos > XMRIG_NET_BUFFER_CHUNK_SIZE) {
         // it breaks correctness silently for long lines
@@ -71,7 +71,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::getline(char *data, size_t size)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::LineReader::getline(char *data, size_t size)
 {
     char *end        = nullptr;
     char *start      = data;

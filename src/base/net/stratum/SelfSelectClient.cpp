@@ -66,7 +66,7 @@ xmrig::SelfSelectClient::~SelfSelectClient()
 }
 
 
-int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submit(const JobResult &result)
+int64_t __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submit(const JobResult &result)
 {
     if (m_submitToOrigin) {
         submitOriginDaemon(result);
@@ -83,7 +83,7 @@ int64_t __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasac
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::tick(uint64_t now)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::tick(uint64_t now)
 {
     m_client->tick(now);
 
@@ -97,7 +97,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onJobReceived(IClient *, const Job &job, const rapidjson::Value &)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onJobReceived(IClient *, const Job &job, const rapidjson::Value &)
 {
     m_job = job;
 
@@ -105,7 +105,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onLogin(IClient *, rapidjson::Document &doc, rapidjson::Value &params)
 {
     params.AddMember("mode", "self-select", doc.GetAllocator());
 
@@ -113,7 +113,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::parseResponse(int64_t id, rapidjson::Value &result, const rapidjson::Value &error)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::parseResponse(int64_t id, rapidjson::Value &result, const rapidjson::Value &error)
 {
     if (id == -1) {
         return false;
@@ -159,7 +159,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::getBlockTemplate()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::getBlockTemplate()
 {
     setState(WaitState);
 
@@ -178,13 +178,13 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::retry()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::retry()
 {
     setState(RetryState);
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::setState(State state)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::setState(State state)
 {
     if (m_state == state) {
         return;
@@ -215,7 +215,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submitBlockTemplate(rapidjson::Value &result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submitBlockTemplate(rapidjson::Value &result)
 {
     using namespace rapidjson;
     Document doc(kObjectType);
@@ -259,7 +259,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submitOriginDaemon(const JobResult& result)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::submitOriginDaemon(const JobResult& result)
 {
     if (result.diff == 0 || m_blockDiff == 0) {
         return;
@@ -294,7 +294,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
         Tags::origin(), m_originSubmitted, m_originNotSubmitted, m_blockDiff, result.actualDiff(), result.diff);
 }
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onHttpData(const HttpData &data)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::SelfSelectClient::onHttpData(const HttpData &data)
 {
     if (data.status != 200) {
         return retry();

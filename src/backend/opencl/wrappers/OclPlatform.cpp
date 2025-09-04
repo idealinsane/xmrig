@@ -28,7 +28,7 @@
 #include "backend/opencl/wrappers/OclLib.h"
 
 
-std::vector<xmrig::OclPlatform> __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclPlatform::get()
+std::vector<xmrig::OclPlatform> __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclPlatform::get()
 {
     const std::vector<cl_platform_id> platforms = OclLib::getPlatformIDs();
     std::vector<OclPlatform> out;
@@ -46,7 +46,7 @@ std::vector<xmrig::OclPlatform> __attribute__((__annotate__(("indirectcall,indir
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclPlatform::print()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclPlatform::print()
 {
     const auto platforms = OclPlatform::get();
 

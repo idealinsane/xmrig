@@ -358,7 +358,7 @@ void xmrig::Pool::print() const
 #endif
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Pool::setKeepAlive(const rapidjson::Value &value)
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Pool::setKeepAlive(const rapidjson::Value &value)
 {
     if (value.IsInt()) {
         setKeepAlive(value.GetInt());

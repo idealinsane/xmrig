@@ -157,7 +157,7 @@ static void getSensorsData_v8(const AdapterInfo &adapter, AdlHealth &health)
 } // namespace xmrig
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::init()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::init()
 {
     if (!m_initialized) {
         m_ready       = dlopen() && load();
@@ -174,7 +174,7 @@ const char *xmrig::AdlLib::lastError() noexcept
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::close()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::close()
 {
     if (m_ready) {
         ADL_Main_Control_Destroy();
@@ -184,7 +184,7 @@ void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::health(const OclDevice &device)
+AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::health(const OclDevice &device)
 {
     if (!isReady() || device.vendorId() != OCL_VENDOR_AMD) {
         return {};
@@ -219,13 +219,13 @@ AdlHealth __attribute__((__annotate__(("indirectcall,indirectbr,flattening,alias
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::dlopen()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::dlopen()
 {
     return uv_dlopen("atiadlxx.dll", &adlLib) == 0;
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::load()
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::AdlLib::load()
 {
     try {
         DLSYM(ADL_Main_Control_Create);

@@ -43,7 +43,7 @@ xmrig::OclContext::~OclContext()
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::OclContext::init(const std::vector<OclDevice> &devices, std::vector<OclLaunchData> &threads)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::OclContext::init(const std::vector<OclDevice> &devices, std::vector<OclLaunchData> &threads)
 {
     if (!m_ctx) {
         std::vector<cl_device_id> ids(devices.size());

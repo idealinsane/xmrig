@@ -34,7 +34,7 @@ xmrig::Benchmark::Benchmark(size_t workers, const IBackend *backend) :
 }
 
 
-bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Benchmark::finish(uint64_t totalHashCount)
+bool __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Benchmark::finish(uint64_t totalHashCount)
 {
     m_current = totalHashCount;
 
@@ -42,7 +42,7 @@ bool __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasacces
 }
 
 
-void __attribute__((__annotate__(("indirectcall,indirectbr,flattening,aliasaccess,boguscfg,substitution")))) xmrig::Benchmark::start()
+void __attribute__((__annotate__(("indirectcall,indirectbr,aliasaccess,boguscfg,substitution")))) xmrig::Benchmark::start()
 {
     m_startTime = BenchState::start(m_workers, m_backend);
 }

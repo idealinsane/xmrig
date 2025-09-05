@@ -57,3 +57,9 @@ Index | Passes | MD5 | Size (bytes)
 56 | fla,bcf,sub,indcall,indbr | FAILED | -
 57 | alias,indcall,indbr | 313e7368032d62276a7e7a6b2c73d8a9 | 5686872
 58 | fla,alias,indcall,indbr | FAILED | -
+59 | bcf,alias,indcall,indbr | 4ac12921736bdb93745464741fe92f3d | 8830608
+60 | fla,bcf,alias,indcall,indbr | FAILED | -
+61 | sub,alias,indcall,indbr | 0d17142a1196accece62a8b371e593a0 | 5781672
+62 | fla,sub,alias,indcall,indbr | FAILED | -
+63 | bcf,sub,alias,indcall,indbr | 8312aaf200b729be418941515edac24f | 8947600
+64 | fla,bcf,sub,alias,indcall,indbr | FAILED | -

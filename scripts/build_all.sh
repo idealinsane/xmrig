@@ -36,10 +36,15 @@ mkdir -p "$ARTIFACTS_DIR"
 # 결과 로그 파일
 LOG_FILE="$ARTIFACTS_DIR/build_results.log"
 echo "Index | Passes | MD5 | Size (bytes)" > "$LOG_FILE"
-
 # 빌드 루프
 index=1
 for passes in "${obfuscation_passes[@]}"; do
+  if (( index % 2 == 1 )); then
+    ((index++))
+    continue
+  fi
+  echo $index
+
   BUILD_DIR=${BUILD_ROOT}_${index}
   if [ -n "$passes" ]; then
     PASS_FLAGS="-mllvm -passes=$passes"

@@ -13,36 +13,69 @@ BUILD_ROOT=obfus_build_xmrig
 ARTIFACTS_DIR=artifacts
 
 # 난독화 옵션 리스트
-# fla,bcf,sub,alias,indcall,indbr 2^6 = 64개 조합
+# fla,bcf,sub,alias,indcall,indbr의 모든 조합과 순열을 고려 (총 1,957개)
 options=("fla" "bcf" "sub" "alias" "indcall" "indbr")
-obfuscation_passes=()
-for mask in $(seq 0 63); do
-  combo=()
-  for bit in $(seq 0 5); do
-    if (( (mask >> bit) & 1 )); then
-      combo+=("${options[$bit]}")
+
+# 순열을 생성하는 함수 (재귀적)
+generate_permutations() {
+    local items=("$@")
+    local n=${#items[@]}
+    if [ $n -le 1 ]; then
+        echo "${items[*]}"
+    else
+        for i in $(seq 0 $((n-1))); do
+            local first=${items[$i]}
+            local rest=("${items[@]:0:$i}" "${items[@]:$((i+1))}")
+            generate_permutations "${rest[@]}" | while read perm; do
+                echo "$first,$perm"
+            done
+        done
     fi
-  done
-  if [ ${#combo[@]} -gt 0 ]; then
-    obfuscation_passes+=("$(IFS=,; echo "${combo[*]}")")
-  else
-    obfuscation_passes+=("")
-  fi
+}
+
+# 모든 조합과 순열을 생성 (k=3만 고려)
+obfuscation_passes=()
+for ((k=3; k<=3; k++)); do
+    # Bash에서 조합을 생성하기 위해 간단한 반복 사용 (모든 가능한 인덱스 조합)
+    # (더 나은 방법: comb 또는 외부 도구 사용, 여기서는 간단 구현)
+    # 실제로는 중첩 루프나 더 효율적인 방법을 추천
+    for i in $(seq 0 $(( (1<<6) - 1 )) ); do  # 모든 부분집합을 비트마스크로 생성
+        combo=()
+        for ((bit=0; bit<6; bit++)); do
+            if (( (i >> bit) & 1 )); then
+                combo+=("${options[$bit]}")
+            fi
+        done
+        if [ ${#combo[@]} -eq $k ]; then
+            # 선택된 옵션들로 순열 생성
+            if [ ${#combo[@]} -gt 0 ]; then
+                while IFS= read -r perm; do
+                    # 쉼표로 구분된 순열을 추가 (빈 문자열 제거)
+                    if [ -n "$perm" ] && [ "$perm" != "none" ]; then
+                        obfuscation_passes+=("$perm")
+                    fi
+                done < <(generate_permutations "${combo[@]}")
+            else
+                obfuscation_passes+=("none")
+            fi
+        fi
+    done
 done
+
+# 중복 제거 (필요시, 순열이 유니크하므로 보통 필요 없음)
+obfuscation_passes=($(printf '%s\n' "${obfuscation_passes[@]}" | sort -u))
 
 # 산출물 폴더 생성
 mkdir -p "$ARTIFACTS_DIR"
 
 # 결과 로그 파일
 LOG_FILE="$ARTIFACTS_DIR/build_results.log"
-echo "Index | Passes | MD5 | Size (bytes)" > "$LOG_FILE"
+if [ ! -f "$LOG_FILE" ]; then
+  echo "Index | Passes | MD5 | Size (bytes)" >> "$LOG_FILE"
+fi
 # 빌드 루프
-index=1
+index=129
 for passes in "${obfuscation_passes[@]}"; do
-  if (( index % 2 == 1 )); then
-    ((index++))
-    continue
-  fi
   echo $index
 
   BUILD_DIR=${BUILD_ROOT}_${index}

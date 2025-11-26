@@ -35,7 +35,7 @@ generate_permutations() {
 
 # 모든 조합과 순열을 생성 (k=3만 고려)
 obfuscation_passes=()
-for ((k=3; k<=3; k++)); do
+for ((k=6; k<=6; k++)); do
     # Bash에서 조합을 생성하기 위해 간단한 반복 사용 (모든 가능한 인덱스 조합)
     # (더 나은 방법: comb 또는 외부 도구 사용, 여기서는 간단 구현)
     # 실제로는 중첩 루프나 더 효율적인 방법을 추천
@@ -74,7 +74,7 @@ if [ ! -f "$LOG_FILE" ]; then
   echo "Index | Passes | MD5 | Size (bytes)" >> "$LOG_FILE"
 fi
 # 빌드 루프
-index=129
+index=249
 for passes in "${obfuscation_passes[@]}"; do
   echo $index
 

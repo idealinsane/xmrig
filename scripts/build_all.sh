@@ -73,9 +73,22 @@ LOG_FILE="$ARTIFACTS_DIR/build_results.log"
 if [ ! -f "$LOG_FILE" ]; then
   echo "Index | Passes | MD5 | Size (bytes)" >> "$LOG_FILE"
 fi
+# 빌드 시작/재개 지점
+START_INDEX=249
+RESUME_FROM=${RESUME_FROM:-422}
+if (( RESUME_FROM < START_INDEX )); then
+  RESUME_FROM=$START_INDEX
+fi
+SKIP_COUNT=$((RESUME_FROM - START_INDEX))
+TOTAL_PASSES=${#obfuscation_passes[@]}
+if (( SKIP_COUNT >= TOTAL_PASSES )); then
+  echo "Nothing to build: RESUME_FROM=$RESUME_FROM exceeds available passes ($TOTAL_PASSES)"
+  exit 0
+fi
+
 # 빌드 루프
-index=249
-for passes in "${obfuscation_passes[@]}"; do
+index=$RESUME_FROM
+for passes in "${obfuscation_passes[@]:$SKIP_COUNT}"; do
   echo $index
 
   BUILD_DIR=${BUILD_ROOT}_${index}
